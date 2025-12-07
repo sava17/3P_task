@@ -5,12 +5,18 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from config.settings import GEMINI_API_KEY, GEMINI_MODEL
 import PyPDF2
+import json
+from datetime import datetime
 
 class PDFExtractor:
     """Extract and parse content from BR18 PDF documents"""
 
-    def __init__(self):
+    def __init__(self, debug_mode: bool = True, debug_output_dir: str = "debug_extractions"):
         self.client = genai.Client(api_key=GEMINI_API_KEY)
+        self.debug_mode = debug_mode
+        self.debug_output_dir = Path(debug_output_dir)
+        if self.debug_mode:
+            self.debug_output_dir.mkdir(parents=True, exist_ok=True)
 
     def extract_text_pypdf(self, pdf_path: str) -> str:
         """
@@ -155,6 +161,83 @@ If any field is not found, use null. Return ONLY the JSON object, no other text.
 
         return chunks
 
+    def save_debug_output(self, pdf_path: str, content: str, metadata: Dict, chunks: List[str]):
+        """
+        Save extraction debug output for analysis
+
+        Args:
+            pdf_path: Original PDF path
+            content: Extracted content
+            metadata: Extracted metadata
+            chunks: Generated chunks
+        """
+        if not self.debug_mode:
+            return
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        pdf_name = Path(pdf_path).stem
+        debug_file = self.debug_output_dir / f"{pdf_name}_{timestamp}_debug.json"
+
+        debug_data = {
+            "timestamp": datetime.now().isoformat(),
+            "source_pdf": str(pdf_path),
+            "extraction_technique": "Gemini Vision + LLM",
+            "chunking_technique": "Word-based with overlap (500 words/chunk, 50 word overlap)",
+            "metadata": metadata,
+            "full_extracted_content": content,
+            "total_content_length": len(content),
+            "total_content_words": len(content.split()),
+            "chunks": [
+                {
+                    "chunk_index": i,
+                    "content": chunk,
+                    "word_count": len(chunk.split()),
+                    "char_count": len(chunk)
+                }
+                for i, chunk in enumerate(chunks)
+            ],
+            "chunk_count": len(chunks),
+            "chunking_stats": {
+                "total_chunks": len(chunks),
+                "avg_words_per_chunk": sum(len(c.split()) for c in chunks) / len(chunks) if chunks else 0,
+                "avg_chars_per_chunk": sum(len(c) for c in chunks) / len(chunks) if chunks else 0
+            }
+        }
+
+        with open(debug_file, 'w', encoding='utf-8') as f:
+            json.dump(debug_data, f, ensure_ascii=False, indent=2)
+
+        # Also save human-readable text version
+        text_file = self.debug_output_dir / f"{pdf_name}_{timestamp}_content.txt"
+        with open(text_file, 'w', encoding='utf-8') as f:
+            f.write("="*80 + "\n")
+            f.write(f"EXTRACTION DEBUG OUTPUT\n")
+            f.write(f"Source: {pdf_path}\n")
+            f.write(f"Timestamp: {datetime.now().isoformat()}\n")
+            f.write("="*80 + "\n\n")
+
+            f.write("METADATA:\n")
+            f.write("-"*80 + "\n")
+            f.write(json.dumps(metadata, indent=2, ensure_ascii=False))
+            f.write("\n\n")
+
+            f.write("FULL EXTRACTED CONTENT:\n")
+            f.write("-"*80 + "\n")
+            f.write(content)
+            f.write("\n\n")
+
+            f.write("CHUNKS (for embedding):\n")
+            f.write("="*80 + "\n")
+            for i, chunk in enumerate(chunks):
+                f.write(f"\n--- CHUNK {i+1}/{len(chunks)} ---\n")
+                f.write(f"Words: {len(chunk.split())} | Chars: {len(chunk)}\n")
+                f.write("-"*80 + "\n")
+                f.write(chunk)
+                f.write("\n")
+
+        print(f"✓ Debug output saved to: {debug_file}")
+        print(f"✓ Human-readable output saved to: {text_file}")
+
     def process_br18_example(self, pdf_path: str) -> Dict:
         """
         Complete processing pipeline for a BR18 example document
@@ -175,6 +258,10 @@ If any field is not found, use null. Return ONLY the JSON object, no other text.
 
         # Create chunks for RAG
         chunks = self.chunk_document(content)
+
+        # Save debug output if enabled
+        if self.debug_mode:
+            self.save_debug_output(pdf_path, content, metadata, chunks)
 
         return {
             "pdf_path": pdf_path,

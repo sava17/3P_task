@@ -21,8 +21,10 @@ EMBEDDING_MODEL = "gemini-embedding-001"
 EMBEDDING_DIMENSION = 768  # Recommended dimension for Gemini embeddings (768, 1536, or 3072)
 
 # RAG settings
-VECTOR_INDEX_PATH = KNOWLEDGE_BASE_DIR / "embeddings.ann"
-CHUNKS_PATH = KNOWLEDGE_BASE_DIR / "chunks.json"
+# Chroma stores data automatically in KNOWLEDGE_BASE_DIR
+# Legacy paths (kept for backwards compatibility but not used with Chroma)
+VECTOR_INDEX_PATH = KNOWLEDGE_BASE_DIR / "embeddings.ann"  # Not used with Chroma
+CHUNKS_PATH = KNOWLEDGE_BASE_DIR / "chunks.json"  # Not used with Chroma
 TOP_K_RETRIEVAL = 5
 
 # Document generation settings

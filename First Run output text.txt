@@ -1,0 +1,676 @@
+Chroma collection 'br18_knowledge' initialized with 0 existing chunks
+
+
+================================================================================
+
+STEP 1: Extracting Example BR18 Documents
+
+================================================================================
+
+
+================================================================================
+
+STEP 1: Extracting Example BR18 Documents
+
+================================================================================
+
+
+Found 2 example PDFs
+
+
+Processing: DBK.pdf
+
+Processing: C:\3P Opgave\br18_automation\data\example_pdfs\DBK.pdf
+
+✓ Debug output saved to: debug_extractions\DBK_20251207_233606_debug.json
+
+✓ Human-readable output saved to: debug_extractions\DBK_20251207_233606_content.txt
+
+  - Extracted 4400 characters
+
+  - Created 2 chunks
+
+  - Metadata: DBK
+
+
+Processing: START - Starterklæring.pdf
+
+Processing: C:\3P Opgave\br18_automation\data\example_pdfs\START - Starterklæring.pdf
+
+✓ Debug output saved to: debug_extractions\START - Starterklæring_20251207_233638_debug.json
+
+✓ Human-readable output saved to: debug_extractions\START - Starterklæring_20251207_233638_content.txt
+
+  - Extracted 7467 characters
+
+  - Created 3 chunks
+
+  - Metadata: START
+
+
+
+Adding 5 chunks to vector database...
+
+Added 5 chunks to vector store (total: 5)
+
+
+Vector Store Statistics:
+
+  Total chunks: 5
+
+  By source: {'approved_doc': 5}
+
+  By municipality: {'Ishøj': 5}
+
+
+================================================================================
+
+STEP 2: Generating Initial Documents (Before Learning)
+
+================================================================================
+
+
+================================================================================
+
+STEP 2: Generating Initial Documents (Before Learning)
+
+================================================================================
+
+
+
+Project: Test Building 1
+
+  Municipality: Aarhus
+
+  Fire Classification: BK3
+
+  Required documents: START, ITT, DBK, BSR, BPLAN, PFP, DIM, FUNK, KPLA, KRAP, DKV
+
+
+  Retrieved 5 relevant context chunks from RAG
+
+  Generated START document (7264 chars)
+
+
+
+Project: Test Building 2
+
+  Municipality: Aalborg
+
+  Fire Classification: BK2
+
+  Required documents: START, ITT, DBK, BSR, BPLAN, PFP, DIM, FUNK
+
+
+  Retrieved 5 relevant context chunks from RAG
+
+  Generated START document (5673 chars)
+
+
+
+Project: Test Building 3
+
+  Municipality: Aalborg
+
+  Fire Classification: BK2
+
+  Required documents: START, ITT, DBK, BSR, BPLAN, PFP, DIM, FUNK
+
+
+  Retrieved 5 relevant context chunks from RAG
+
+  Generated START document (7330 chars)
+
+
+
+Project: Test Building 4
+
+  Municipality: København
+
+  Fire Classification: BK3
+
+  Required documents: START, ITT, DBK, BSR, BPLAN, PFP, DIM, FUNK, KPLA, KRAP, DKV
+
+
+  Retrieved 5 relevant context chunks from RAG
+
+  Generated START document (7387 chars)
+
+
+
+Project: Test Building 5
+
+  Municipality: København
+
+  Fire Classification: BK3
+
+  Required documents: START, ITT, DBK, BSR, BPLAN, PFP, DIM, FUNK, KPLA, KRAP, DKV
+
+
+  Retrieved 5 relevant context chunks from RAG
+
+  Generated START document (7449 chars)
+
+
+================================================================================
+
+STEP 3: Simulating Municipality Feedback
+
+================================================================================
+
+
+================================================================================
+
+STEP 3: Simulating Municipality Feedback
+
+================================================================================
+
+
+❌ REJECTED: Test Building 1
+
+  Municipality: Aarhus
+
+  Reasons: Incomplete fire strategy description, Missing material classifications...
+
+
+❌ REJECTED: Test Building 2
+
+  Municipality: Aalborg
+
+  Reasons: Missing specific BR18 paragraph references, Incomplete rescue service conditions...
+
+
+✅ APPROVED: Test Building 3
+
+  Municipality: Aalborg
+
+
+❌ REJECTED: Test Building 4
+
+  Municipality: København
+
+  Reasons: Unclear evacuation distances, Incorrect fire resistance class specifications...
+
+
+❌ REJECTED: Test Building 5
+
+  Municipality: København
+
+  Reasons: Missing specific BR18 paragraph references, Incomplete fire strategy description...
+
+
+
+Initial Approval Rate: 20.0%
+
+
+================================================================================
+
+STEP 4: Learning from Feedback with Gemini (THE KEY INNOVATION ⭐)
+
+================================================================================
+
+
+================================================================================
+
+STEP 4: Learning from Municipality Feedback (Gemini Analysis)
+
+================================================================================
+
+
+Analyzing 5 feedback items...
+
+Using Gemini 2.5 Flash to extract patterns and insights...
+
+Extracted insight: Incomplete or insufficient fire strategy descriptions are a ...
+
+Extracted insight: Missing material classifications leads to rejection....
+
+Extracted insight: Unclear or insufficiently detailed building descriptions are...
+
+Extracted insight: Aarhus Municipality has a high standard for completeness and...
+
+Extracted insight: Specific technical details like fire resistance classes and ...
+
+Extracted insight: Rejection due to missing specific BR18 paragraph references....
+
+Extracted insight: Rejection due to incomplete or insufficient detail regarding...
+
+Extracted insight: Rejection due to incorrect fire resistance class specificati...
+
+Extracted insight: Aalborg municipality requires exact, quantified evacuation d...
+
+Extracted insight: Documents are approved when they comprehensively meet Aalbor...
+
+Extracted insight: Aalborg expects a high degree of precision and quantificatio...
+
+Extracted insight: Insufficient detail and clarity regarding evacuation distanc...
+
+Extracted insight: Failure to explicitly reference the control plan (KPLA) docu...
+
+Extracted insight: Incomplete or incorrect fire strategy description, including...
+
+Extracted insight: Lack of specific BR18 paragraph references to support claims...
+
+Extracted insight: Insufficient detail regarding rescue service access routes....
+
+Extracted insight: København municipality expects a very high level of detail a...
+
+Extracted insight: No positive approval patterns could be identified due to the...
+
+
+
+✨ Extracted 18 Learning Insights:
+
+
+1. Incomplete or insufficient fire strategy descriptions are a common reason for rejection.
+
+   Confidence: 100%
+
+   Municipality: Aarhus
+
+   Example: Incomplete fire strategy description...
+
+
+2. Missing material classifications leads to rejection.
+
+   Confidence: 100%
+
+   Municipality: Aarhus
+
+   Example: Missing material classifications...
+
+
+3. Unclear or insufficiently detailed building descriptions are not accepted.
+
+   Confidence: 100%
+
+   Municipality: Aarhus
+
+   Example: Unclear building description...
+
+
+4. Aarhus Municipality has a high standard for completeness and detail in START documents.
+
+   Confidence: 100%
+
+   Municipality: Aarhus
+
+   Example: Document requires revision to meet Aarhus standards...
+
+
+5. Specific technical details like fire resistance classes and rescue access routes are mandatory.
+
+   Confidence: 100%
+
+   Municipality: Aarhus
+
+   Example: Include fire resistance class (e.g., R60)...
+
+
+6. Rejection due to missing specific BR18 paragraph references.
+
+   Confidence: 90%
+
+   Municipality: Aalborg
+
+   Example: Missing specific BR18 paragraph references...
+
+
+7. Rejection due to incomplete or insufficient detail regarding rescue service conditions.
+
+   Confidence: 90%
+
+   Municipality: Aalborg
+
+   Example: Incomplete rescue service conditions...
+
+
+8. Rejection due to incorrect fire resistance class specifications.
+
+   Confidence: 90%
+
+   Municipality: Aalborg
+
+   Example: Incorrect fire resistance class specifications...
+
+
+9. Aalborg municipality requires exact, quantified evacuation distances.
+
+   Confidence: 90%
+
+   Municipality: Aalborg
+
+   Example: Specify exact evacuation distances in meters...
+
+
+10. Documents are approved when they comprehensively meet Aalborg municipality's detailed requirements and standards.
+
+   Confidence: 80%
+
+   Municipality: Aalborg
+
+   Example: Document approved - meets Aalborg requirements...
+
+
+11. Aalborg expects a high degree of precision and quantification for all technical details.
+
+   Confidence: 85%
+
+   Municipality: Aalborg
+
+   Example: Missing specific BR18 paragraph references...
+
+
+12. Insufficient detail and clarity regarding evacuation distances, requiring precise quantification.
+
+   Confidence: 100%
+
+   Municipality: København
+
+   Example: Unclear evacuation distances...
+
+
+13. Failure to explicitly reference the control plan (KPLA) document within the submission.
+
+   Confidence: 100%
+
+   Municipality: København
+
+   Example: Missing control plan references...
+
+
+14. Incomplete or incorrect fire strategy description, including fire resistance classes and material specifications.
+
+   Confidence: 100%
+
+   Municipality: København
+
+   Example: Incorrect fire resistance class specifications...
+
+
+15. Lack of specific BR18 paragraph references to support claims and design choices.
+
+   Confidence: 50%
+
+   Municipality: København
+
+   Example: Missing specific BR18 paragraph references...
+
+
+16. Insufficient detail regarding rescue service access routes.
+
+   Confidence: 50%
+
+   Municipality: København
+
+   Example: Provide detailed rescue service access routes...
+
+
+17. København municipality expects a very high level of detail and specificity in all submitted documents, particularly concerning fire safety, evacuation, and access.
+
+   Confidence: 100%
+
+   Municipality: København
+
+   Example: Document requires revision to meet København standards...
+
+
+18. No positive approval patterns could be identified due to the absence of approved documents in the provided dataset.
+
+   Confidence: 100%
+
+   Municipality: København
+
+   Example: Approved: 0...
+
+
+
+Converting insights to knowledge chunks for RAG system...
+
+Added 18 chunks to vector store (total: 23)
+
+Added 18 new knowledge chunks from learning
+
+
+Updated Vector Store:
+
+  Total chunks: 23
+
+  By source: {'approved_doc': 5, 'insight': 18}
+
+
+================================================================================
+
+STEP 5: Generating Improved Documents (After Learning)
+
+================================================================================
+
+
+================================================================================
+
+STEP 5: Generating Documents with Learned Knowledge
+
+================================================================================
+
+
+
+Project: Test Building 1
+
+  Retrieved 5 context chunks (includes learned insights)
+
+  Including 5 learned insight chunks
+
+  Generated improved START document
+
+
+
+Project: Test Building 2
+
+  Retrieved 5 context chunks (includes learned insights)
+
+  Including 5 learned insight chunks
+
+  Generated improved START document
+
+
+
+Project: Test Building 3
+
+  Retrieved 5 context chunks (includes learned insights)
+
+  Including 5 learned insight chunks
+
+  Generated improved START document
+
+
+
+Project: Test Building 4
+
+  Retrieved 5 context chunks (includes learned insights)
+
+  Including 5 learned insight chunks
+
+  Generated improved START document
+
+
+
+Project: Test Building 5
+
+  Retrieved 5 context chunks (includes learned insights)
+
+  Including 5 learned insight chunks
+
+  Generated improved START document
+
+
+================================================================================
+
+STEP 6: Learning Impact - Real Measurable Metrics
+
+================================================================================
+
+
+================================================================================
+
+STEP 6: Learning Impact - Real Measurable Metrics
+
+================================================================================
+
+
+📊 REAL METRICS (Measured & Verified):
+
+  ======================================================================
+
+  Initial Documents Generated:     5
+
+  Initial Approval Rate:           20% (1/5)
+
+  Rejections Analyzed:             4
+
+  Unique Error Patterns Found:     8
+
+
+📈 KNOWLEDGE BASE GROWTH (Real Growth):
+
+  ======================================================================
+
+  Starting Knowledge Chunks:       5
+
+  Learned Insights Added:          18
+
+  Total Knowledge Chunks:          23
+
+  Knowledge Growth Rate:           +360%
+
+  Learning Efficiency:             3.6 insights per project
+
+
+🎯 MUNICIPALITY-SPECIFIC LEARNING (Coverage Expansion):
+
+  ======================================================================
+
+  Aalborg          6 chunks  (6 learned insights)
+
+  Aarhus           5 chunks  (5 learned insights)
+
+  Ishøj            5 chunks  (5 original examples)
+
+  København        7 chunks  (7 learned insights)
+
+  ──────────────────────────────────────────────────────────────────────
+
+  Municipality Coverage:           1 → 4 (+3)
+
+
+🔍 ERROR PATTERNS IDENTIFIED & LEARNED:
+
+  ======================================================================
+
+  1. Incomplete fire strategy description
+
+     Frequency: 2 occurrence(s)
+
+  2. Missing specific BR18 paragraph references
+
+     Frequency: 2 occurrence(s)
+
+  3. Incorrect fire resistance class specifications
+
+     Frequency: 2 occurrence(s)
+
+  4. Missing material classifications
+
+     Frequency: 1 occurrence(s)
+
+  5. Unclear building description
+
+     Frequency: 1 occurrence(s)
+
+  6. Incomplete rescue service conditions
+
+     Frequency: 1 occurrence(s)
+
+  7. Unclear evacuation distances
+
+     Frequency: 1 occurrence(s)
+
+  8. Missing control plan references
+
+     Frequency: 1 occurrence(s)
+
+
+💡 LEARNING SYSTEM DEMONSTRATION:
+
+  ======================================================================
+
+  ✅ Step 1: Extract examples     → 5 base knowledge chunks
+
+  ✅ Step 2: Generate documents   → 5 documents created
+
+  ✅ Step 3: Receive feedback     → 4 rejections analyzed
+
+  ✅ Step 4: Learn patterns       → 18 actionable insights extracted
+
+  ✅ Step 5: Enhance knowledge    → Knowledge base enriched with specifics
+
+  ✅ Step 6: Continuous cycle     → System ready for next iteration
+
+
+🚀 IMPACT ON FUTURE DOCUMENT GENERATION:
+
+  ======================================================================
+
+  • Documents now include municipality-specific requirements
+
+  • 8 known error types will be avoided
+
+  • RAG retrieval now accesses 4x municipality knowledge
+
+  • Each new project adds to organizational wisdom
+
+
+📝 KNOWLEDGE RETENTION (Assignment Core Goal):
+
+  ======================================================================
+
+  ✓ Knowledge persists in ChromaDB (survives restarts)
+
+  ✓ Municipality-specific patterns captured (4 municipalities)
+
+  ✓ Error patterns documented (8 unique issues)
+
+  ✓ System becomes smarter with each project
+
+  ✓ New employees access 23 knowledge chunks instantly
+
+
+================================================================================
+
+NOTE: Approval rate improvement would be measured in production by:
+
+  1. Re-generating documents with learned insights
+
+  2. Getting actual municipality review
+
+  3. Comparing error rates before/after learning
+
+================================================================================
+
+
+
+================================================================================
+
+✨ DEMO COMPLETE!
+
+================================================================================
+
+
+Key Achievement: Continuous learning from municipality feedback
+
+📈 Real Growth: 5 → 23 knowledge chunks
+
+🎯 Municipality Coverage: 1 → 4 municipalities
+
+💡 Insights Learned: 18 actionable patterns
+
+🧠 Method: Gemini 2.5 Flash analyzes feedback to extract actionable patterns

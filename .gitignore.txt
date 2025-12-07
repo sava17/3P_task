@@ -5,3 +5,9 @@ PROJECT_SUMMARY.md
 QUICKSTART.md
 README.md
 ARCHITECTURE.md
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

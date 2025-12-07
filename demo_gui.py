@@ -180,7 +180,19 @@ class BR18DemoGUI(ctk.CTk):
         """Setup control buttons"""
         button_frame = ctk.CTkFrame(parent, fg_color="transparent")
         button_frame.grid(row=3, column=0, sticky="ew", pady=(0, 10))
-        button_frame.grid_columnconfigure(tuple(range(7)), weight=1)
+        button_frame.grid_columnconfigure(tuple(range(8)), weight=1)
+
+        # Clear All Data button
+        self.clear_btn = ctk.CTkButton(
+            button_frame,
+            text="🗑️ Clear All\nData",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            command=self.clear_all_data,
+            height=40,
+            fg_color="#dc2626",
+            hover_color="#b91c1c"
+        )
+        self.clear_btn.grid(row=0, column=0, padx=5, sticky="ew")
 
         # Start Demo button
         self.start_btn = ctk.CTkButton(
@@ -192,7 +204,7 @@ class BR18DemoGUI(ctk.CTk):
             fg_color="#2563eb",
             hover_color="#1d4ed8"
         )
-        self.start_btn.grid(row=0, column=0, padx=5, sticky="ew")
+        self.start_btn.grid(row=0, column=1, padx=5, sticky="ew")
 
         # Individual step buttons
         self.step_buttons = []
@@ -212,9 +224,9 @@ class BR18DemoGUI(ctk.CTk):
                 font=ctk.CTkFont(size=12),
                 command=lambda step=i: self.run_single_step(step),
                 height=40,
-                state="disabled"
+                state="normal"
             )
-            btn.grid(row=0, column=i+1, padx=5, sticky="ew")
+            btn.grid(row=0, column=i+2, padx=5, sticky="ew")
             self.step_buttons.append(btn)
 
     def setup_metrics_section(self, parent):
@@ -273,10 +285,8 @@ This demo showcases an AI system that:
   • Uses Gemini to extract learning patterns from feedback
   • Improves over time with higher approval rates
 
-Click "▶️ Start Full Demo" to run the complete demonstration, or
-click individual step buttons to run steps one at a time.
-
-Press any step button to begin!
+You can either run the full process with "▶️ Start Full Demo" or execute
+each part of the process individually using the step buttons.
 """
         self.write_output(welcome)
 
@@ -409,16 +419,22 @@ Press any step button to begin!
                 # Step 6
                 self.highlight_step(5)
                 print("\n" + "="*80)
-                print("STEP 6: Performance Metrics - Learning Improvement Demonstrated")
+                print("STEP 6: Learning Impact - Real Measurable Metrics")
                 print("="*80)
                 self.demo_system.step6_show_improvement_metrics(self.feedbacks, self.improved_docs)
-                self.update_metrics(final_rate=0.75)  # Simulated improvement
+
+                # Update metrics with real data
+                stats = self.demo_system.vector_store.get_stats()
+                initial_rate = sum(1 for f in self.feedbacks if f.approved) / len(self.feedbacks)
+                self.update_metrics(initial_rate=initial_rate, chunks=stats['total_chunks'])
 
                 print("\n\n" + "="*80)
                 print("✨ DEMO COMPLETE!")
                 print("="*80)
                 print("\nKey Achievement: Continuous learning from municipality feedback")
-                print("📈 Result: Approval rate improved from 40% to 75%")
+                print(f"📈 Real Growth: {stats['by_source_type'].get('approved_doc', 0)} → {stats['total_chunks']} knowledge chunks")
+                print(f"🎯 Municipality Coverage: 1 → {len(stats['by_municipality'])} municipalities")
+                print(f"💡 Insights Learned: {stats['by_source_type'].get('insight', 0)} actionable patterns")
                 print("🧠 Method: Gemini 2.5 Flash analyzes feedback to extract actionable patterns")
 
             except Exception as e:
@@ -505,10 +521,14 @@ Press any step button to begin!
                         print("❌ Please run Step 5 first to generate improved documents!")
                         return
                     print("\n" + "="*80)
-                    print("STEP 6: Performance Metrics")
+                    print("STEP 6: Learning Impact - Real Metrics")
                     print("="*80)
                     self.demo_system.step6_show_improvement_metrics(self.feedbacks, self.improved_docs)
-                    self.update_metrics(final_rate=0.75)
+
+                    # Update with real metrics
+                    stats = self.demo_system.vector_store.get_stats()
+                    initial_rate = sum(1 for f in self.feedbacks if f.approved) / len(self.feedbacks)
+                    self.update_metrics(initial_rate=initial_rate, chunks=stats['total_chunks'])
 
                 print("\n✅ Step completed!")
 
@@ -522,6 +542,73 @@ Press any step button to begin!
 
         # Run in background thread
         thread = threading.Thread(target=run_step, daemon=True)
+        thread.start()
+
+    def clear_all_data(self):
+        """Clear all generated data for fresh demo"""
+        if self.demo_running:
+            messagebox.showwarning("Demo Running", "Please wait for current operation to complete!")
+            return
+
+        # Confirm with user
+        response = messagebox.askyesno(
+            "Clear All Data?",
+            "This will delete:\n\n"
+            "• Vector database (all indexed documents)\n"
+            "• Generated BR18 documents\n"
+            "• Feedback data\n"
+            "• Debug extraction files\n"
+            "• Learning metrics\n\n"
+            "This prepares the system for a clean demo run.\n\n"
+            "Are you sure you want to continue?"
+        )
+
+        if not response:
+            return
+
+        def clear_data():
+            try:
+                self.demo_running = True
+                old_stdout = sys.stdout
+                sys.stdout = TextRedirector(self.output_queue)
+
+                print("\n" + "="*80)
+                print("🗑️  CLEARING ALL GENERATED DATA")
+                print("="*80)
+
+                # Initialize demo system if needed
+                if self.demo_system is None:
+                    self.demo_system = BR18DemoSystem()
+
+                # Clear all data
+                self.demo_system.clear_all_generated_data()
+
+                # Reset metrics display
+                self.update_metrics(0, 0, 0)
+
+                # Reset stored data
+                self.initial_docs = []
+                self.feedbacks = []
+                self.insights = []
+                self.improved_docs = []
+
+                # Reset step highlighting
+                for i, (frame, label) in enumerate(zip(self.step_frames, self.step_labels)):
+                    frame.configure(fg_color=("gray75", "gray25"))
+                    label.configure(text_color="gray")
+
+                print("\n✅ Ready for fresh demo run!")
+
+            except Exception as e:
+                print(f"\n❌ Error: {str(e)}")
+                import traceback
+                traceback.print_exc()
+            finally:
+                sys.stdout = old_stdout
+                self.demo_running = False
+
+        # Run in background thread
+        thread = threading.Thread(target=clear_data, daemon=True)
         thread.start()
 
 

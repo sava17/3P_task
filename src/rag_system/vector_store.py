@@ -1,28 +1,39 @@
-from annoy import AnnoyIndex
+import chromadb
+from chromadb.config import Settings
 from typing import List, Dict, Optional
-import json
 from pathlib import Path
 from config.settings import (
-    VECTOR_INDEX_PATH,
-    CHUNKS_PATH,
-    EMBEDDING_DIMENSION,
+    KNOWLEDGE_BASE_DIR,
     TOP_K_RETRIEVAL
 )
 from src.models import KnowledgeChunk
 from .embeddings import EmbeddingGenerator
 
 class VectorStore:
-    """Vector database using Annoy for similarity search"""
+    """Vector database using Chroma for similarity search with continuous learning support"""
 
-    def __init__(self):
+    def __init__(self, collection_name: str = "br18_knowledge"):
+        # Ensure the knowledge base directory exists
+        KNOWLEDGE_BASE_DIR.mkdir(parents=True, exist_ok=True)
+
         self.embedding_generator = EmbeddingGenerator()
-        self.index = AnnoyIndex(EMBEDDING_DIMENSION, 'angular')
-        self.chunks: List[KnowledgeChunk] = []
-        self.is_built = False
 
-        # Load existing index if available
-        if VECTOR_INDEX_PATH.exists() and CHUNKS_PATH.exists():
-            self.load()
+        # Initialize Chroma client with persistent storage
+        self.client = chromadb.PersistentClient(
+            path=str(KNOWLEDGE_BASE_DIR),
+            settings=Settings(
+                anonymized_telemetry=False,
+                allow_reset=True
+            )
+        )
+
+        # Get or create collection
+        self.collection = self.client.get_or_create_collection(
+            name=collection_name,
+            metadata={"description": "BR18 fire safety document knowledge base"}
+        )
+
+        print(f"Chroma collection '{collection_name}' initialized with {self.collection.count()} existing chunks")
 
     def add_chunk(self, chunk: KnowledgeChunk):
         """
@@ -33,21 +44,46 @@ class VectorStore:
         """
         # Generate embedding if not already present
         if chunk.embedding is None:
-            chunk.embedding = self.embedding_generator.generate_embedding(chunk.content)
+            chunk.embedding = self.embedding_generator.generate_embedding(
+                chunk.content,
+                task_type="retrieval_document"
+            )
 
-        # Add to index
-        idx = len(self.chunks)
-        self.index.add_item(idx, chunk.embedding)
-        self.chunks.append(chunk)
-        self.is_built = False
+        # Prepare metadata (Chroma doesn't support nested dicts, so flatten)
+        metadata = {
+            "source_type": chunk.source_type,
+            "source_reference": chunk.source_reference,
+            "created_at": chunk.created_at.isoformat()
+        }
+
+        if chunk.municipality:
+            metadata["municipality"] = chunk.municipality
+        if chunk.document_type:
+            metadata["document_type"] = chunk.document_type.value if hasattr(chunk.document_type, 'value') else str(chunk.document_type)
+
+        # Add additional metadata fields (flatten the metadata dict)
+        for key, value in chunk.metadata.items():
+            if isinstance(value, (str, int, float, bool)):
+                metadata[f"meta_{key}"] = value
+
+        # Add to Chroma
+        self.collection.add(
+            ids=[chunk.chunk_id],
+            embeddings=[chunk.embedding],
+            documents=[chunk.content],
+            metadatas=[metadata]
+        )
 
     def add_chunks_batch(self, chunks: List[KnowledgeChunk]):
         """
-        Add multiple knowledge chunks
+        Add multiple knowledge chunks efficiently
 
         Args:
             chunks: List of knowledge chunks
         """
+        if not chunks:
+            return
+
         # Generate embeddings for chunks without them
         texts_to_embed = []
         chunk_indices = []
@@ -58,29 +94,52 @@ class VectorStore:
                 chunk_indices.append(i)
 
         if texts_to_embed:
-            embeddings = self.embedding_generator.generate_embeddings_batch(texts_to_embed)
+            embeddings = self.embedding_generator.generate_embeddings_batch(
+                texts_to_embed,
+                task_type="retrieval_document"
+            )
             for chunk_idx, embedding in zip(chunk_indices, embeddings):
                 chunks[chunk_idx].embedding = embedding
 
-        # Add all chunks to index
+        # Prepare batch data
+        ids = []
+        embeddings = []
+        documents = []
+        metadatas = []
+
         for chunk in chunks:
-            idx = len(self.chunks)
-            self.index.add_item(idx, chunk.embedding)
-            self.chunks.append(chunk)
+            ids.append(chunk.chunk_id)
+            embeddings.append(chunk.embedding)
+            documents.append(chunk.content)
 
-        self.is_built = False
+            # Prepare metadata
+            metadata = {
+                "source_type": chunk.source_type,
+                "source_reference": chunk.source_reference,
+                "created_at": chunk.created_at.isoformat()
+            }
 
-    def build(self, n_trees: int = 10):
-        """
-        Build the index for similarity search
+            if chunk.municipality:
+                metadata["municipality"] = chunk.municipality
+            if chunk.document_type:
+                metadata["document_type"] = chunk.document_type.value if hasattr(chunk.document_type, 'value') else str(chunk.document_type)
 
-        Args:
-            n_trees: Number of trees (more = higher precision, slower build)
-        """
-        if not self.is_built:
-            self.index.build(n_trees)
-            self.is_built = True
-            print(f"Built vector index with {len(self.chunks)} chunks")
+            # Add additional metadata fields
+            for key, value in chunk.metadata.items():
+                if isinstance(value, (str, int, float, bool)):
+                    metadata[f"meta_{key}"] = value
+
+            metadatas.append(metadata)
+
+        # Batch add to Chroma
+        self.collection.add(
+            ids=ids,
+            embeddings=embeddings,
+            documents=documents,
+            metadatas=metadatas
+        )
+
+        print(f"Added {len(chunks)} chunks to vector store (total: {self.collection.count()})")
 
     def search(
         self,
@@ -90,7 +149,7 @@ class VectorStore:
         document_type: Optional[str] = None
     ) -> List[KnowledgeChunk]:
         """
-        Search for similar chunks
+        Search for similar chunks with optional filtering
 
         Args:
             query: Search query
@@ -101,38 +160,53 @@ class VectorStore:
         Returns:
             List of similar knowledge chunks
         """
-        if not self.is_built:
-            self.build()
-
-        # Generate query embedding with retrieval_query task type
+        # Generate query embedding
         query_embedding = self.embedding_generator.generate_embedding(
             query,
             task_type="retrieval_query"
         )
 
-        # Get nearest neighbors
-        indices, distances = self.index.get_nns_by_vector(
-            query_embedding,
-            top_k * 3,  # Get more than needed for filtering
-            include_distances=True
+        # Build where filter for Chroma
+        where_filter = None
+        if municipality or document_type:
+            where_filter = {}
+            if municipality:
+                where_filter["municipality"] = municipality
+            if document_type:
+                where_filter["document_type"] = document_type
+
+        # Query Chroma
+        results = self.collection.query(
+            query_embeddings=[query_embedding],
+            n_results=top_k,
+            where=where_filter if where_filter else None
         )
 
-        # Retrieve chunks and apply filters
-        results = []
-        for idx, distance in zip(indices, distances):
-            chunk = self.chunks[idx]
+        # Convert results to KnowledgeChunk objects
+        chunks = []
+        if results['ids'] and results['ids'][0]:
+            for i, chunk_id in enumerate(results['ids'][0]):
+                metadata = results['metadatas'][0][i]
 
-            # Apply filters
-            if municipality and chunk.municipality and chunk.municipality != municipality:
-                continue
-            if document_type and chunk.document_type and str(chunk.document_type) != document_type:
-                continue
+                # Reconstruct metadata dict from flattened format
+                chunk_metadata = {}
+                for key, value in metadata.items():
+                    if key.startswith('meta_'):
+                        chunk_metadata[key[5:]] = value
 
-            results.append(chunk)
-            if len(results) >= top_k:
-                break
+                chunk = KnowledgeChunk(
+                    chunk_id=chunk_id,
+                    source_type=metadata['source_type'],
+                    source_reference=metadata['source_reference'],
+                    municipality=metadata.get('municipality'),
+                    document_type=metadata.get('document_type'),
+                    content=results['documents'][0][i],
+                    metadata=chunk_metadata,
+                    embedding=results['embeddings'][0][i] if results['embeddings'] else None
+                )
+                chunks.append(chunk)
 
-        return results
+        return chunks
 
     def retrieve_context(
         self,
@@ -156,59 +230,74 @@ class VectorStore:
         chunks = self.search(query, top_k, municipality, document_type)
         return [chunk.content for chunk in chunks]
 
-    def save(self):
-        """Save index and chunks to disk"""
-        if not self.is_built:
-            self.build()
+    def clear(self):
+        """Clear all data from the vector store (useful for clean runs)"""
+        # Delete and recreate the collection
+        try:
+            self.client.delete_collection(name=self.collection.name)
+            print(f"Deleted existing collection: {self.collection.name}")
+        except Exception:
+            pass
 
-        # Save Annoy index
-        VECTOR_INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
-        self.index.save(str(VECTOR_INDEX_PATH))
-
-        # Save chunks
-        chunks_data = [chunk.model_dump(mode='json') for chunk in self.chunks]
-        with open(CHUNKS_PATH, 'w', encoding='utf-8') as f:
-            json.dump(chunks_data, f, ensure_ascii=False, indent=2, default=str)
-
-        print(f"Saved vector store: {len(self.chunks)} chunks")
-
-    def load(self):
-        """Load index and chunks from disk"""
-        # Load Annoy index
-        self.index.load(str(VECTOR_INDEX_PATH))
-        self.is_built = True
-
-        # Load chunks
-        with open(CHUNKS_PATH, 'r', encoding='utf-8') as f:
-            chunks_data = json.load(f)
-
-        self.chunks = [KnowledgeChunk(**chunk_dict) for chunk_dict in chunks_data]
-        print(f"Loaded vector store: {len(self.chunks)} chunks")
+        self.collection = self.client.get_or_create_collection(
+            name=self.collection.name,
+            metadata={"description": "BR18 fire safety document knowledge base"}
+        )
+        print("Vector store cleared - ready for fresh data")
 
     def get_stats(self) -> Dict:
         """Get statistics about the vector store"""
+        total_count = self.collection.count()
+
+        # Get all items to calculate stats
+        if total_count == 0:
+            return {
+                "total_chunks": 0,
+                "by_source_type": {},
+                "by_municipality": {},
+                "by_document_type": {}
+            }
+
+        # Retrieve all metadata
+        all_data = self.collection.get()
+
         stats = {
-            "total_chunks": len(self.chunks),
-            "is_built": self.is_built,
+            "total_chunks": total_count,
             "by_source_type": {},
             "by_municipality": {},
             "by_document_type": {}
         }
 
-        for chunk in self.chunks:
+        for metadata in all_data['metadatas']:
             # Count by source type
-            stats["by_source_type"][chunk.source_type] = \
-                stats["by_source_type"].get(chunk.source_type, 0) + 1
+            source_type = metadata.get('source_type', 'unknown')
+            stats["by_source_type"][source_type] = \
+                stats["by_source_type"].get(source_type, 0) + 1
 
             # Count by municipality
-            if chunk.municipality:
-                stats["by_municipality"][chunk.municipality] = \
-                    stats["by_municipality"].get(chunk.municipality, 0) + 1
+            municipality = metadata.get('municipality')
+            if municipality:
+                stats["by_municipality"][municipality] = \
+                    stats["by_municipality"].get(municipality, 0) + 1
 
             # Count by document type
-            if chunk.document_type:
-                doc_type = str(chunk.document_type)
+            doc_type = metadata.get('document_type')
+            if doc_type:
                 stats["by_document_type"][doc_type] = \
                     stats["by_document_type"].get(doc_type, 0) + 1
 
         return stats
+
+    def save(self):
+        """
+        Save is automatic with Chroma's PersistentClient
+        This method exists for API compatibility but does nothing
+        """
+        print(f"Chroma auto-saves. Current count: {self.collection.count()} chunks")
+
+    def load(self):
+        """
+        Load is automatic with Chroma's PersistentClient
+        This method exists for API compatibility but does nothing
+        """
+        print(f"Chroma auto-loads. Current count: {self.collection.count()} chunks")

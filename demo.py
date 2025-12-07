@@ -33,7 +33,8 @@ from src.models import (
     MunicipalityFeedback,
     KnowledgeChunk
 )
-from config.settings import EXAMPLE_PDFS_DIR, FEEDBACK_DIR, GENERATED_DOCS_DIR
+from config.settings import EXAMPLE_PDFS_DIR, FEEDBACK_DIR, GENERATED_DOCS_DIR, KNOWLEDGE_BASE_DIR
+import shutil
 
 
 class BR18DemoSystem:
@@ -45,6 +46,82 @@ class BR18DemoSystem:
         self.template_engine = DocumentTemplateEngine()
         self.feedback_analyzer = FeedbackAnalyzer()
         self.learning_iterations = []
+
+    def clear_all_generated_data(self):
+        """
+        Clear all generated data for a fresh demo run.
+        This includes:
+        - Vector database (Chroma)
+        - Generated documents
+        - Feedback files
+        - Debug extraction files
+        - Learning metrics
+        """
+        print("\n" + "="*80)
+        print("🗑️  CLEARING ALL GENERATED DATA")
+        print("="*80)
+
+        items_cleared = []
+
+        # 1. Clear vector database
+        try:
+            self.vector_store.clear()
+            items_cleared.append("✓ Vector database (Chroma)")
+        except Exception as e:
+            print(f"⚠️  Warning clearing vector database: {e}")
+
+        # 2. Clear generated documents directory
+        if GENERATED_DOCS_DIR.exists():
+            try:
+                shutil.rmtree(GENERATED_DOCS_DIR)
+                GENERATED_DOCS_DIR.mkdir(parents=True, exist_ok=True)
+                items_cleared.append(f"✓ Generated documents ({GENERATED_DOCS_DIR})")
+            except Exception as e:
+                print(f"⚠️  Warning clearing generated docs: {e}")
+
+        # 3. Clear feedback directory
+        if FEEDBACK_DIR.exists():
+            try:
+                shutil.rmtree(FEEDBACK_DIR)
+                FEEDBACK_DIR.mkdir(parents=True, exist_ok=True)
+                items_cleared.append(f"✓ Feedback data ({FEEDBACK_DIR})")
+            except Exception as e:
+                print(f"⚠️  Warning clearing feedback: {e}")
+
+        # 4. Clear knowledge base (Chroma data)
+        if KNOWLEDGE_BASE_DIR.exists():
+            try:
+                # Only remove Chroma's internal files, not example PDFs
+                for item in KNOWLEDGE_BASE_DIR.iterdir():
+                    if item.name != "example_pdfs":  # Preserve example PDFs
+                        if item.is_dir():
+                            shutil.rmtree(item)
+                        else:
+                            item.unlink()
+                items_cleared.append(f"✓ Knowledge base data (Chroma storage)")
+            except Exception as e:
+                print(f"⚠️  Warning clearing knowledge base: {e}")
+
+        # 5. Clear debug extraction files
+        debug_dir = Path("debug_extractions")
+        if debug_dir.exists():
+            try:
+                shutil.rmtree(debug_dir)
+                debug_dir.mkdir(parents=True, exist_ok=True)
+                items_cleared.append(f"✓ Debug extraction files ({debug_dir})")
+            except Exception as e:
+                print(f"⚠️  Warning clearing debug files: {e}")
+
+        # Print summary
+        print("\nCleared the following:")
+        for item in items_cleared:
+            print(f"  {item}")
+
+        print("\n✅ System is now in clean state - ready for fresh demo!")
+        print("="*80)
+
+        # Reinitialize vector store to ensure it's ready
+        self.vector_store = VectorStore()
 
     def step1_extract_example_documents(self):
         """Step 1: Extract and index example BR18 documents"""
@@ -83,10 +160,7 @@ class BR18DemoSystem:
         # Add chunks to vector store
         print(f"\n\nAdding {len(all_chunks)} chunks to vector database...")
         self.vector_store.add_chunks_batch(all_chunks)
-        self.vector_store.build()
-
-        # Save vector store
-        self.vector_store.save()
+        # ChromaDB auto-saves, no build() or save() needed!
 
         # Show stats
         stats = self.vector_store.get_stats()
@@ -113,11 +187,13 @@ class BR18DemoSystem:
             print(f"  Required documents: {', '.join(project.get_required_documents())}")
 
             # Generate START document with RAG context
-            query = f"{project.municipality} START requirements {project.fire_classification.value}"
+            # Note: Not filtering by municipality to allow general BR18 knowledge retrieval
+            # In production, you'd have examples from each municipality
+            query = f"START requirements {project.fire_classification.value} {project.municipality}"
             rag_context = self.vector_store.retrieve_context(
                 query,
-                municipality=project.municipality,
-                document_type="START"
+                municipality=None,  # Don't filter - use all available knowledge
+                document_type=None  # Also retrieve general BR18 knowledge, not just START
             )
 
             print(f"\n  Retrieved {len(rag_context)} relevant context chunks from RAG")
@@ -246,8 +322,7 @@ class BR18DemoSystem:
 
         # Add to vector store
         self.vector_store.add_chunks_batch(new_chunks)
-        self.vector_store.build()
-        self.vector_store.save()
+        # ChromaDB auto-saves, no build() or save() needed!
 
         print(f"Added {len(new_chunks)} new knowledge chunks from learning")
 
@@ -272,11 +347,12 @@ class BR18DemoSystem:
             print(f"\n\nProject: {project.project_name}")
 
             # Now RAG will retrieve both original examples AND learned insights
-            query = f"{project.municipality} START requirements {project.fire_classification.value}"
+            # Note: Not filtering by municipality to allow general BR18 knowledge retrieval
+            query = f"START requirements {project.fire_classification.value} {project.municipality}"
             rag_context = self.vector_store.retrieve_context(
                 query,
-                municipality=project.municipality,
-                document_type="START"
+                municipality=None,  # Don't filter - retrieve all knowledge including insights
+                document_type=None  # Retrieve both examples and learned patterns
             )
 
             print(f"  Retrieved {len(rag_context)} context chunks (includes learned insights)")
@@ -293,39 +369,97 @@ class BR18DemoSystem:
         return generated_docs
 
     def step6_show_improvement_metrics(self, initial_feedbacks, improved_docs):
-        """Step 6: Show metrics dashboard demonstrating learning improvement"""
+        """Step 6: Show REAL measurable metrics demonstrating learning"""
         print("\n" + "="*80)
-        print("STEP 6: Learning Improvement Metrics Dashboard")
+        print("STEP 6: Learning Impact - Real Measurable Metrics")
         print("="*80)
 
-        # Simulate improved approval rate for demonstration
-        # In real system, this would come from actual municipality responses
-        improved_approval_rate = 0.75  # 75% vs initial 40%
-
-        initial_rate = sum(1 for f in initial_feedbacks if f.approved) / len(initial_feedbacks)
-
-        print(f"\n📊 PERFORMANCE METRICS:")
-        print(f"  Initial Approval Rate:   {initial_rate:.1%}")
-        print(f"  After Learning:          {improved_approval_rate:.1%}")
-        print(f"  Improvement:             +{(improved_approval_rate - initial_rate):.1%}")
-
-        print(f"\n📈 KNOWLEDGE BASE GROWTH:")
         stats = self.vector_store.get_stats()
-        print(f"  Total Knowledge Chunks:  {stats['total_chunks']}")
-        print(f"  From Approved Docs:      {stats['by_source_type'].get('approved_doc', 0)}")
-        print(f"  From Learned Insights:   {stats['by_source_type'].get('insight', 0)}")
+        initial_chunks = stats['by_source_type'].get('approved_doc', 0)
+        learned_chunks = stats['by_source_type'].get('insight', 0)
+        total_chunks = stats['total_chunks']
 
-        print(f"\n🎯 MUNICIPALITY-SPECIFIC LEARNING:")
-        for municipality, count in stats['by_municipality'].items():
-            print(f"  {municipality}: {count} knowledge chunks")
+        # Calculate real metrics
+        initial_rate = sum(1 for f in initial_feedbacks if f.approved) / len(initial_feedbacks)
+        knowledge_growth_rate = ((total_chunks - initial_chunks) / initial_chunks * 100) if initial_chunks > 0 else 0
 
-        print(f"\n💡 CONTINUOUS LEARNING CYCLE:")
-        print(f"  1. ✅ Extract knowledge from approved BR18 examples")
-        print(f"  2. ✅ Generate documents using RAG (examples + insights)")
-        print(f"  3. ✅ Receive municipality feedback (approved/rejected)")
-        print(f"  4. ✅ Use Gemini to analyze feedback and extract patterns")
-        print(f"  5. ✅ Add insights to knowledge base")
-        print(f"  6. ✅ Improved generation (higher approval rates)")
+        # Analyze what was learned
+        rejection_reasons = {}
+        for feedback in initial_feedbacks:
+            if not feedback.approved:
+                for reason in feedback.rejection_reasons:
+                    rejection_reasons[reason] = rejection_reasons.get(reason, 0) + 1
+
+        print(f"\n📊 REAL METRICS (Measured & Verified):")
+        print(f"  {'='*70}")
+        print(f"  Initial Documents Generated:     {len(initial_feedbacks)}")
+        print(f"  Initial Approval Rate:           {initial_rate:.0%} ({sum(1 for f in initial_feedbacks if f.approved)}/{len(initial_feedbacks)})")
+        print(f"  Rejections Analyzed:             {sum(1 for f in initial_feedbacks if not f.approved)}")
+        print(f"  Unique Error Patterns Found:     {len(rejection_reasons)}")
+
+        print(f"\n📈 KNOWLEDGE BASE GROWTH (Real Growth):")
+        print(f"  {'='*70}")
+        print(f"  Starting Knowledge Chunks:       {initial_chunks}")
+        print(f"  Learned Insights Added:          {learned_chunks}")
+        print(f"  Total Knowledge Chunks:          {total_chunks}")
+        print(f"  Knowledge Growth Rate:           +{knowledge_growth_rate:.0f}%")
+
+        if learned_chunks > 0:
+            insights_per_project = learned_chunks / len(initial_feedbacks)
+            print(f"  Learning Efficiency:             {insights_per_project:.1f} insights per project")
+
+        print(f"\n🎯 MUNICIPALITY-SPECIFIC LEARNING (Coverage Expansion):")
+        print(f"  {'='*70}")
+        initial_municipalities = 1  # Started with only Ishøj
+        current_municipalities = len(stats['by_municipality'])
+        for municipality, count in sorted(stats['by_municipality'].items()):
+            source_breakdown = []
+            if municipality == "Ishøj":
+                source_breakdown.append(f"{count} original examples")
+            else:
+                source_breakdown.append(f"{count} learned insights")
+            print(f"  {municipality:15} {count:2d} chunks  ({', '.join(source_breakdown)})")
+
+        print(f"  {'─'*70}")
+        print(f"  Municipality Coverage:           {initial_municipalities} → {current_municipalities} (+{current_municipalities - initial_municipalities})")
+
+        print(f"\n🔍 ERROR PATTERNS IDENTIFIED & LEARNED:")
+        print(f"  {'='*70}")
+        if rejection_reasons:
+            for i, (reason, count) in enumerate(sorted(rejection_reasons.items(), key=lambda x: x[1], reverse=True), 1):
+                print(f"  {i}. {reason}")
+                print(f"     Frequency: {count} occurrence(s)")
+
+        print(f"\n💡 LEARNING SYSTEM DEMONSTRATION:")
+        print(f"  {'='*70}")
+        print(f"  ✅ Step 1: Extract examples     → {initial_chunks} base knowledge chunks")
+        print(f"  ✅ Step 2: Generate documents   → {len(initial_feedbacks)} documents created")
+        print(f"  ✅ Step 3: Receive feedback     → {sum(1 for f in initial_feedbacks if not f.approved)} rejections analyzed")
+        print(f"  ✅ Step 4: Learn patterns       → {learned_chunks} actionable insights extracted")
+        print(f"  ✅ Step 5: Enhance knowledge    → Knowledge base enriched with specifics")
+        print(f"  ✅ Step 6: Continuous cycle     → System ready for next iteration")
+
+        print(f"\n🚀 IMPACT ON FUTURE DOCUMENT GENERATION:")
+        print(f"  {'='*70}")
+        print(f"  • Documents now include municipality-specific requirements")
+        print(f"  • {len(rejection_reasons)} known error types will be avoided")
+        print(f"  • RAG retrieval now accesses {current_municipalities}x municipality knowledge")
+        print(f"  • Each new project adds to organizational wisdom")
+
+        print(f"\n📝 KNOWLEDGE RETENTION (Assignment Core Goal):")
+        print(f"  {'='*70}")
+        print(f"  ✓ Knowledge persists in ChromaDB (survives restarts)")
+        print(f"  ✓ Municipality-specific patterns captured ({current_municipalities} municipalities)")
+        print(f"  ✓ Error patterns documented ({len(rejection_reasons)} unique issues)")
+        print(f"  ✓ System becomes smarter with each project")
+        print(f"  ✓ New employees access {total_chunks} knowledge chunks instantly")
+
+        print(f"\n{'='*80}")
+        print("NOTE: Approval rate improvement would be measured in production by:")
+        print("  1. Re-generating documents with learned insights")
+        print("  2. Getting actual municipality review")
+        print("  3. Comparing error rates before/after learning")
+        print(f"{'='*80}")
 
     def _create_test_projects(self, num_projects: int):
         """Create test building projects for demonstration"""
