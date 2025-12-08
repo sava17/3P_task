@@ -73,6 +73,9 @@ class BR18DemoGUI(ctk.CTk):
         # Header
         self.setup_header(main_container)
 
+        # Document type selector
+        self.setup_document_selector(main_container)
+
         # Steps progress indicator
         self.setup_steps_indicator(main_container)
 
@@ -109,6 +112,122 @@ class BR18DemoGUI(ctk.CTk):
             font=ctk.CTkFont(size=14),
             text_color="gray"
         ).grid(row=1, column=0, sticky="w", pady=(5, 0))
+
+    def setup_document_selector(self, parent):
+        """Setup document type selection checkboxes"""
+        selector_frame = ctk.CTkFrame(parent)
+        selector_frame.grid(row=1, column=0, sticky="ew", pady=(0, 15))
+        selector_frame.grid_columnconfigure(0, weight=1)
+
+        # Title
+        title_frame = ctk.CTkFrame(selector_frame, fg_color="transparent")
+        title_frame.pack(fill="x", padx=15, pady=(10, 5))
+
+        ctk.CTkLabel(
+            title_frame,
+            text="📄 Document Types to Generate:",
+            font=ctk.CTkFont(size=14, weight="bold")
+        ).pack(side="left")
+
+        # Quick select buttons
+        quick_btn_frame = ctk.CTkFrame(title_frame, fg_color="transparent")
+        quick_btn_frame.pack(side="right")
+
+        ctk.CTkButton(
+            quick_btn_frame,
+            text="✓ Required Only (3)",
+            command=self.select_required_only,
+            width=140,
+            height=25,
+            font=ctk.CTkFont(size=11)
+        ).pack(side="left", padx=5)
+
+        ctk.CTkButton(
+            quick_btn_frame,
+            text="✓ All (12)",
+            command=self.select_all_docs,
+            width=80,
+            height=25,
+            font=ctk.CTkFont(size=11)
+        ).pack(side="left", padx=5)
+
+        ctk.CTkButton(
+            quick_btn_frame,
+            text="✗ None",
+            command=self.deselect_all_docs,
+            width=80,
+            height=25,
+            font=ctk.CTkFont(size=11),
+            fg_color="#dc2626",
+            hover_color="#b91c1c"
+        ).pack(side="left", padx=5)
+
+        # Checkboxes frame
+        checkbox_frame = ctk.CTkFrame(selector_frame, fg_color="transparent")
+        checkbox_frame.pack(fill="x", padx=15, pady=(5, 10))
+
+        # Document types with descriptions
+        self.doc_types = [
+            ("START", "Starterklæring", True),  # Required
+            ("ITT", "Redningsberedskabets indsatsforhold", False),
+            ("DBK", "Dokumentation for brandklasse", True),  # Required
+            ("BSR", "Brandstrategirapport", False),
+            ("BPLAN", "Brandplaner og situationsplan", False),
+            ("PFP", "Pladsfordelingsplaner", False),
+            ("DIM", "Brandteknisk dimensionering (BK3-4)", False),
+            ("FUNK", "Funktionsbeskrivelse", False),
+            ("KPLA", "Kontrolplan", True),  # Required
+            ("KRAP", "Kontrolrapporter", False),
+            ("DKV", "Drift-, kontrol- og vedligeholdelse", False),
+            ("SLUT", "Sluterklæring", False),
+        ]
+
+        self.doc_checkboxes = {}
+
+        # Create 4 columns of checkboxes
+        for i, (doc_id, doc_name, default_checked) in enumerate(self.doc_types):
+            col = i % 4
+            row = i // 4
+
+            cb_frame = ctk.CTkFrame(checkbox_frame, fg_color="transparent")
+            cb_frame.grid(row=row, column=col, sticky="w", padx=10, pady=3)
+
+            var = ctk.BooleanVar(value=default_checked)
+            self.doc_checkboxes[doc_id] = var
+
+            checkbox = ctk.CTkCheckBox(
+                cb_frame,
+                text=f"{doc_id}: {doc_name}",
+                variable=var,
+                font=ctk.CTkFont(size=11),
+                checkbox_width=18,
+                checkbox_height=18
+            )
+            checkbox.pack(anchor="w")
+
+            # Highlight required documents
+            if default_checked:
+                checkbox.configure(text_color="#3b82f6")
+
+    def select_required_only(self):
+        """Select only the 3 required document types"""
+        required = ["START", "DBK", "KPLA"]
+        for doc_id, var in self.doc_checkboxes.items():
+            var.set(doc_id in required)
+
+    def select_all_docs(self):
+        """Select all document types"""
+        for var in self.doc_checkboxes.values():
+            var.set(True)
+
+    def deselect_all_docs(self):
+        """Deselect all document types"""
+        for var in self.doc_checkboxes.values():
+            var.set(False)
+
+    def get_selected_document_types(self):
+        """Get list of selected document types"""
+        return [doc_id for doc_id, var in self.doc_checkboxes.items() if var.get()]
 
     def setup_steps_indicator(self, parent):
         """Setup step-by-step progress indicators"""
@@ -395,7 +514,7 @@ each part of the process individually using the step buttons.
                 print("="*80)
                 self.feedbacks = self.demo_system.step3_simulate_municipality_feedback(
                     self.initial_docs,
-                    initial_approval_rate=0.4
+                    use_content_analysis=True  # Use content-aware feedback
                 )
                 initial_rate = sum(1 for f in self.feedbacks if f.approved) / len(self.feedbacks)
                 self.update_metrics(initial_rate=initial_rate)
@@ -491,7 +610,7 @@ each part of the process individually using the step buttons.
                     print("="*80)
                     self.feedbacks = self.demo_system.step3_simulate_municipality_feedback(
                         self.initial_docs,
-                        initial_approval_rate=0.4
+                        use_content_analysis=True  # Use content-aware feedback
                     )
                     initial_rate = sum(1 for f in self.feedbacks if f.approved) / len(self.feedbacks)
                     self.update_metrics(initial_rate=initial_rate)

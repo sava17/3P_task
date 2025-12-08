@@ -169,8 +169,14 @@ class BR18DemoSystem:
         print(f"  By source: {stats['by_source_type']}")
         print(f"  By municipality: {stats['by_municipality']}")
 
-    def step2_generate_initial_documents(self, num_projects: int = 3):
-        """Step 2: Generate documents for test projects (before learning)"""
+    def step2_generate_initial_documents(self, num_projects: int = 3, selected_doc_types: list = None):
+        """Step 2: Generate documents for test projects (before learning)
+
+        Args:
+            num_projects: Number of test projects to generate
+            selected_doc_types: List of document types to generate (e.g., ['START', 'DBK', 'KPLA'])
+                               If None, generates all required documents
+        """
         print("\n" + "="*80)
         print("STEP 2: Generating Initial Documents (Before Learning)")
         print("="*80)
@@ -184,87 +190,117 @@ class BR18DemoSystem:
             print(f"\n\nProject: {project.project_name}")
             print(f"  Municipality: {project.municipality}")
             print(f"  Fire Classification: {project.fire_classification.value}")
-            print(f"  Required documents: {', '.join(project.get_required_documents())}")
+            required_docs = project.get_required_documents()
 
-            # Generate START document with RAG context
-            # Note: Not filtering by municipality to allow general BR18 knowledge retrieval
-            # In production, you'd have examples from each municipality
-            query = f"START requirements {project.fire_classification.value} {project.municipality}"
-            rag_context = self.vector_store.retrieve_context(
-                query,
-                municipality=None,  # Don't filter - use all available knowledge
-                document_type=None  # Also retrieve general BR18 knowledge, not just START
-            )
+            # Filter by selected document types
+            if selected_doc_types:
+                required_docs = [d for d in required_docs if d in selected_doc_types]
+                print(f"  Selected documents ({len(required_docs)}): {', '.join(required_docs)}")
+            else:
+                print(f"  Required documents ({len(required_docs)}): {', '.join(required_docs)}")
 
-            print(f"\n  Retrieved {len(rag_context)} relevant context chunks from RAG")
+            # Generate documents
+            print(f"\n  Generating document package...")
 
-            # Generate document
-            doc = self.template_engine.generate_start_document(project, rag_context)
-            generated_docs.append(doc)
+            for doc_type_str in required_docs:
+                try:
+                    from src.models import DocumentType
+                    doc_type = DocumentType(doc_type_str)
 
-            print(f"  Generated {doc.document_type.value} document ({len(doc.content)} chars)")
+                    # Get RAG context for this document type
+                    query = f"{doc_type_str} requirements {project.fire_classification.value} {project.municipality}"
+                    rag_context = self.vector_store.retrieve_context(
+                        query,
+                        municipality=None,  # Use all available knowledge
+                        document_type=None
+                    )
 
-            # Save document
-            doc_path = GENERATED_DOCS_DIR / f"{doc.document_id}_{doc.document_type.value}.txt"
-            doc_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(doc_path, 'w', encoding='utf-8') as f:
-                f.write(doc.content)
+                    # Generate document
+                    doc = self.template_engine.generate_document(project, doc_type, rag_context)
+                    generated_docs.append(doc)
+
+                    print(f"    ✓ {doc_type_str}: {len(doc.content)} chars")
+
+                    # Save document
+                    doc_path = GENERATED_DOCS_DIR / f"{doc.document_id}_{doc.document_type.value}.txt"
+                    doc_path.parent.mkdir(parents=True, exist_ok=True)
+                    with open(doc_path, 'w', encoding='utf-8') as f:
+                        f.write(doc.content)
+
+                except Exception as e:
+                    print(f"    ⚠ {doc_type_str}: Error - {e}")
 
         return generated_docs
 
-    def step3_simulate_municipality_feedback(self, generated_docs, initial_approval_rate: float = 0.4):
-        """Step 3: Simulate municipality feedback (some approved, some rejected)"""
+    def step3_simulate_municipality_feedback(self, generated_docs, use_content_analysis: bool = True):
+        """Step 3: Simulate municipality feedback based on document content analysis
+
+        Args:
+            generated_docs: List of generated documents
+            use_content_analysis: If True, analyze document content; if False, use random feedback
+        """
         print("\n" + "="*80)
         print("STEP 3: Simulating Municipality Feedback")
         print("="*80)
 
         feedbacks = []
 
-        # Common rejection reasons for BR18 documents
-        rejection_reasons_pool = [
-            "Missing specific BR18 paragraph references",
-            "Incomplete fire strategy description",
-            "Unclear evacuation distances",
-            "Missing material classifications",
-            "Incorrect fire resistance class specifications",
-            "Incomplete rescue service conditions",
-            "Missing control plan references",
-            "Unclear building description"
-        ]
-
-        suggestions_pool = [
-            "Include specific references to BR18 §508",
-            "Specify exact evacuation distances in meters",
-            "Add material classification (e.g., K1 10/B-s1,d0)",
-            "Include fire resistance class (e.g., R60)",
-            "Provide detailed rescue service access routes",
-            "Reference the control plan (KPLA) document",
-            "Add more detailed building specifications"
-        ]
-
         for doc in generated_docs:
-            # Randomly approve or reject based on initial rate
-            approved = random.random() < initial_approval_rate
+            if use_content_analysis:
+                # Content-aware feedback - actually check what's in the document
+                issues = self._analyze_document_content(doc)
+                approved = len(issues) == 0
 
-            feedback = MunicipalityFeedback(
-                document_id=doc.document_id,
-                municipality=doc.project.municipality,
-                approved=approved
-            )
+                feedback = MunicipalityFeedback(
+                    document_id=doc.document_id,
+                    municipality=doc.project.municipality,
+                    approved=approved
+                )
 
-            if not approved:
-                # Add 2-4 rejection reasons
-                feedback.rejection_reasons = random.sample(
-                    rejection_reasons_pool,
-                    k=random.randint(2, 4)
-                )
-                feedback.suggestions = random.sample(
-                    suggestions_pool,
-                    k=random.randint(1, 3)
-                )
-                feedback.feedback_text = f"Document requires revision to meet {doc.project.municipality} standards"
+                if not approved:
+                    # Use actual issues found
+                    feedback.rejection_reasons = [issue['reason'] for issue in issues]
+                    feedback.suggestions = [issue['suggestion'] for issue in issues]
+                    feedback.feedback_text = f"Document requires revision to meet {doc.project.municipality} standards"
+                else:
+                    feedback.feedback_text = f"Document approved - meets {doc.project.municipality} requirements"
             else:
-                feedback.feedback_text = f"Document approved - meets {doc.project.municipality} requirements"
+                # Legacy random feedback (kept for comparison)
+                rejection_reasons_pool = [
+                    "Missing specific BR18 paragraph references",
+                    "Incomplete fire strategy description",
+                    "Unclear evacuation distances",
+                    "Missing material classifications",
+                    "Incorrect fire resistance class specifications",
+                    "Incomplete rescue service conditions",
+                    "Missing control plan references",
+                    "Unclear building description"
+                ]
+
+                suggestions_pool = [
+                    "Include specific references to BR18 §508",
+                    "Specify exact evacuation distances in meters",
+                    "Add material classification (e.g., K1 10/B-s1,d0)",
+                    "Include fire resistance class (e.g., R60)",
+                    "Provide detailed rescue service access routes",
+                    "Reference the control plan (KPLA) document",
+                    "Add more detailed building specifications"
+                ]
+
+                approved = random.random() < 0.4
+
+                feedback = MunicipalityFeedback(
+                    document_id=doc.document_id,
+                    municipality=doc.project.municipality,
+                    approved=approved
+                )
+
+                if not approved:
+                    feedback.rejection_reasons = random.sample(rejection_reasons_pool, k=random.randint(2, 4))
+                    feedback.suggestions = random.sample(suggestions_pool, k=random.randint(1, 3))
+                    feedback.feedback_text = f"Document requires revision to meet {doc.project.municipality} standards"
+                else:
+                    feedback.feedback_text = f"Document approved - meets {doc.project.municipality} requirements"
 
             feedbacks.append(feedback)
 
@@ -334,37 +370,63 @@ class BR18DemoSystem:
 
         return insights
 
-    def step5_generate_improved_documents(self, num_projects: int = 3):
-        """Step 5: Generate new documents with learned knowledge"""
+    def step5_generate_improved_documents(self, num_projects: int = 3, quick_mode: bool = False):
+        """Step 5: Generate new documents with learned knowledge
+
+        Args:
+            num_projects: Number of test projects to generate
+            quick_mode: If True, only generate START, DBK, KPLA (the 3 required types)
+        """
         print("\n" + "="*80)
         print("STEP 5: Generating Documents with Learned Knowledge")
         print("="*80)
+
+        if quick_mode:
+            print("\n⚡ QUICK MODE: Generating only START, DBK, KPLA documents")
 
         test_projects = self._create_test_projects(num_projects)
         generated_docs = []
 
         for project in test_projects:
             print(f"\n\nProject: {project.project_name}")
+            print(f"  Municipality: {project.municipality}")
+            print(f"  Fire Classification: {project.fire_classification.value}")
+            required_docs = project.get_required_documents()
 
-            # Now RAG will retrieve both original examples AND learned insights
-            # Note: Not filtering by municipality to allow general BR18 knowledge retrieval
-            query = f"START requirements {project.fire_classification.value} {project.municipality}"
-            rag_context = self.vector_store.retrieve_context(
-                query,
-                municipality=None,  # Don't filter - retrieve all knowledge including insights
-                document_type=None  # Retrieve both examples and learned patterns
-            )
+            # In quick mode, only generate the 3 required types
+            if quick_mode:
+                required_docs = [d for d in required_docs if d in ['START', 'DBK', 'KPLA']]
+                print(f"  Quick mode documents ({len(required_docs)}): {', '.join(required_docs)}")
+            else:
+                print(f"  Required documents ({len(required_docs)}): {', '.join(required_docs)}")
 
-            print(f"  Retrieved {len(rag_context)} context chunks (includes learned insights)")
+            # Generate documents (now with learned insights!)
+            print(f"\n  Generating improved {'quick demo' if quick_mode else 'complete'} package with learned knowledge...")
 
-            # Count how many are from insights
-            insight_chunks = [c for c in rag_context if "Confidence:" in c]
-            print(f"  Including {len(insight_chunks)} learned insight chunks")
+            for doc_type_str in required_docs:
+                try:
+                    from src.models import DocumentType
+                    doc_type = DocumentType(doc_type_str)
 
-            doc = self.template_engine.generate_start_document(project, rag_context)
-            generated_docs.append(doc)
+                    # Get RAG context - now includes learned insights!
+                    query = f"{doc_type_str} requirements {project.fire_classification.value} {project.municipality}"
+                    rag_context = self.vector_store.retrieve_context(
+                        query,
+                        municipality=None,  # Retrieve all knowledge including insights
+                        document_type=None
+                    )
 
-            print(f"  Generated improved {doc.document_type.value} document")
+                    # Count how many are from insights
+                    insight_chunks = [c for c in rag_context if "LEARNED PATTERN:" in c or "Confidence:" in c]
+
+                    # Generate improved document
+                    doc = self.template_engine.generate_document(project, doc_type, rag_context)
+                    generated_docs.append(doc)
+
+                    print(f"    ✓ {doc_type_str}: {len(doc.content)} chars ({len(insight_chunks)} learned insights used)")
+
+                except Exception as e:
+                    print(f"    ⚠ {doc_type_str}: Error - {e}")
 
         return generated_docs
 
@@ -460,6 +522,66 @@ class BR18DemoSystem:
         print("  2. Getting actual municipality review")
         print("  3. Comparing error rates before/after learning")
         print(f"{'='*80}")
+
+    def _analyze_document_content(self, doc):
+        """Analyze document content and return list of issues found
+
+        This simulates a municipality reviewer checking for required elements.
+        Returns list of dicts with 'reason' and 'suggestion' keys.
+        """
+        import re
+
+        issues = []
+        content_lower = doc.content.lower()
+
+        # Check 1: BR18 paragraph references
+        if "br18 §" not in content_lower and "§§" not in content_lower:
+            issues.append({
+                'reason': "Missing specific BR18 paragraph references",
+                'suggestion': "Include specific references to BR18 §508"
+            })
+
+        # Check 2: Evacuation distances
+        if "evacuation" not in content_lower or not re.search(r'\d+\s*m(eter)?', doc.content):
+            issues.append({
+                'reason': "Unclear evacuation distances",
+                'suggestion': "Specify exact evacuation distances in meters"
+            })
+
+        # Check 3: Fire resistance classes
+        if not re.search(r'R\d{2,3}', doc.content):
+            issues.append({
+                'reason': "Incorrect fire resistance class specifications",
+                'suggestion': "Include fire resistance class (e.g., R60)"
+            })
+
+        # Check 4: Material classifications (European standard format)
+        if not re.search(r'[A-D]\d?\s*-?s\d?,?\s*d\d?', doc.content):
+            issues.append({
+                'reason': "Missing material classifications",
+                'suggestion': "Add material classification (e.g., K1 10/B-s1,d0)"
+            })
+
+        # Check 5: Municipality-specific requirements
+        municipality = doc.project.municipality
+
+        if municipality == "København":
+            # København requires control plan references
+            if "kontrolplan" not in content_lower and "kpla" not in content_lower:
+                issues.append({
+                    'reason': "Missing control plan references",
+                    'suggestion': "Reference the control plan (KPLA) document"
+                })
+
+        if municipality == "Aalborg":
+            # Aalborg is stricter on rescue service conditions
+            if "redningsberedskab" not in content_lower and "rescue service" not in content_lower:
+                issues.append({
+                    'reason': "Incomplete rescue service conditions",
+                    'suggestion': "Provide detailed rescue service access routes"
+                })
+
+        return issues
 
     def _create_test_projects(self, num_projects: int):
         """Create test building projects for demonstration"""

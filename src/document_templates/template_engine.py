@@ -210,6 +210,378 @@ Generate a comprehensive KPLA document in Danish following BR18 requirements."""
             rag_context_used=rag_context or []
         )
 
+    def generate_itt_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate ITT (Indsatstaktisk Tegning - Rescue Service Tactical Conditions) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate an ITT (Redningsberedskabets indsatsforhold - Rescue Service Tactical Conditions) document for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Address: {project.address}
+- Municipality: {project.municipality}
+- Building Type: {project.building_type}
+- Total Area: {project.total_area_m2} m²
+- Floors: {project.floors}
+- Fire Classification: {project.fire_classification.value}
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a complete ITT document in Danish covering:
+1. Building access for rescue services
+2. Water supply locations and capacity
+3. Rescue operation areas and limitations
+4. Special hazards or conditions
+5. Emergency contact information
+6. BR18 §§126-133 compliance
+
+Output in Danish following BR18 requirements for rescue service conditions."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.ITT, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_bsr_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate BSR (Brandstrategirapport - Fire Strategy Report) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate a BSR (Brandstrategirapport - Fire Strategy Report) for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Building Type: {project.building_type}
+- Total Area: {project.total_area_m2} m²
+- Floors: {project.floors}
+- Fire Classification: {project.fire_classification.value}
+- Occupancy: {project.occupancy} persons
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a comprehensive BSR document in Danish covering:
+1. Overall fire safety strategy and principles
+2. Fire compartmentalization strategy
+3. Evacuation strategy and routes
+4. Active fire protection systems
+5. Passive fire protection measures
+6. Integration with building systems
+7. BR18 compliance documentation
+
+Output in Danish with proper technical terminology."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.BSR, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_bplan_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate BPLAN (Brandplaner og situationsplan - Fire Plans and Site Plan) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate BPLAN (Brandplaner og situationsplan - Fire Plans and Site Plan) for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Address: {project.address}
+- Total Area: {project.total_area_m2} m²
+- Floors: {project.floors}
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a BPLAN document in Danish describing:
+1. Site plan with fire safety elements
+2. Floor plans showing:
+   - Fire compartments and barriers
+   - Evacuation routes and exits
+   - Fire equipment locations
+   - Fire-rated walls and doors
+3. Technical drawings references
+4. Legend and symbols explanation
+
+Output in Danish following BR18 technical drawing requirements."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.BPLAN, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_pfp_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate PFP (Pladsfordelingsplaner - Occupancy Distribution Plans) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate PFP (Pladsfordelingsplaner - Occupancy Distribution Plans) for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Building Type: {project.building_type}
+- Total Area: {project.total_area_m2} m²
+- Occupancy: {project.occupancy} persons
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a PFP document in Danish covering:
+1. Occupancy calculations per floor/area
+2. Person density per room/zone
+3. Maximum permitted occupancy
+4. Evacuation capacity verification
+5. BR18 occupancy requirements compliance
+
+Output in Danish with calculations and justifications."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.PFP, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_dim_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate DIM (Brandteknisk dimensionering - Fire Engineering Calculations) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate DIM (Brandteknisk dimensionering - Fire Engineering Calculations) for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Building Type: {project.building_type}
+- Fire Classification: {project.fire_classification.value}
+- Fire Load: {project.fire_load_mj_m2 or 'To be determined'} MJ/m²
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a DIM document in Danish with calculations for:
+1. Fire load calculations
+2. Evacuation time calculations
+3. Smoke control dimensioning
+4. Fire resistance requirements
+5. Sprinkler/suppression system design (if applicable)
+6. Heat release rate calculations
+7. BR18 calculation methods and references
+
+Required for BK3-4 classifications. Output in Danish with detailed calculations."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.DIM, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_funk_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate FUNK (Funktionsbeskrivelse - Functional Description of Fire Safety Systems) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate FUNK (Funktionsbeskrivelse - Functional Description) for fire safety systems in BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Building Type: {project.building_type}
+- Fire Classification: {project.fire_classification.value}
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a FUNK document in Danish describing:
+1. Fire alarm system functionality
+2. Smoke detection and alarm
+3. Sprinkler/suppression systems (if applicable)
+4. Smoke exhaust systems
+5. Fire doors and barriers operation
+6. Emergency lighting and signage
+7. Integration between systems
+8. Testing and maintenance requirements
+9. BR18 compliance for each system
+
+Output in Danish with detailed functional descriptions."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.FUNK, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_krap_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate KRAP (Kontrolrapporter - Control Reports) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate KRAP (Kontrolrapporter - Control Reports) template for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Fire Classification: {project.fire_classification.value}
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a KRAP document template in Danish for recording:
+1. Control point inspections during construction
+2. Fire door installation verification
+3. Fire barrier inspections
+4. Fire safety system testing results
+5. Material certification verification
+6. Deviations and corrective actions
+7. Sign-off by responsible parties
+8. BR18 compliance verification
+
+Output in Danish as a template for documentation during construction."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.KRAP, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_dkv_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate DKV (Drift-, kontrol- og vedligeholdelse - Operation, Control and Maintenance) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate DKV (Drift-, kontrol- og vedligeholdelse - Operation, Control and Maintenance) for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Building Type: {project.building_type}
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a DKV document in Danish with instructions for:
+1. Fire safety system operation procedures
+2. Regular inspection schedules and checklists
+3. Maintenance requirements and intervals
+4. Testing procedures for fire safety equipment
+5. Documentation and record keeping
+6. Responsible parties and contacts
+7. Emergency procedures
+8. BR18 compliance maintenance
+
+Output in Danish as operational instructions for building management."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.DKV, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
+    def generate_slut_document(
+        self,
+        project: BuildingProject,
+        rag_context: Optional[List[str]] = None
+    ) -> GeneratedDocument:
+        """Generate SLUT (Sluterklæring - Final Declaration) document"""
+        context_str = "\n\n".join(rag_context) if rag_context else ""
+
+        prompt = f"""Generate SLUT (Sluterklæring - Final Declaration) for BR18 submission.
+
+PROJECT DETAILS:
+- Project: {project.project_name}
+- Address: {project.address}
+- Fire Classification: {project.fire_classification.value}
+- Consultant: {project.consultant_name}
+
+REFERENCE EXAMPLES:
+{context_str}
+
+Generate a SLUT document in Danish with:
+1. Certified fire consultant's final declaration
+2. Confirmation that construction matches approved plans
+3. Verification of all fire safety installations
+4. Statement of BR18 compliance
+5. Control report references
+6. Any deviations and approved solutions
+7. Signature and certification
+8. Date of final inspection
+
+Output in Danish following official declaration format."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL, contents=[prompt],
+            config=types.GenerateContentConfig(temperature=TEMPERATURE, max_output_tokens=MAX_TOKENS)
+        )
+
+        return GeneratedDocument(
+            document_id=str(uuid.uuid4()), project=project,
+            document_type=DocumentType.SLUT, content=response.text,
+            rag_context_used=rag_context or []
+        )
+
     def generate_document(
         self,
         project: BuildingProject,
@@ -229,8 +601,17 @@ Generate a comprehensive KPLA document in Danish following BR18 requirements."""
         """
         generators = {
             DocumentType.START: self.generate_start_document,
+            DocumentType.ITT: self.generate_itt_document,
             DocumentType.DBK: self.generate_dbk_document,
+            DocumentType.BSR: self.generate_bsr_document,
+            DocumentType.BPLAN: self.generate_bplan_document,
+            DocumentType.PFP: self.generate_pfp_document,
+            DocumentType.DIM: self.generate_dim_document,
+            DocumentType.FUNK: self.generate_funk_document,
             DocumentType.KPLA: self.generate_kpla_document,
+            DocumentType.KRAP: self.generate_krap_document,
+            DocumentType.DKV: self.generate_dkv_document,
+            DocumentType.SLUT: self.generate_slut_document,
         }
 
         generator = generators.get(document_type)
