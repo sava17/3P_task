@@ -1,0 +1,146 @@
+BRANDSIKRINGSREDEGØRELSE (BSR)
+Uddrag fra Godkendt Projekt
+
+Projekt: Daginstitution "Skovbørnehaven"
+Adresse: Kratbjerg 8, 5230 Odense M
+Kommune: Odense
+Dato: 5. juni 2024
+Status: GODKENDT efter revision
+Brandklasse: BK2
+Anvendelseskategori: 6 (Institution med sengepladser)
+
+═══════════════════════════════════════════════════════════════
+
+PROJEKTOVERSIGT
+
+Byggeriet er indplaceret i Anvendelseskategori 6 (Daginstitution
+med mulighed for hvile).
+
+Kapacitet: 75 børn (0-6 år)
+Areal: 850 m²
+Etager: 1 etage + kælderrum
+Konstruktion: CLT (Cross Laminated Timber) - Massivtræ
+
+═══════════════════════════════════════════════════════════════
+
+SÆRLIGE UDFORDRINGER - SYNLIGT TRÆ I AK6
+
+Da bygningen udføres i CLT (Cross Laminated Timber), er der
+særlige krav til overflader jf. BR18 §509.
+
+OPRINDELIGT FORSLAG (AFVIST):
+Synligt træ i flugtvejsgange med brandimprægnering K1 10.
+
+ODENSE KOMMUNES REAKTION:
+Odense Kommune accepterede IKKE den oprindelige løsning med
+synligt træ i flugtvejsgange.
+
+Citeret fra byggesagsbehandler:
+"Ved Anvendelseskategori 6 (især med små børn) accepterer vi
+ikke synligt brændbart materiale i primære flugtveje, uanset
+brandimprægnering. Dette er en lokal fortolkning baseret på
+erfaringer fra brandøvelser, hvor børn kan reagere uforudsigeligt
+i røgfyldte rum."
+
+═══════════════════════════════════════════════════════════════
+
+GODKENDT LØSNING
+
+Løsningen blev ændret til K1 10 / B-s1,d0 beklædning (gipsplader)
+i alle fordelingsgange.
+
+DETALJER:
+- Flugtvejsgange: 2 lag 12,5mm gipsplader (GKF - brandimprægneret)
+- Loft i flugtveje: 2 lag 12,5mm gipsplader
+- Synligt træ tilladt i: Opholdsrum, grupperum, personalefaciliteter
+
+KONSTRUKTIONSOPBYGNING (GANGE):
+- CLT-væg (5-lags, 100mm)
+- Dampspærre
+- Installationsrum (25mm)
+- 2 x 12,5mm GKF gipsplader
+- Maling (vandbaseret, klasse B-s1,d0)
+
+Brandklassificering af vægopbygning: REI 60 / K1 10 / B-s1,d0
+
+═══════════════════════════════════════════════════════════════
+
+GENEREL ANBEFALING - ODENSE KOMMUNE
+
+Det anbefales fremadrettet ALTID at forespørge forhåndsdialog
+ved synligt træ i AK6-byggeri i Odense.
+
+ODENSES PRAKSIS FOR SYNLIGT TRÆ:
+- AK1-3 (Bolig, kontor): Synligt træ accepteres med K1 10
+- AK4-5 (Forsamling): Synligt træ kræver forhåndsgodkendelse
+- AK6 (Institutions): Synligt træ IKKE accepteret i flugtveje
+
+Dette er strengere end mange andre kommuner, men Odense
+fastholder dette efter brande i ældre træinstitutioner.
+
+═══════════════════════════════════════════════════════════════
+
+BRANDALARMERINGSANLÆG
+
+Fuld dækning med optiske røgdetektorer i alle rum.
+
+SÆRLIGT FOR AK6 I ODENSE:
+- Detektorer skal have "drift-indikator" (synlig LED)
+- Ugentlig test af alarmsignal (logføring påkrævet)
+- Direkte alarmoverføring til Odense Brandvæsen (ingen forsinkelse)
+- Nødbelysning skal være LED-baseret (ikke glødelamper)
+
+═══════════════════════════════════════════════════════════════
+
+FLUGTVEJE
+
+Maksimal flugtafstand: 15 meter (BR18 §508 for AK6 med små børn)
+
+SÆRLIGE KRAV FRA ODENSE:
+- Alle yderdøre skal være gråtede (svage låse)
+- Nødudgangsbelysning skal være på max 0,8 meters højde
+  (så små børn kan se det)
+- Panikbeslag på alle flugtvejsdøre, selvom personantal < 150
+
+Citeret fra byggesagsbehandler:
+"Ved institutioner med børn under skolealder stiller vi ekstra
+krav til intuitivitet i evakueringsveje. Døre skal åbne let,
+og belysning skal være i børnehøjde."
+
+═══════════════════════════════════════════════════════════════
+
+UDENDØRS FORHOLD
+
+Redningsarealer etableret ved alle ydervægge med vinduer.
+
+ODENSE BEREDSKABS KRAV:
+- Redningsområder skal være belagt med fast belægning
+  (græsplæne IKKE accepteret)
+- Afstand til facade: Max 6 meter (ikke 8m som standard)
+- Ingen parkering på redningsarealer (fysiske bomme ønskes)
+
+═══════════════════════════════════════════════════════════════
+
+GODKENDELSESPROCES
+
+1. Indlevering: 15. april 2024
+2. Første svar fra Odense: 22. april 2024 (afslag pga. synligt træ)
+3. Forhåndsmøde med byggesagsbehandler: 2. maj 2024
+4. Revideret projekt indleveret: 10. maj 2024
+5. Endelig godkendelse: 5. juni 2024
+
+Samlet sagsbehandlingstid: 7 uger (inkl. revision)
+
+ERFARINGER FRA ODENSE KOMMUNE:
+- Forhåndsdialog er AFGØRENDE ved CLT-byggeri i AK6
+- Odense er generelt positiv overfor træbyggeri, men streng ved AK6
+- Vær forberedt på krav om gipsbeklædning i flugtveje
+- Detaljeret dokumentation for alle materialevalg (produktdatablade)
+- Typeprøvninger skal være fra akkrediteret laboratorium
+
+VIGTIG LÆRING:
+Hos Odense Kommune er der en brandingeniør dedikeret til
+institutionsbyggeri. Det anbefales at kontakte denne person
+direkte ved AK6-projekter for at undgå forsinkelser.
+
+Kontakt: Institutionsbyggeri@odense.dk

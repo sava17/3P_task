@@ -238,35 +238,307 @@ If any field is not found, use null. Return ONLY the JSON object, no other text.
         print(f"✓ Debug output saved to: {debug_file}")
         print(f"✓ Human-readable output saved to: {text_file}")
 
-    def process_br18_example(self, pdf_path: str) -> Dict:
+    def extract_dbk_insights(self, pdf_path: str) -> Dict:
         """
-        Complete processing pipeline for a BR18 example document
+        Extract DBK-specific insights: Hvilke formuleringer godkendes?
+
+        Focuses on approved phrasing, technical specifications, and compliant language.
+
+        Args:
+            pdf_path: Path to DBK document
+
+        Returns:
+            Dictionary with DBK-specific insights
+        """
+        with open(pdf_path, 'rb') as f:
+            pdf_data = f.read()
+
+        dbk_prompt = """Analyze this DBK (Dokumentation for brandtekniske installationer) document.
+
+Extract and identify:
+
+1. **Godkendte Formuleringer** (Approved Phrasing):
+   - Exact phrasing used for fire system descriptions
+   - Technical terminology that was accepted
+   - How compliance is expressed
+
+2. **Tekniske Specifikationer** (Technical Specifications):
+   - Fire resistance classes (e.g., REI 60, EI 30-C)
+   - Material classifications (e.g., K1 10/B-s1,d0, A2-s1,d0)
+   - Distance requirements (e.g., "30 meter til udgang")
+   - Evacuation route specifications
+
+3. **BR18 Paragraph References**:
+   - Which specific BR18 paragraphs are cited (e.g., §508, §509)
+   - How they are referenced and applied
+
+4. **Successful Patterns**:
+   - Structure and organization of the document
+   - How fire safety measures are documented
+   - How compliance is demonstrated
+
+Return as JSON:
+{
+  "document_type": "DBK",
+  "approved_phrasing": ["list of exact phrases that express compliance well"],
+  "technical_specs": {
+    "fire_resistance_classes": ["REI 60", etc.],
+    "material_classes": ["K1 10/B-s1,d0", etc.],
+    "distances": ["30 meter til udgang", etc.]
+  },
+  "br18_references": ["§508", "§509", etc.],
+  "structural_patterns": ["how sections are organized"],
+  "key_insights": ["what makes this document successful"]
+}
+
+Return ONLY valid JSON."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=[
+                types.Part.from_bytes(data=pdf_data, mime_type='application/pdf'),
+                dbk_prompt
+            ],
+            config=types.GenerateContentConfig(temperature=0.1)
+        )
+
+        return self._parse_json_response(response.text)
+
+    def extract_start_insights(self, pdf_path: str) -> Dict:
+        """
+        Extract START-specific insights: Typiske certificeringsforhold
+
+        Focuses on certification patterns, declaration language, and approval context.
+
+        Args:
+            pdf_path: Path to START document
+
+        Returns:
+            Dictionary with START-specific insights
+        """
+        with open(pdf_path, 'rb') as f:
+            pdf_data = f.read()
+
+        start_prompt = """Analyze this START (Starterklæring) document.
+
+Extract and identify:
+
+1. **Certificeringsforhold** (Certification Context):
+   - Consultant certification details
+   - How certification is referenced
+   - Authority and credibility language
+
+2. **Declaration Language**:
+   - How compliance is declared ("Dette projekt overholder...")
+   - Phrasing for adherence to BR18
+   - Language that establishes authority
+
+3. **Project Description Patterns**:
+   - How building type is described
+   - How fire classification is stated
+   - How scope of work is defined
+
+4. **BR18 Compliance Statements**:
+   - How BR18 adherence is expressed
+   - Which paragraphs are typically cited in declarations
+   - Format of compliance statements
+
+Return as JSON:
+{
+  "document_type": "START",
+  "certification_patterns": ["how consultant credentials are presented"],
+  "declaration_phrases": ["exact phrases declaring compliance"],
+  "project_description_format": ["how projects are described"],
+  "br18_compliance_language": ["how BR18 adherence is stated"],
+  "scope_definition": ["how work scope is defined"],
+  "key_insights": ["what makes this declaration effective"]
+}
+
+Return ONLY valid JSON."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=[
+                types.Part.from_bytes(data=pdf_data, mime_type='application/pdf'),
+                start_prompt
+            ],
+            config=types.GenerateContentConfig(temperature=0.1)
+        )
+
+        return self._parse_json_response(response.text)
+
+    def extract_bsr_insights(self, pdf_path: str) -> Dict:
+        """
+        Extract BSR-specific insights: Succesfulde brandstrategier
+
+        Focuses on successful fire strategy patterns and approaches.
+
+        Args:
+            pdf_path: Path to BSR document
+
+        Returns:
+            Dictionary with BSR-specific insights
+        """
+        with open(pdf_path, 'rb') as f:
+            pdf_data = f.read()
+
+        bsr_prompt = """Analyze this BSR (Brandsikringsredegørelse) document.
+
+Extract and identify:
+
+1. **Successful Fire Strategies**:
+   - Overall approach to fire safety
+   - How fire scenarios are analyzed
+   - Risk assessment methodology
+
+2. **Strategy Communication**:
+   - How strategies are explained to authorities
+   - Language that demonstrates thoroughness
+   - How alternatives are evaluated
+
+3. **Technical Solutions**:
+   - Fire protection systems chosen
+   - Evacuation strategies
+   - Compartmentation approach
+
+4. **Justification Patterns**:
+   - How design choices are justified
+   - How compliance is demonstrated
+   - How safety equivalence is argued (if applicable)
+
+Return as JSON:
+{
+  "document_type": "BSR",
+  "strategy_approaches": ["overall fire safety strategies used"],
+  "risk_analysis_methods": ["how fire risks are analyzed"],
+  "technical_solutions": ["fire protection systems and approaches"],
+  "justification_language": ["how choices are justified to authorities"],
+  "scenario_analysis": ["how fire scenarios are presented"],
+  "key_insights": ["what makes this strategy successful"]
+}
+
+Return ONLY valid JSON."""
+
+        response = self.client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=[
+                types.Part.from_bytes(data=pdf_data, mime_type='application/pdf'),
+                bsr_prompt
+            ],
+            config=types.GenerateContentConfig(temperature=0.1)
+        )
+
+        return self._parse_json_response(response.text)
+
+    def extract_document_type_insights(self, pdf_path: str, doc_type: str) -> Dict:
+        """
+        Route to appropriate document-type-specific extraction
+
+        Args:
+            pdf_path: Path to PDF
+            doc_type: Document type (START, DBK, BSR, etc.)
+
+        Returns:
+            Document-type-specific insights
+        """
+        doc_type_upper = doc_type.upper()
+
+        if doc_type_upper == "DBK":
+            return self.extract_dbk_insights(pdf_path)
+        elif doc_type_upper == "START":
+            return self.extract_start_insights(pdf_path)
+        elif doc_type_upper == "BSR":
+            return self.extract_bsr_insights(pdf_path)
+        else:
+            # Fallback to generic metadata extraction
+            return self.extract_br18_metadata(pdf_path)
+
+    def _parse_json_response(self, response_text: str) -> Dict:
+        """Parse JSON from Gemini response, handling markdown code blocks"""
+        text = response_text.strip()
+
+        # Remove markdown code blocks if present
+        if text.startswith("```json"):
+            text = text[7:]
+        if text.startswith("```"):
+            text = text[3:]
+        if text.endswith("```"):
+            text = text[:-3]
+        text = text.strip()
+
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError as e:
+            print(f"❌ Failed to parse JSON: {e}")
+            print(f"Raw response: {response_text[:500]}...")
+            return {"raw_response": response_text, "error": f"Failed to parse JSON: {e}"}
+
+    def process_br18_example(self, pdf_path: str, extract_insights: bool = True) -> Dict:
+        """
+        Complete processing pipeline for a BR18 example document with document-type-specific insights
 
         Args:
             pdf_path: Path to BR18 PDF
+            extract_insights: Whether to extract document-type-specific insights
 
         Returns:
-            Dictionary with extracted content, metadata, and chunks
+            Dictionary with extracted content, metadata, chunks, and insights
         """
-        print(f"Processing: {pdf_path}")
+        print(f"\n{'='*80}")
+        print(f"📄 Processing BR18 Document: {Path(pdf_path).name}")
+        print(f"{'='*80}\n")
 
         # Extract full content
+        print("📖 Extracting full content with Gemini...")
         content = self.extract_with_gemini(pdf_path)
+        print(f"✅ Extracted {len(content)} characters, {len(content.split())} words\n")
 
         # Extract metadata
+        print("🔍 Extracting metadata...")
         metadata = self.extract_br18_metadata(pdf_path)
+        print(f"✅ Metadata extracted: {metadata.get('document_type', 'Unknown type')}\n")
+
+        # Extract document-type-specific insights
+        insights = None
+        if extract_insights and metadata.get('document_type'):
+            doc_type = metadata.get('document_type')
+            print(f"🧠 Extracting {doc_type}-specific insights...")
+            insights = self.extract_document_type_insights(pdf_path, doc_type)
+            print(f"✅ Insights extracted for {doc_type}\n")
 
         # Create chunks for RAG
+        print("✂️  Creating chunks for RAG system...")
         chunks = self.chunk_document(content)
+        print(f"✅ Created {len(chunks)} chunks\n")
 
         # Save debug output if enabled
         if self.debug_mode:
+            print("💾 Saving debug output...")
             self.save_debug_output(pdf_path, content, metadata, chunks)
 
-        return {
+            # Also save insights to debug output
+            if insights:
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                pdf_name = Path(pdf_path).stem
+                insights_file = self.debug_output_dir / f"{pdf_name}_{timestamp}_insights.json"
+                with open(insights_file, 'w', encoding='utf-8') as f:
+                    json.dump(insights, f, ensure_ascii=False, indent=2)
+                print(f"✅ Insights saved to: {insights_file}\n")
+
+        result = {
             "pdf_path": pdf_path,
             "content": content,
             "metadata": metadata,
+            "insights": insights,  # NEW: Document-type-specific insights
             "chunks": chunks,
             "chunk_count": len(chunks)
         }
+
+        print(f"{'='*80}")
+        print(f"✅ Processing complete for {Path(pdf_path).name}")
+        print(f"   Content: {len(content)} chars")
+        print(f"   Chunks: {len(chunks)}")
+        print(f"   Insights: {'Yes' if insights else 'No'}")
+        print(f"{'='*80}\n")
+
+        return result

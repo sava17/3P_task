@@ -1,0 +1,223 @@
+KØBENHAVNS KOMMUNE
+Teknik- og Miljøforvaltningen
+Byggesagsafdelingen
+
+AFSLAG PÅ BYGGETILLADELSE
+
+Sagsnummer: BYG-2024-08432
+Dato: 15. november 2024
+Projekt: Kontorbygning, Vesterbrogade 124
+
+═══════════════════════════════════════════════════════════════
+
+TIL:
+Arkitektfirmaet Nordlys ApS
+v/ Arkitekt Henrik Jensen
+Nørrebrogade 45, 2200 København N
+
+VEDRØRENDE:
+Ansøgning om byggetilladelse til nybyggeri af 6-etagers kontorbygning
+Indsendt: 28. oktober 2024
+
+═══════════════════════════════════════════════════════════════
+
+AFGØRELSE: AFSLAG
+
+Københavns Kommune meddeler hermed AFSLAG på ansøgning om
+byggetilladelse for ovennævnte projekt.
+
+Byggetilladelse kan ikke meddeles, før nedenstående forhold er
+bragt i overensstemmelse med bygningsreglementet.
+
+═══════════════════════════════════════════════════════════════
+
+BEGRUNDELSE FOR AFSLAG
+
+1. MANGLENDE BR18 PARAGRAFHENVISNINGER (KRITISK)
+
+Starterklæringen (START) mangler specifikke henvisninger til
+BR18 paragraffer.
+
+KRAV:
+Jf. BR18 §508 skal starterklæringen indeholde eksplicitte
+henvisninger til de relevante BR18 paragraffer, som projektet
+overholder.
+
+MANGLER I JERES DOKUMENT:
+- Ingen henvisning til §508 (brandtekniske installationer)
+- Ingen henvisning til §509 (materialer og overflader)
+- Ingen henvisning til §510 (konstruktioners brandmodstand)
+
+KRAV TIL RETTELSE:
+Revidér START-dokument med tydelige §-henvisninger i
+overensstemmelseserklæringen.
+
+EKSEMPEL PÅ KORREKT FORMULERING:
+"Dette projekt er i overensstemmelse med BR18 §508 vedr.
+brandtekniske installationer, §509 vedr. materialevalg,
+samt §510 vedr. konstruktioners brandmodstand."
+
+═══════════════════════════════════════════════════════════════
+
+2. UKLARE EVAKUERINGSAFSTANDE (MAJOR)
+
+DBK-dokumentationen angiver ikke præcise evakueringsafstande.
+
+KRAV:
+For kontorbygninger i BK2 skal maksimal flugtafstand være
+maksimalt 25 meter til nærmeste udgang jf. BR18 §508.
+
+MANGLER I JERES DOKUMENT:
+- Teksten siger "rimelig afstand til udgange"
+- Ingen konkrete måleangivelser i meter
+- Plantegning viser ikke opmålte flugtafstande
+
+KRAV TIL RETTELSE:
+DBK skal opdateres med:
+1. Specifik angivelse: "Maksimal flugtafstand: 25 meter"
+2. Plantegning med opmålte afstande markeret
+3. Værste-case flugtafstand identificeret og dokumenteret
+
+KØBENHAVNS KOMMUNES ERFARING:
+Vi ser ofte, at "ca. 25m" eller "omkring 25m" bruges.
+Dette accepteres IKKE. Skriv præcist "25 meter" eller
+"23,4 meter" baseret på faktisk måling.
+
+═══════════════════════════════════════════════════════════════
+
+3. FORKERT BRANDMODSTANDSKLASSE (MAJOR)
+
+Den angivne brandmodstandsklasse er ikke tilstrækkelig for
+6-etagers byggeri.
+
+KRAV:
+Jf. BR18 §510 skal bærende konstruktioner i bygninger over
+4 etager have minimum R90 brandmodstand.
+
+JERES ANGIVELSE:
+DBK angiver "R60" for hovedkonstruktionen.
+
+KORREKT KRAV:
+For 6 etager kræves R90.
+
+KRAV TIL RETTELSE:
+- Opdatér alle brandsektionsplaner med R90
+- Dokumentér materialevalg, der opfylder R90
+- Fremvis typeprøvning for valgte konstruktioner
+
+═══════════════════════════════════════════════════════════════
+
+4. MANGLENDE MATERIALEKLASSIFIKATION (MAJOR)
+
+Facade- og tagmaterialer er ikke korrekt klassificeret.
+
+KRAV:
+Jf. BR18 §509 skal facadematerialer være minimum K1 10/B-s1,d0
+for bygninger over 4 etager.
+
+MANGLER I JERES DOKUMENT:
+- Facademateriale beskrevet som "ikke-brændbart"
+- Ingen specifik klassifikation angivet
+- Ingen henvisning til typeprøvning
+
+KRAV TIL RETTELSE:
+Angiv præcist:
+"Facademateriale: Aluminiumskompositpaneler,
+klassificering K1 10 / B-s1,d0 jf. EN 13501-1"
+
+Fremvis dokumentation fra leverandør med typeprøvning.
+
+KØBENHAVNS KOMMUNES ERFARING:
+"Ikke-brændbart" er IKKE en gyldig klassifikation.
+Vi kræver præcis angivelse efter europæisk standard.
+
+═══════════════════════════════════════════════════════════════
+
+5. UTILSTRÆKKELIG REDNINGSAREA DOKUMENTATION (MINOR)
+
+Plantegninger viser ikke tilstrækkelig dokumentation for
+redningsarealer.
+
+KRAV:
+For bygninger over 3 etager kræver København fuld dokumentation
+for brandredningsarealer jf. lokal praksis.
+
+MANGLER:
+- Ingen markering af opstillingsarealer for redningskøretøjer
+- Ingen dokumentation for bæreevne af underlag
+- Ingen angivelse af fri højde under overdækning ved indgang
+
+KRAV TIL RETTELSE:
+Tilføj til situationsplan:
+1. Markering af 15m x 5m opstillingsareal
+2. Ingeniørberegning: Bæreevne minimum 10 tons akseltryk
+3. Angivelse af fri højde (minimum 4,5m) ved alle adgange
+4. Afstand til facade (maksimalt 8 meter)
+
+═══════════════════════════════════════════════════════════════
+
+SAMLET VURDERING
+
+Projektet har potentiale, men dokumentationen er ikke
+tilstrækkelig til at meddele byggetilladelse.
+
+KRITISKE MANGLER (skal løses):
+- Manglende BR18 §-henvisninger
+- Forkert brandmodstandsklasse (R60 → R90)
+
+MAJOR MANGLER (skal løses):
+- Uklare evakueringsafstande
+- Manglende materialeklassifikation
+
+MINOR MANGLER (bør løses):
+- Redningsarea dokumentation
+
+═══════════════════════════════════════════════════════════════
+
+VEJLEDNING TIL REVISION
+
+1. Revidér START med specifikke §-henvisninger
+2. Opdatér DBK med præcise afstandsangivelser i meter
+3. Ret brandmodstandsklasse til R90 for hovedkonstruktion
+4. Angiv facademateriale som K1 10/B-s1,d0 med typeprøvning
+5. Tilføj redningsarea dokumentation til situationsplan
+
+FORVENTET TIDSFORBRUG:
+Erfaringsmæssigt kan disse rettelser foretages på 3-5 arbejdsdage
+af en erfaren brandkonsulent.
+
+GENINDSENDELSE:
+Når ovenstående er rettet, kan projektet genindsendes.
+Angiv venligst sagsnummer BYG-2024-08432 ved genindsendelse.
+
+KONTAKT:
+Ved spørgsmål til afgørelsen, kontakt byggesagsbehandler
+Maria Petersen på mp@kk.dk eller tlf. 33 66 12 34.
+
+═══════════════════════════════════════════════════════════════
+
+KLAGEVEJLEDNING
+
+Denne afgørelse kan påklages til Planklagenævnet inden 4 uger
+fra modtagelsen af afgørelsen.
+
+═══════════════════════════════════════════════════════════════
+
+Med venlig hilsen
+
+Københavns Kommune
+Teknik- og Miljøforvaltningen
+
+Maria Petersen
+Byggesagsbehandler
+Brandteknisk sagkyndig
+
+
+LÆRING FOR FREMTIDIGE PROJEKTER:
+
+⚠️ KRITISK FOR KØBENHAVN:
+1. Inkludér ALTID specifikke BR18 §-henvisninger i START
+2. Angiv PRÆCISE meter-afstande (ikke "ca." eller "omkring")
+3. R90 for bygninger over 4 etager (ikke R60)
+4. K1 10/B-s1,d0 klassifikation SKAL angives eksplicit
+5. Redningsarealer skal dokumenteres grundigt for bygninger >3 etager

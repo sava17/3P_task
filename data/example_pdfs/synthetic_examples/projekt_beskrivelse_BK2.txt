@@ -1,0 +1,70 @@
+PROJEKTBESKRIVELSE
+Tilbygning til Eksisterende Lagerhal
+
+Dato: 8. december 2025
+Projekt: Tilbygning LR Erhverv
+Adresse: Broenge 1, 2635 Ishøj
+Kommune: Ishøj Kommune
+
+BYGNINGSINFORMATION
+
+Bygningstype: Lagerhal (tilbygning til eksisterende)
+Anvendelse: Erhvervslager uden sovepladser
+Total areal: 1.355 m²
+Antal etager: 1 etage
+Bebygget areal: 1.355 m²
+
+BRANDTEKNISKE DATA
+
+Brandbelastning: Høj - Over 1.600 MJ/m²
+Brandkonstruktion: R60 (60 minutters brandmodstand)
+Maksimalt personantal: 10 personer
+Personkendskab til flugtveje: Ja (daglig brug)
+Anvendelseskategori: 4 (Erhverv - Industribyggeri)
+Risikoklasse: 2 (Medium risiko pga. høj brandbelastning)
+
+BYGGESAG
+
+Der ønskes oprettelse af byggesag for tilbygning.
+Der skal udarbejdes komplet branddokumentation jf. BR18.
+Forventet brandklasse: BK2
+
+KONTAKTINFORMATION
+
+Bygherre: LR Erhverv A/S
+Kontaktperson: Lars Rasmussen
+Email: lr@lrerhverv.dk
+Telefon: +45 12 34 56 78
+
+Arkitekt: Jørgensen Arkitekter
+Kontaktperson: Maria Jørgensen
+Email: mj@joergensen-ark.dk
+
+PROJEKTBESKRIVELSE
+
+Projektet omfatter opførelse af tilbygning på 1.355 m² til eksisterende lagerhal.
+Tilbygningen vil blive anvendt til opbevaring af diverse erhvervsvarer med høj
+brandbelastning (emballage, papir, tekstiler).
+
+Bygningen opføres med R60 brandkonstruktion for at sikre tilstrækkelig
+brandsikring. Der etableres automatisk brandalarmeringsanlæg.
+
+Der er max 10 ansatte i hallen, som alle kender bygningen og flugtvejene.
+Ingen sovepladser i bygningen.
+
+Projektet forventes at kræve følgende BR18 dokumentation:
+- Starterklæring (START)
+- Installationsteknisk tilsyn (ITT)
+- Dokumentation for brandtekniske installationer (DBK)
+- Brandsikringsredegørelse (BSR)
+- Brandstrategi (BPLAN)
+- Plan for funktionsafprøvning (PFP)
+- Dimensioneringsrapport (DIM)
+- Funktionsbeskrivelse (FUNK)
+- Kontrolplan (KPLA)
+
+Vi beder om tilbud på udarbejdelse af ovenstående dokumentation.
+
+Med venlig hilsen,
+Lars Rasmussen
+LR Erhverv A/S

@@ -1,0 +1,25 @@
+Projektinput til "Live Demo" (Lagerbygning)
+
+Sådan løser du det smartest (og mest realistisk):
+Du skal ikke uploade DBK-PDF'en som "Input" i din live-demo for at starte et nyt projekt. Det virker "snydt".
+I stedet skal du tage dataene fra DBK-dokumentet (side 3 i PDF'en) og lave dem om til et "Simuleret Projektinput".
+Forestil dig, at du modtager en mail fra en arkitekt eller bygherre. Der er oprettet end pdf med følgende indhol som vi vil parse med vores software siden det demonstrere dens evne til at parse projektinput (udover når vi også parser i del 2 hvor vi parser firmaets BR18 dokmenter), dette er eksempel pdf'en "C:\3P Opgave\br18_automation\data\example_pdfs\synthetic_examples\projekt_beskrivelse.pdf" og den har følgende indhold:
+Emne: Nyt projekt - Tilbygning LR Erhverv
+Hej,
+Vi skal have oprettet en byggesag på Broenge 1 i Ishøj.
+Det drejer sig om en tilbygning til en eksisterende lagerhal.
+Data:
+Areal: 1.355 m2
+Etager: 1
+Anvendelse: Lager (Ingen sovepladser)
+Brandbelastning: Høj (over 1.600 MJ/m2)
+Konstruktion: R60
+Personer: Max 10 personer, der kender flugtveje.
+Kan I generere branddokumentationen (BK2)?
+Hvorfor er dette den rigtige strategi?
+Det matcher Opgavebeskrivelsen (Del 1):
+Opgaven siger: "Parse projektinput: Bygningstype, kvadratmeter, etager...". Ved at lave ovenstående tekst, viser du, at din LLM kan trække strukturerede data (JSON) ud af ustruktureret tekst (en mail).
+Det løser "Cirkulær Logik" problemet:
+Du bruger ikke svaret (DBK'en) til at finde svaret. Du bruger "Rådata" til at generere dokumentet.
+Du kan validere resultatet:
+Når dit system har genereret udkastet, kan du i præsentationen sige: "Lad os sammenligne systemets output med den faktiske, manuelle DBK, vi har fra sagen (PDF'en). Som I kan se, har den korrekt identificeret Risikoklasse 2 og Anvendelseskategori 1."

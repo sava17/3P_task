@@ -1,0 +1,55 @@
+{
+  "document_type": "DBK",
+  "approved_phrasing": [
+    "Bygningsafsnittet er indplaceret i anvendelseskategori 1, da byggeriet er indrettet uden sovepladser, personer har kendskab til flugtveje og har mulighed for at bringe sig selv i sikkerhed ved egen hjælp",
+    "Byggeriet placeres i Brandklasse 2",
+    "Bygningsafsnittet disponeres for totalevakuering til det fri.",
+    "Væggen mellem eksisterende bygning og ny tilbygning adskilles med en Tung brandsektionsadskillelse EI 60-M / A2-s1, d0 så eksisterende udgange til det fri, vil nu være til et sikkert sted.",
+    "Bærende bygningsdele i ILK 4 skal opføres i bygningsdel klasse R 60 (BD-bygningsdel 60)",
+    "Jf. ITT-erklæring.",
+    "Byggeriet kan indplaceres i Brandklasse 2 og gennemføres med præ-accepterede løsninger."
+  ],
+  "technical_specs": {
+    "fire_resistance_classes": [
+      "EI 60-M",
+      "R 60"
+    ],
+    "material_classes": [
+      "A2-s1, d0",
+      "K1 10/B-s1, d0",
+      "D-s2,d2",
+      "BROOF (t2)",
+      "B-s1,d0"
+    ],
+    "distances": [
+      "10 m til skel",
+      "maksimal afstand til nærmeste udgang på 30 m",
+      "over 5 m til skel"
+    ],
+    "other_specifications": {
+      "anvendelseskategori": "1",
+      "risikoklasse": "Implied by one-story building and brandbelastning > 1600 MJ/m²",
+      "brandklasse": "2",
+      "brandbelastning": "højere end 1.600 MJ/m² gulvareal",
+      "bærende_konstruktioner_ilk": "4",
+      "bebygget_areal": "1.355 m²",
+      "brandsektioner": "to"
+    }
+  },
+  "br18_references": [],
+  "structural_patterns": [
+    "Clear and concise structure with numbered sections (1.0 Oplysninger, 2.0 Hovedprincipper).",
+    "Formal documentation with explicit signatures and dates for 'Udfærdige', 'Kontrolleret af', and 'Godkendt af'.",
+    "References to supporting detailed documents (Overordnet brandstrategirapport, Forløbig situationsplan, Forløbig brandplan - Stueplan, Forløbig brandplan - Snit) with their respective IDs, dates, and approval status.",
+    "Categorization of fire safety principles into distinct sections: Bygningsafsnit, Anvendelseskategori, Risikoklasse og Brandklasse; Rammer for placering; Evakuering; Sikring af bærende konstruktioner; Sikring mod brand- og røgspredning; Redningsberedskabets indsatsmuligheder; Brandklasse.",
+    "Justification for Anvendelseskategori 1 based on building use and occupant characteristics.",
+    "Explicit statement of the determined 'Brandklasse' and the reliance on 'præ-accepterede løsninger'."
+  ],
+  "key_insights": [
+    "The document effectively leverages the 'præ-accepterede løsninger' framework from BR18 for Brandklasse 2, which simplifies the documentation process by not requiring detailed engineering analysis for every aspect.",
+    "It clearly defines the project scope, responsibilities, and key fire safety parameters in a structured and easily digestible manner.",
+    "The inclusion of references to supporting documents (brandstrategirapport, brandplaner) indicates a comprehensive approach to fire safety documentation, with the DBK serving as a high-level summary and declaration of compliance.",
+    "The justification for Anvendelseskategori 1 is well-articulated, which is a critical step in determining the overall fire safety level and applicable requirements.",
+    "The document is concise and to the point, focusing on providing the necessary information for classification and demonstrating compliance without excessive detail."
+  ]
+}

@@ -1,0 +1,268 @@
+AARHUS KOMMUNE
+Teknik og Miljø
+Byggesagsafdelingen
+
+BYGGETILLADELSE - GODKENDELSE
+
+Sagsnummer: BYG-2024-09215
+Dato: 12. oktober 2024
+Projekt: Tilbygning til Lagerhal, Broenge 1, Ishøj
+
+═══════════════════════════════════════════════════════════════
+
+TIL:
+LR Erhverv A/S
+v/ Lars Rasmussen
+Broenge 1
+2635 Ishøj
+
+KOPI TIL:
+Brandkonsulent: Jensen & Partners A/S
+v/ Ingeniør Thomas Nielsen
+
+═══════════════════════════════════════════════════════════════
+
+AFGØRELSE: GODKENDELSE
+
+Aarhus Kommune meddeler hermed BYGGETILLADELSE til ovennævnte
+projekt.
+
+Projektet kan påbegyndes i henhold til de indsendte og godkendte
+tegninger og beskrivelser.
+
+═══════════════════════════════════════════════════════════════
+
+PROJEKTOVERSIGT
+
+Ansøgning modtaget: 25. september 2024
+Projektype: Tilbygning til eksisterende lagerhal
+Areal: 1.355 m²
+Brandklasse: BK2
+Anvendelseskategori: 1 (Erhvervslager)
+
+SAGSBEHANDLINGSTID: 13 arbejdsdage (meget tilfredsstillende)
+
+═══════════════════════════════════════════════════════════════
+
+GODKENDTE DOKUMENTER
+
+Følgende dokumenter er gennemgået og godkendt:
+
+✓ Starterklæring (START) - Rev. 2, dato 20.09.2024
+✓ Installationsteknisk tilsyn (ITT) - Rev. 1, dato 20.09.2024
+✓ Dokumentation for brandtekniske installationer (DBK) - Rev. 2, dato 20.09.2024
+✓ Brandsikringsredegørelse (BSR) - Rev. 1, dato 18.09.2024
+✓ Brandstrategi (BPLAN) - Rev. 1, dato 18.09.2024
+✓ Plan for funktionsafprøvning (PFP) - Rev. 1, dato 20.09.2024
+✓ Dimensioneringsrapport (DIM) - Rev. 1, dato 18.09.2024
+✓ Funktionsbeskrivelse (FUNK) - Rev. 1, dato 18.09.2024
+✓ Kontrolplan (KPLA) - Rev. 1, dato 20.09.2024
+
+Alle dokumenter er i overensstemmelse med BR18.
+
+═══════════════════════════════════════════════════════════════
+
+SÆRLIGE BEMÆRKNINGER (POSITIVE)
+
+Aarhus Kommune vil gerne fremhæve følgende elementer ved
+dokumentationen:
+
+1. KOMPLET OG PRÆCIS DOKUMENTATION
+
+Alle BR18 §-henvisninger var tydelige og korrekte, især:
+- §508: Brandtekniske installationer
+- §509: Materialevalg
+- §510: Konstruktioners brandmodstand
+
+SÆRLIGT GOD PRAKSIS:
+Starterklæringen indeholdt eksplicit: "Dette projekt overholder
+BR18 §508, §509, §510 samt §512 vedr. ventilationsanlæg."
+
+Dette er PRÆCIST det, vi ønsker at se.
+
+2. KLARE AFSTANDSANGIVELSER
+
+DBK-dokumentationen var eksemplarisk med præcise måltal:
+- "Maksimal flugtafstand: 25 meter" (ikke "ca. 25m")
+- Plantegning med opmålte afstande markeret med rødt
+- Værste-case flugtafstand identificeret (23,7 meter)
+
+KOMMENTAR:
+Denne klarhed gør sagsbehandlingen meget lettere og hurtigere.
+Perfekt udført.
+
+3. KORREKT BRANDMODSTANDSKLASSE
+
+Konstruktioner angivet som R60, hvilket er korrekt for
+1-etagers lagerhal med denne brandbelastning.
+
+Materialeklassifikation var præcist angivet:
+- Ydervægge: Sandwichpaneler EI 30 / B-s1,d0
+- Indvendige vægge: Letbetonblokke REI 60 / A1
+- Tagkonstruktion: Stål, brandmalet R60
+
+Alle typeprøvninger var vedlagt fra anerkendte laboratorier.
+
+4. DIMENSIONERING AF BRANDVENTILATION
+
+Brandventilationen er dimensioneret til 120% af standardkravet
+(72 m² aerodynamisk åbningsareal i stedet for 60 m²).
+
+KOMMENTAR:
+Dette er god praksis for lagerhaller med brandfarlige væsker,
+selvom der kun opbevares 50 liter diesel til gaffeltrucks.
+
+Aarhus Beredskab har udtrykt tilfredshed med denne margin.
+
+5. HYDRAULISKE BEREGNINGER FOR SPRINKLER
+
+Sprinkleranlæggets hydrauliske beregninger var vedhæftet i
+A4-format (ikke kun software-output).
+
+Dette gjorde det let for os at verificere dimensioneringen.
+
+═══════════════════════════════════════════════════════════════
+
+GODKENDELSESVILKÅR
+
+Byggetilladelsen meddeles på følgende vilkår:
+
+1. INSTALLATIONSTEKNISK TILSYN
+   Certificeret brandkonsulent skal føre installationsteknisk
+   tilsyn i hele byggeperioden jf. ITT-plan.
+
+2. KONTROLPLAN
+   Kontrolplanen (KPLA) skal følges nøje. Kontrolrapporter skal
+   indsendes ved følgende milepæle:
+   - Efter udførelse af bærende konstruktioner
+   - Efter installation af sprinkleranlæg (før tildækning)
+   - Efter færdiggørelse af brandventilation
+   - Ved projektets afslutning
+
+3. FUNKTIONSAFPRØVNING
+   Alle brandtekniske installationer skal funktionsafprøves
+   inden ibrugtagning jf. PFP.
+
+   Testrapporter skal indsendes til Aarhus Kommune senest
+   7 dage før ønsket ibrugtagningstilladelse.
+
+4. BYGGESTART
+   Byggestart skal anmeldes til kommunen mindst 14 dage før
+   påbegyndelse.
+
+5. AFVIGELSER
+   Eventuelle afvigelser fra godkendte tegninger skal
+   forhåndsgodkendes af kommunen.
+
+═══════════════════════════════════════════════════════════════
+
+ANBEFALINGER (IKKE KRAV)
+
+Aarhus Kommune anbefaler følgende (men det er ikke et krav for
+tilladelsen):
+
+1. FORLÆNGET GARANTI PÅ SPRINKLERANLÆG
+   Overvej at aftale 5-årig garanti på sprinkleranlæg i stedet
+   for standardgaranti på 2 år. Dette sikrer funktionsdygtighed
+   længere.
+
+2. EKSTRA TRÆNING AF PERSONALE
+   Selv om der kun er 10 ansatte, anbefaler vi årlig brandøvelse
+   med Aarhus Beredskab. Kontakt: oevelser@aarhusberedskab.dk
+
+3. VEDLIGEHOLDELSESKONTRAKT
+   Indgå kontrakt med certificeret firma for vedligehold af
+   brandtekniske installationer fra dag 1.
+
+═══════════════════════════════════════════════════════════════
+
+KONTAKT UNDER BYGGERIET
+
+Ved spørgsmål under byggeriet, kontakt:
+
+Byggesagsbehandler:
+Jens Mortensen
+E-mail: jm@aarhus.dk
+Tlf.: 87 40 12 34
+
+Brandteknisk sagkyndig:
+Kirsten Andersen
+E-mail: ka@aarhus.dk
+Tlf.: 87 40 12 56
+
+═══════════════════════════════════════════════════════════════
+
+AFSLUTTENDE KOMMENTARER
+
+Dette projekt er et godt eksempel på, hvordan BR18-dokumentation
+skal udføres:
+
+✓ Komplet dokumentation fra start
+✓ Præcise §-henvisninger
+✓ Klare afstandsangivelser
+✓ Korrekt materialeklassifikation
+✓ Velgennemført dimensionering
+
+Sagsbehandlingen blev derfor meget hurtig (13 arbejdsdage).
+
+VI ROSER ISÆR:
+- Brandkonsulent Thomas Nielsen for grundig dokumentation
+- Proaktiv kommunikation under sagsbehandlingen
+- Velstrukturerede tegninger med tydelige markeringer
+
+DETTE ER PRÆCIS DEN KVALITET, VI ØNSKER AT SE!
+
+═══════════════════════════════════════════════════════════════
+
+TILLYKKE MED BYGGETILLADELSEN
+
+Vi ønsker held og lykke med byggeriet.
+
+Med venlig hilsen
+
+Aarhus Kommune
+Teknik og Miljø
+
+Jens Mortensen
+Byggesagsbehandler
+
+Kirsten Andersen
+Brandteknisk sagkyndig
+
+
+═══════════════════════════════════════════════════════════════
+
+LÆRING FOR FREMTIDIGE PROJEKTER:
+
+✅ GOLDEN RECORDS FRA DETTE PROJEKT:
+
+1. **Starterklæring:**
+   - Inkludér eksplicit liste af BR18 § som projektet overholder
+   - Formulering: "Dette projekt overholder BR18 §508, §509, §510..."
+
+2. **Flugtafstande:**
+   - Skriv præcist "25 meter" (ikke "ca. 25m")
+   - Markér værste-case flugtafstand i plantegning
+   - Brug rød markering på tegninger for klarhed
+
+3. **Brandventilation:**
+   - 120% dimensionering anbefales ved brandfarlige væsker
+   - Selv små mængder (50L) bør udløse denne margin
+
+4. **Hydrauliske beregninger:**
+   - Vedlæg altid A4-format (ikke kun software-output)
+   - Gør det let for sagsbehandler at verificere
+
+5. **Materialeklassifikation:**
+   - Brug præcis notation: "EI 30 / B-s1,d0"
+   - Vedlæg typeprøvninger fra anerkendte lab
+
+6. **Forhåndsdialog:**
+   - Proaktiv kommunikation giver hurtigere sagsbehandling
+   - Dette projekt havde forhåndsmøde = 13 dages behandling
+
+AARHUS KOMMUNE VÆRDSÆTTER:
+- Præcision frem for generaliseringer
+- Komplet dokumentation fra første indsendelse
+- Proaktiv kommunikation
+- Velstrukturerede tegninger

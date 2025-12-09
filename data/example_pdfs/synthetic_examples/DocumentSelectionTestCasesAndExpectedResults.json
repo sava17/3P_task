@@ -1,0 +1,67 @@
+[
+  {
+    "test_case_id": "TC_01_GARAGE",
+    "beskrivelse": "Lille fritliggende garage under 50m2",
+    "input_data": {
+      "anvendelseskategori": 1,
+      "risikoklasse": 1,
+      "brandklasse": "BK1",
+      "etager": 1,
+      "areal_m2": 45
+    },
+    "expected_documents": [
+      "START",
+      "ITT"
+    ],
+    "note": "BK1 kræver minimal dokumentation jf. BR18"
+  },
+  {
+    "test_case_id": "TC_02_LAGERHAL_DEMO",
+    "beskrivelse": "Tilbygning til lagerhal (Samme som din Live Demo)",
+    "input_data": {
+      "anvendelseskategori": 1,
+      "risikoklasse": 2,
+      "brandklasse": "BK2",
+      "etager": 1,
+      "areal_m2": 1355
+    },
+    "expected_documents": [
+      "START",
+      "ITT",
+      "DBK",
+      "BSR",
+      "BPLAN",
+      "PFP",
+      "DIM",
+      "FUNK",
+      "KPLA"
+    ],
+    "note": "Standardpakken for BK2 (ca. 8-9 dokumenter)"
+  },
+  {
+    "test_case_id": "TC_03_PLEJEHJEM",
+    "beskrivelse": "Komplekst plejehjem i flere etager",
+    "input_data": {
+      "anvendelseskategori": 5,
+      "risikoklasse": 3,
+      "brandklasse": "BK3",
+      "etager": 3,
+      "areal_m2": 4500
+    },
+    "expected_documents": [
+      "START",
+      "ITT",
+      "DBK",
+      "BSR",
+      "BPLAN",
+      "PFP",
+      "DIM",
+      "FUNK",
+      "KPLA",
+      "KRAP",
+      "DKV",
+      "SLUT"
+    ],
+    "note": "BK3/4 kræver fuld pakke inkl. drift (DKV) og sluterklæring"
+  }
+]

@@ -1,0 +1,229 @@
+================================================================================
+EXTRACTION DEBUG OUTPUT
+Source: C:\3P Opgave\br18_automation\data\example_pdfs\START - Starterklæring.pdf
+Timestamp: 2025-12-09T08:20:53.803726
+================================================================================
+
+METADATA:
+--------------------------------------------------------------------------------
+{
+  "document_type": "START",
+  "project_name": "LR Erhverv",
+  "address": "Broenge 1, 2635 Ishøj",
+  "municipality": "Ishøj",
+  "building_type": "commercial/industrial",
+  "total_area_m2": null,
+  "floors": null,
+  "fire_classification": "BK2",
+  "application_category": null,
+  "risk_class": null,
+  "consultant_name": "Henrik Kirstein Brunsgaard",
+  "consultant_certificate": "RFC-2022-1100052418-A",
+  "br18_references": [
+    "§508",
+    "§23",
+    "§511",
+    "§126-133",
+    "§510",
+    "Kapitel 5",
+    "Bilag 3, tabel 1",
+    "Bilag 3, tabel 4"
+  ],
+  "key_requirements": [
+    "Documentation for fire conditions submitted with building permit application",
+    "Correct fire classes selected and documentation is accurate",
+    "Building is tactically traditional for rescue services",
+    "Building complies with BR18 guidance for rescue services' intervention possibilities",
+    "Documentation demonstrates compliance with BR18, Chapter 5 fire requirements",
+    "Comprehensive control plan and control report prepared according to BR18 control types and levels",
+    "Documentation for fire conditions complies with and adheres to building regulations",
+    "Documentation can be used as presented and constitutes a complete whole for the project stage"
+  ]
+}
+
+FULL EXTRACTED CONTENT:
+--------------------------------------------------------------------------------
+Here is the extracted text content from the BR18 fire safety document, preserving its structure:
+
+**Document Title:** Starterklæring (START)
+**Company:** Midtjysk Albyg A/S
+**Project Reference:** LR Erhverv, Ishøj
+
+---
+
+### **Page 2: Starterklæring (START) (LR Erhverv, Ishøj)**
+
+**Dato:** 17-11-2022
+**Revideret:** (Not specified)
+
+---
+
+#### **Oplysninger om byggeriet (Information about the building)**
+
+*   **Projektnavn:** LR Erhverv
+*   **Projektadresse:** Broenge 1, 2635 Ishøj
+*   **Matrikelbetegnelse:** Ishøj By, Ishøj 14aq
+
+---
+
+#### **Oplysninger om certificeret brandrådgiver (Information about certified fire consultant)**
+
+*   **Certificeret brandrådgiver:** Henrik Kirstein Brunsgaard
+*   **E-mail:** hb@midtjyskalbyg.dk
+*   **Telefon:** 25 52 91 54
+*   **Virksomhed:** Midtjysk Albyg A/S
+*   **Certifikat nummer:** RFC-2022-1100052418-A
+*   **Dato for godkendelse:** 15-10-2022
+*   **Udstedt af:** Rambøll
+*   **Godkendt til brandklasse:**
+    *   Brandklasse 2: [X] Checked
+    *   Brandklasse 3/4: [ ] Unchecked
+    *   Tredjepartskontrollant: [ ] Unchecked
+    *   *Reference:* Se kopi af vedlagt certifikat (See copy of attached certificate)
+
+---
+
+#### **Dokumentation af brandforhold jf. §508, stk. 1, nr. 1. (Documentation of fire conditions according to §508, par. 1, no. 1.)**
+
+*   **Det angives hermed:**
+    *   [X] At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. § 23, er fremsendt. (That the documentation for fire conditions with the application for building permit, cf. § 23, has been submitted.)
+*   **Ved ansøgning om byggetilladelse til byggearbejde (byggeri) i brandklasse 2-4 skal der ifølge BR18, § 23 stk. 1, udfærdiges følgende dokumentation af den certificerede brandrådgiver:**
+    1.  Oplysninger om og dokumentation for indplacering i brandklasse, jf. BR18 §511 (Information and documentation for classification in fire class, cf. BR18 §511)
+    2.  Oplysninger om og dokumentation for, hvorledes byggeriet opfylder BR18 §§ 126-133 vedrørende redningsberedskabets indsatsforhold, herunder hvorvidt byggeriet er indsatstaktisk traditionelt, jf. BR18 §510 (Information and documentation on how the building complies with BR18 §§ 126-133 regarding rescue service intervention conditions, including whether the building is tactically traditional, cf. BR18 §510)
+    3.  Starterklæring, jf. BR18 §508, stk. 1 (nærværende dokument) (Commencement declaration, cf. BR18 §508, par. 1 (this document))
+
+---
+
+#### **Dokumentation af brandklasse(r), §508, stk. 1, nr. 2 (Documentation of fire class(es), §508, par. 1, no. 2)**
+
+*   **Det angives hermed:**
+    *   [X] At der er valgt de korrekte brandklasser, og at dokumentationen herfor er retvisende. (That the correct fire classes have been chosen, and that the documentation for this is accurate.)
+*   **Den højeste brandklasse for byggeriet er:**
+    *   Brandklasse 2: [X] Checked
+    *   Brandklasse 3: [ ] Unchecked
+    *   Brandklasse 4: [ ] Unchecked
+
+---
+
+#### **Redningsberedskabets indsatsforhold, jf. BR18, §508, stk. 1, nr. 3 (Rescue service intervention conditions, cf. BR18, §508, par. 1, no. 3)**
+
+*   **Det angives hermed:**
+    *   [X] Byggeriet er indsatstaktisk traditionelt. (The building is tactically traditional regarding intervention.)
+        *   Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder. (As the building is constructed in accordance with the building regulations' guidance for chapter 5 - Fire, regarding the rescue service's intervention possibilities.)
+    *   [ ] Byggeriet er IKKE indsatstaktisk traditionelt. (The building is NOT tactically traditional regarding intervention.)
+
+---
+
+### **Page 3: Starterklæring (START) (LR Erhverv, Ishøj)**
+
+---
+
+#### **Dokumentation af bygningsreglementets brandkrav, jf. §508 stk. 1, nr. 4 (Documentation of building regulations' fire requirements, cf. §508 par. 1, no. 4)**
+
+*   **Det angives hermed:**
+    *   [X] At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5 (That the documentation proves that the building, corresponding to the existing level of detail, will comply with the building regulations' fire requirements, cf. BR18, chapter 5)
+
+---
+
+#### **Brandteknisk kontrolplan og kontrolrapporter, jf. § 508, stk. 1, nr. 5 (Fire technical control plan and control reports, cf. § 508, par. 1, no. 5)**
+
+*   [X] At der er udarbejdet en fyldestgørende kontrolplan og kontrolrapport i overensstemmelse med kontroltyper, jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4, for design, projektering og udførelse af den brandtekniske dokumentation svarende til projektets stadie. (That a comprehensive control plan and control report have been prepared in accordance with control types, cf. BR18, appendix 3, table 1, and control levels, cf. BR18, appendix 3, table 4, for the design, planning, and execution of the fire technical documentation corresponding to the project stage.)
+
+---
+
+#### **Redegørelse for den certificerede brandrådgivers hidtidige og planlagte virke, jf. § 508, stk. 1, nr. 6 (Account of the certified fire consultant's past and planned work, cf. § 508, par. 1, no. 6)**
+
+| ID    | Brandteknisk dokumentation            | Udarbejdende | Kontrollerende      | Ikke relevant |
+| :---- | :------------------------------------ | :----------- | :------------------ | :------------ |
+|       |                                       | a1) | a2) | b1) | b2) | c) |               |
+| START | Starterklæring                        | X            |             |             |             |             |               |
+| ITT   | Redningsberedskabets indsatsforhold   | X            |             |             |             |             |               |
+| DBK   | Indplacering i brandklasser           | X            |             |             |             |             |               |
+| BSR   | Brandstrategirapport                  | X            |             |             |             |             |               |
+| BPLAN | Brandplaner og situationsplan         | X            |             |             |             |             |               |
+| PFP   | Pladsfordelingsplaner og belægningsplaner |              |             |             |             |             | X             |
+| DIM   | Brandteknisk dimensionering           |              |             |             |             |             | X             |
+| FUNK  | Funktionsbeskrivelse                  | X            |             |             |             |             |               |
+| KPLA  | Kontrolplan                           | X            |             |             |             |             |               |
+| KRAP  | Kontrolrapporter                      | X            |             |             |             |             |               |
+| DKV   | Drifts- kontrol- og vedligeholdelsesplan | X            |             |             |             |             |               |
+| SLUT  | Sluterklæring inkl. redegørelse for virke | X            |             |             |             |             |               |
+
+*   **a1):** Hvor den certificerede selv udarbejder. (Where the certified person performs the work themselves.)
+*   **a2):** Med indhentet kompetent assistance fra meddesignere som udarbejdende. (Kontrol gennemføres af anden kompetent aktør). (With competent assistance from co-designers performing the work. (Control is carried out by another competent party).)
+*   **b1):** Hvor den certificerede selv kontrollerer. (Where the certified person performs the control themselves.)
+*   **b2):** Med indhentet kompetent assistance fra medkontrollant som kontrollerende. (Udarbejdelse gennemføres af anden kompetent aktør). (With competent assistance from a co-controller performing the control. (Preparation is carried out by another competent party).)
+*   **c):** Når både den udarbejdende og kontrollerende opgave er udfærdiget af andre kompetente aktører. (Den certificerede skal som minimum gennemføre en minimumskontrol af dokumentationen). (When both the preparation and control tasks are performed by other competent parties. (The certified person must at a minimum carry out a minimum control of the documentation).)
+
+---
+
+#### **Erklæring og underskrift (Declaration and signature)**
+
+*   Undertegnede, certificerede rådgiver erklærer hermed, at dokumentationen for brandforhold er i overensstemmelse med og overholder bygningsreglementet, at dokumentationen kan anvendes, som den foreligger, og at dokumentationen udgør et hele i forhold til projektets stadie. (The undersigned, certified consultant, hereby declares that the documentation for fire conditions is in accordance with and complies with the building regulations, that the documentation can be used as it is, and that the documentation constitutes a whole in relation to the project stage.)
+
+| Dato         | Navn                          | Underskrift          |
+| :----------- | :---------------------------- | :------------------- |
+| 17-11-2022   | Henrik Kirstein Brunsgaard    | Henrik K Brunsgacred |
+
+---
+
+### **Page 4: CERTIFIKAT (Certificate)**
+
+**Starterklæring (START) (LR Erhverv, Ishøj)**
+
+*   **CERTIFIKAT**
+*   **Henrik Kirstein Brunsgaard** (ANSØGERENS NAVN - Applicant's Name)
+*   **1100052418** (ANSØGERNR - Applicant Number)
+
+*Statement:*
+har dokumenteret at opfylde kvalifikations- og kompetencekrav til at virke som certificeret brandrådgiver i henhold til Bekendtgørelse om certificeringsordning for dokumentation af tekniske forhold i bygningsreglementet (1304 af 17/06/2021) og har dermed ret til at betegne sig:
+(has documented compliance with qualification and competence requirements to act as a certified fire consultant according to Executive Order on certification scheme for documentation of technical conditions in building regulations (1304 of 17/06/2021) and therefore has the right to be designated as:)
+
+**Certificeret Brandrådgiver til brandklasse 2** (Certified Fire Consultant for Fire Class 2)
+
+*   **GYLDIGHEDSPERIODE:** 15-10-2022 - 14-10-2027 (Validity Period)
+*   **CERTIFIKATNUMMER:** RFC-2022-1100052418-A (Certificate Number)
+
+*   København, den 14. oktober 2022 (Copenhagen, October 14, 2022)
+*   På vegne af Certificering, Rambøll (On behalf of Certification, Rambøll)
+    *   *Signature:* Maren Feldberg
+    *   Systemleder Certificering, Rambøll (System Manager Certification, Rambøll)
+*   *Date and Signature:* 14/10-2022 Henrik K Brunsgard. (Dato, Ansager - Date, Ansager)
+
+---
+
+### **Page 5: Starterklæring (START) (LR Erhverv, Ishøj)**
+
+---
+
+#### **Ved opnåelse af certificering, bekræfter jeg hermed: (Upon obtaining certification, I hereby confirm:)**
+
+*   at overholde de relevante bestemmelser i certificeringsordningen (to comply with the relevant provisions of the certification scheme)
+*   kun at fremsætte erklæringer om certificering inden for det område, certificeringen omfatter (only to make declarations of certification within the scope of the certification)
+*   omgående at oplyse Certificering, Rambøll om forhold, der kan påvirke evnen til fortsat at opfylde certificeringskravene (to immediately inform Certification, Rambøll of circumstances that may affect the ability to continue meeting the certification requirements)
+*   ikke at anvende certificeringen på en måde, der kan bringe Certificering Rambøll i miskredit, og ikke at fremsætte erklæringer vedrørende certificeringen, som Certificering, Rambøll kan betragte som misvisende eller uautoriserede (not to use the certification in a way that could discredit Certification Rambøll, and not to make statements regarding the certification that Certification, Rambøll may consider misleading or unauthorized)
+*   ved suspendering eller tilbagetrækning af certificeringen at standse al anvendelse af erklæringer om certificering, der indeholder henvisning til Certificering, Rambøll eller certificering, og at returnere certifikat udstedt af Certificering. Rambøll (upon suspension or withdrawal of certification, to cease all use of declarations of certification that refer to Certification, Rambøll or certification, and to return the certificate issued by Certification. Rambøll)
+*   ikke at anvende certifikatet på en misvisende måde (not to use the certificate in a misleading way)
+
+CHUNKS (for embedding):
+================================================================================
+
+--- CHUNK 1/4 ---
+Words: 500 | Chars: 3632
+--------------------------------------------------------------------------------
+Here is the extracted text content from the BR18 fire safety document, preserving its structure: **Document Title:** Starterklæring (START) **Company:** Midtjysk Albyg A/S **Project Reference:** LR Erhverv, Ishøj --- ### **Page 2: Starterklæring (START) (LR Erhverv, Ishøj)** **Dato:** 17-11-2022 **Revideret:** (Not specified) --- #### **Oplysninger om byggeriet (Information about the building)** * **Projektnavn:** LR Erhverv * **Projektadresse:** Broenge 1, 2635 Ishøj * **Matrikelbetegnelse:** Ishøj By, Ishøj 14aq --- #### **Oplysninger om certificeret brandrådgiver (Information about certified fire consultant)** * **Certificeret brandrådgiver:** Henrik Kirstein Brunsgaard * **E-mail:** hb@midtjyskalbyg.dk * **Telefon:** 25 52 91 54 * **Virksomhed:** Midtjysk Albyg A/S * **Certifikat nummer:** RFC-2022-1100052418-A * **Dato for godkendelse:** 15-10-2022 * **Udstedt af:** Rambøll * **Godkendt til brandklasse:** * Brandklasse 2: [X] Checked * Brandklasse 3/4: [ ] Unchecked * Tredjepartskontrollant: [ ] Unchecked * *Reference:* Se kopi af vedlagt certifikat (See copy of attached certificate) --- #### **Dokumentation af brandforhold jf. §508, stk. 1, nr. 1. (Documentation of fire conditions according to §508, par. 1, no. 1.)** * **Det angives hermed:** * [X] At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. § 23, er fremsendt. (That the documentation for fire conditions with the application for building permit, cf. § 23, has been submitted.) * **Ved ansøgning om byggetilladelse til byggearbejde (byggeri) i brandklasse 2-4 skal der ifølge BR18, § 23 stk. 1, udfærdiges følgende dokumentation af den certificerede brandrådgiver:** 1. Oplysninger om og dokumentation for indplacering i brandklasse, jf. BR18 §511 (Information and documentation for classification in fire class, cf. BR18 §511) 2. Oplysninger om og dokumentation for, hvorledes byggeriet opfylder BR18 §§ 126-133 vedrørende redningsberedskabets indsatsforhold, herunder hvorvidt byggeriet er indsatstaktisk traditionelt, jf. BR18 §510 (Information and documentation on how the building complies with BR18 §§ 126-133 regarding rescue service intervention conditions, including whether the building is tactically traditional, cf. BR18 §510) 3. Starterklæring, jf. BR18 §508, stk. 1 (nærværende dokument) (Commencement declaration, cf. BR18 §508, par. 1 (this document)) --- #### **Dokumentation af brandklasse(r), §508, stk. 1, nr. 2 (Documentation of fire class(es), §508, par. 1, no. 2)** * **Det angives hermed:** * [X] At der er valgt de korrekte brandklasser, og at dokumentationen herfor er retvisende. (That the correct fire classes have been chosen, and that the documentation for this is accurate.) * **Den højeste brandklasse for byggeriet er:** * Brandklasse 2: [X] Checked * Brandklasse 3: [ ] Unchecked * Brandklasse 4: [ ] Unchecked --- #### **Redningsberedskabets indsatsforhold, jf. BR18, §508, stk. 1, nr. 3 (Rescue service intervention conditions, cf. BR18, §508, par. 1, no. 3)** * **Det angives hermed:** * [X] Byggeriet er indsatstaktisk traditionelt. (The building is tactically traditional regarding intervention.) * Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder. (As the building is constructed in accordance with the building regulations' guidance for chapter 5 - Fire, regarding the rescue service's intervention possibilities.) * [ ] Byggeriet er IKKE indsatstaktisk traditionelt. (The building is NOT tactically traditional regarding intervention.) --- ### **Page 3: Starterklæring (START) (LR
+
+--- CHUNK 2/4 ---
+Words: 500 | Chars: 2964
+--------------------------------------------------------------------------------
+Brand, vedrørende redningsberedskabets indsatsmuligheder. (As the building is constructed in accordance with the building regulations' guidance for chapter 5 - Fire, regarding the rescue service's intervention possibilities.) * [ ] Byggeriet er IKKE indsatstaktisk traditionelt. (The building is NOT tactically traditional regarding intervention.) --- ### **Page 3: Starterklæring (START) (LR Erhverv, Ishøj)** --- #### **Dokumentation af bygningsreglementets brandkrav, jf. §508 stk. 1, nr. 4 (Documentation of building regulations' fire requirements, cf. §508 par. 1, no. 4)** * **Det angives hermed:** * [X] At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5 (That the documentation proves that the building, corresponding to the existing level of detail, will comply with the building regulations' fire requirements, cf. BR18, chapter 5) --- #### **Brandteknisk kontrolplan og kontrolrapporter, jf. § 508, stk. 1, nr. 5 (Fire technical control plan and control reports, cf. § 508, par. 1, no. 5)** * [X] At der er udarbejdet en fyldestgørende kontrolplan og kontrolrapport i overensstemmelse med kontroltyper, jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4, for design, projektering og udførelse af den brandtekniske dokumentation svarende til projektets stadie. (That a comprehensive control plan and control report have been prepared in accordance with control types, cf. BR18, appendix 3, table 1, and control levels, cf. BR18, appendix 3, table 4, for the design, planning, and execution of the fire technical documentation corresponding to the project stage.) --- #### **Redegørelse for den certificerede brandrådgivers hidtidige og planlagte virke, jf. § 508, stk. 1, nr. 6 (Account of the certified fire consultant's past and planned work, cf. § 508, par. 1, no. 6)** | ID | Brandteknisk dokumentation | Udarbejdende | Kontrollerende | Ikke relevant | | :---- | :------------------------------------ | :----------- | :------------------ | :------------ | | | | a1) | a2) | b1) | b2) | c) | | | START | Starterklæring | X | | | | | | | ITT | Redningsberedskabets indsatsforhold | X | | | | | | | DBK | Indplacering i brandklasser | X | | | | | | | BSR | Brandstrategirapport | X | | | | | | | BPLAN | Brandplaner og situationsplan | X | | | | | | | PFP | Pladsfordelingsplaner og belægningsplaner | | | | | | X | | DIM | Brandteknisk dimensionering | | | | | | X | | FUNK | Funktionsbeskrivelse | X | | | | | | | KPLA | Kontrolplan | X | | | | | | | KRAP | Kontrolrapporter | X | | | | | | | DKV | Drifts- kontrol- og vedligeholdelsesplan | X | | | | | | | SLUT | Sluterklæring inkl. redegørelse for virke | X | | | | | | * **a1):** Hvor den certificerede selv udarbejder. (Where the certified person performs the work themselves.) * **a2):** Med indhentet kompetent assistance fra meddesignere som udarbejdende. (Kontrol
+
+--- CHUNK 3/4 ---
+Words: 500 | Chars: 3665
+--------------------------------------------------------------------------------
+| X | | | | | | | SLUT | Sluterklæring inkl. redegørelse for virke | X | | | | | | * **a1):** Hvor den certificerede selv udarbejder. (Where the certified person performs the work themselves.) * **a2):** Med indhentet kompetent assistance fra meddesignere som udarbejdende. (Kontrol gennemføres af anden kompetent aktør). (With competent assistance from co-designers performing the work. (Control is carried out by another competent party).) * **b1):** Hvor den certificerede selv kontrollerer. (Where the certified person performs the control themselves.) * **b2):** Med indhentet kompetent assistance fra medkontrollant som kontrollerende. (Udarbejdelse gennemføres af anden kompetent aktør). (With competent assistance from a co-controller performing the control. (Preparation is carried out by another competent party).) * **c):** Når både den udarbejdende og kontrollerende opgave er udfærdiget af andre kompetente aktører. (Den certificerede skal som minimum gennemføre en minimumskontrol af dokumentationen). (When both the preparation and control tasks are performed by other competent parties. (The certified person must at a minimum carry out a minimum control of the documentation).) --- #### **Erklæring og underskrift (Declaration and signature)** * Undertegnede, certificerede rådgiver erklærer hermed, at dokumentationen for brandforhold er i overensstemmelse med og overholder bygningsreglementet, at dokumentationen kan anvendes, som den foreligger, og at dokumentationen udgør et hele i forhold til projektets stadie. (The undersigned, certified consultant, hereby declares that the documentation for fire conditions is in accordance with and complies with the building regulations, that the documentation can be used as it is, and that the documentation constitutes a whole in relation to the project stage.) | Dato | Navn | Underskrift | | :----------- | :---------------------------- | :------------------- | | 17-11-2022 | Henrik Kirstein Brunsgaard | Henrik K Brunsgacred | --- ### **Page 4: CERTIFIKAT (Certificate)** **Starterklæring (START) (LR Erhverv, Ishøj)** * **CERTIFIKAT** * **Henrik Kirstein Brunsgaard** (ANSØGERENS NAVN - Applicant's Name) * **1100052418** (ANSØGERNR - Applicant Number) *Statement:* har dokumenteret at opfylde kvalifikations- og kompetencekrav til at virke som certificeret brandrådgiver i henhold til Bekendtgørelse om certificeringsordning for dokumentation af tekniske forhold i bygningsreglementet (1304 af 17/06/2021) og har dermed ret til at betegne sig: (has documented compliance with qualification and competence requirements to act as a certified fire consultant according to Executive Order on certification scheme for documentation of technical conditions in building regulations (1304 of 17/06/2021) and therefore has the right to be designated as:) **Certificeret Brandrådgiver til brandklasse 2** (Certified Fire Consultant for Fire Class 2) * **GYLDIGHEDSPERIODE:** 15-10-2022 - 14-10-2027 (Validity Period) * **CERTIFIKATNUMMER:** RFC-2022-1100052418-A (Certificate Number) * København, den 14. oktober 2022 (Copenhagen, October 14, 2022) * På vegne af Certificering, Rambøll (On behalf of Certification, Rambøll) * *Signature:* Maren Feldberg * Systemleder Certificering, Rambøll (System Manager Certification, Rambøll) * *Date and Signature:* 14/10-2022 Henrik K Brunsgard. (Dato, Ansager - Date, Ansager) --- ### **Page 5: Starterklæring (START) (LR Erhverv, Ishøj)** --- #### **Ved opnåelse af certificering, bekræfter jeg hermed: (Upon obtaining certification, I hereby confirm:)** * at overholde de relevante bestemmelser i certificeringsordningen (to comply with the relevant provisions
+
+--- CHUNK 4/4 ---
+Words: 253 | Chars: 1855
+--------------------------------------------------------------------------------
+*Date and Signature:* 14/10-2022 Henrik K Brunsgard. (Dato, Ansager - Date, Ansager) --- ### **Page 5: Starterklæring (START) (LR Erhverv, Ishøj)** --- #### **Ved opnåelse af certificering, bekræfter jeg hermed: (Upon obtaining certification, I hereby confirm:)** * at overholde de relevante bestemmelser i certificeringsordningen (to comply with the relevant provisions of the certification scheme) * kun at fremsætte erklæringer om certificering inden for det område, certificeringen omfatter (only to make declarations of certification within the scope of the certification) * omgående at oplyse Certificering, Rambøll om forhold, der kan påvirke evnen til fortsat at opfylde certificeringskravene (to immediately inform Certification, Rambøll of circumstances that may affect the ability to continue meeting the certification requirements) * ikke at anvende certificeringen på en måde, der kan bringe Certificering Rambøll i miskredit, og ikke at fremsætte erklæringer vedrørende certificeringen, som Certificering, Rambøll kan betragte som misvisende eller uautoriserede (not to use the certification in a way that could discredit Certification Rambøll, and not to make statements regarding the certification that Certification, Rambøll may consider misleading or unauthorized) * ved suspendering eller tilbagetrækning af certificeringen at standse al anvendelse af erklæringer om certificering, der indeholder henvisning til Certificering, Rambøll eller certificering, og at returnere certifikat udstedt af Certificering. Rambøll (upon suspension or withdrawal of certification, to cease all use of declarations of certification that refer to Certification, Rambøll or certification, and to return the certificate issued by Certification. Rambøll) * ikke at anvende certifikatet på en misvisende måde (not to use the certificate in a misleading way)

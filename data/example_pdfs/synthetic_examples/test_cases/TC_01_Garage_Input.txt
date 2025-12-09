@@ -1,0 +1,37 @@
+PROJEKTBESKRIVELSE - FRITLIGGENDE GARAGE
+
+Dato: 10. december 2025
+Projekt: Ny garage ved enfamiliehus
+Adresse: Skovvej 12, 8200 Aarhus N
+Kommune: Aarhus Kommune
+
+BYGNINGSINFORMATION
+
+Bygningstype: Fritliggende garage/carport
+Anvendelse: Privat garagering af personbil
+Total areal: 45 m²
+Antal etager: 1 etage
+Grundareal: 45 m²
+Højde: 3,2 meter
+
+TEKNISKE DATA
+
+Konstruktion: Letbetonblokke med tegltag
+Brandbelastning: Lav (under 400 MJ/m²)
+Maksimalt personantal: 2 personer (ejere)
+Anvendelseskategori: 1 (Privat garage, ingen sovepladser)
+Risikoklasse: 1 (Lav risiko - simpel bygning)
+
+PROJEKTBESKRIVELSE
+
+Opførelse af fritliggende garage til privat brug.
+Ingen el-installation ud over lys og stikkontakter.
+Ingen vandinstallationer.
+Ingen opvarmning.
+
+Simpel bygning under 50 m² uden særlige brandsikringskrav.
+
+Bygherre: Hans Hansen
+Telefon: +45 12 34 56 78
+
+Forventet brandklasse: BK1

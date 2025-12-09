@@ -1,0 +1,124 @@
+BRANDSIKRINGSREDEGØRELSE (BSR)
+Uddrag fra Godkendt Projekt
+
+Projekt: Højlager med Automatiseret Lagersystem
+Adresse: Havnegade 12, 8000 Aarhus C
+Kommune: Aarhus
+Dato: 8. september 2024
+Status: GODKENDT af Aarhus Kommune
+Brandklasse: BK3
+Anvendelseskategori: 4 (Industri/Lager)
+
+═══════════════════════════════════════════════════════════════
+
+BRANDBELASTNING OG DIMENSIONERING
+
+For lagerhallen (Brandsektion 1) overstiger brandbelastningen
+1.600 MJ/m².
+
+Areal: 3.200 m²
+Brandbelastning: 2.400 MJ/m² (primært papir og emballage)
+Lofthøjde: 12 meter
+
+Der er anvendt funktionsbaseret brandrådgivning jf. BR18 §493.
+
+SÆRLIGE KRAV FRA AARHUS KOMMUNE:
+
+Aarhus Kommune har lagt vægt på, at der ved haller større end
+2.000 m² skal udføres CFD-simulering af røgudluftningen.
+
+Dette gælder uanset om præ-accepterede løsninger teknisk set
+ville være tilstrækkelige.
+
+Begrundelse fra kommunen:
+"Ved store brandbelastninger og høje lofter ønsker vi dokumentation
+for, at røglaget holder sig tilstrækkeligt højt i mindst 15 minutter
+for at sikre personevakuering."
+
+CFD-SIMULERING GENNEMFØRT:
+- Scenarie 1: Brand i pallestabler (4 MW)
+- Scenarie 2: Brand ved læsseport (6 MW)
+- Resultat: Røglag minimum 6 meter over gulv i 18 minutter
+- Software: FDS (Fire Dynamics Simulator)
+
+═══════════════════════════════════════════════════════════════
+
+BRANDVENTILATION - AARHUS SPECIFIKKE KRAV
+
+Standard brandventilation dimensioneret efter DS/EN 12101-2:
+- 12 stk. tagventilationsluger (hver 6 m²)
+- Aerodynamisk åbningsareal (Aa): 72 m²
+- Aktivering via termiske detektorer (68°C)
+
+VIGTIG ERFARING - AARHUS KOMMUNE:
+
+Det er erfaringen fra dette projekt, at Aarhus Beredskab kræver,
+at brandventilationen dimensioneres til 120% af standardkravet,
+hvis der opbevares brandfarlige væsker, UANSET MÆNGDE.
+
+I dette projekt blev ventilationen derfor øget fra 60 m² til 72 m²
+Aa, selvom der kun opbevares 50 liter diesel til gaffeltrucks.
+
+Citeret fra Aarhus Beredskabs kommentar:
+"Selv små mængder brændbare væsker kan forværre brandforløbet
+betydeligt i et højlager. Vi anbefaler derfor en sikkerhedsfaktor
+på minimum 1,2 for ventilationsarealet."
+
+═══════════════════════════════════════════════════════════════
+
+KONSTRUKTIONER
+
+Bærende konstruktion: Stålrammer, brandmalet R120
+Ydervægge: Sandwichpaneler EI 30 / B-s1,d0
+Indvendige sektionsadskillelser: REI 60 / A2-s1,d0
+
+AARHUS KRAV TIL DOKUMENTATION:
+- Typeprøvninger for alle konstruktioner skal fremsendes
+- CE-mærkning accepteres, men typeprøvning ønskes stadig som dokumentation
+- Produktdatablade skal være på dansk eller engelsk
+
+═══════════════════════════════════════════════════════════════
+
+SPRINKLERANLÆG
+
+Fuld sprinklerdækning i henhold til DS/EN 12845.
+
+System: ESFR (Early Suppression Fast Response)
+Dimensionering: OH-4 (High Hazard Group 4)
+Vandforsyning: 2 x 250 m³ bassiner + pumpehus
+
+AARHUS BEREDSKABS KOMMENTAR:
+"Ved sprinkleranlæg i bygninger over 10 meter højde skal der
+udføres prototypetest eller henvises til godkendt systemdesign.
+Hydrauliske beregninger skal fremsendes i A4-format, ikke kun
+i software-output."
+
+═══════════════════════════════════════════════════════════════
+
+FLUGTVEJE OG EVAKUERING
+
+Maksimalt personantal: 25 personer (primært truckchauffører)
+Flugtafstand: Max 50 meter (accepteret pga. sprinkler + open space)
+
+VIGTIG NOTE FOR AARHUS:
+Aarhus accepterer generelt 50 meter flugtafstand i sprinklede
+lagerhaller, hvis:
+1. Der er mindst 2 udgange i hver brandsektion
+2. Udgangene er placeret i modsatte ender
+3. Hallen er visuelt fri (ingen indvendige vægge)
+4. Personantallet er under 50
+
+═══════════════════════════════════════════════════════════════
+
+GODKENDELSE OG PROCES
+
+Projekt godkendt d. 2. oktober 2024 efter forhåndsdialog.
+
+Sagsbehandlingstid: 18 arbejdsdage (inkl. CFD-gennemgang)
+
+ERFARINGER FRA AARHUS KOMMUNE:
+- Forhåndsdialog anbefales ALTID ved funktionsbaseret design
+- CFD-simuleringer gennemgås grundigt - afsat tid til spørgsmål
+- Aarhus Beredskab deltager ofte i byggesagsmøder ved store projekter
+- Vær forberedt på krav om ekstra dokumentation for brandventilation
+- 120%-reglen for brændbare væsker skal huskes!

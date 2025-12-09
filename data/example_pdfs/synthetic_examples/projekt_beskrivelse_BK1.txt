@@ -1,0 +1,58 @@
+PROJEKTBESKRIVELSE
+Ny Fritliggende Garage
+
+Dato: 9. december 2025
+Projekt: Garage ved Villa Hansen
+Adresse: Skovvej 42, 8200 Aarhus N
+Kommune: Aarhus Kommune
+
+BYGNINGSINFORMATION
+
+Bygningstype: Fritliggende garage/carport
+Anvendelse: Privat garagering af personbil
+Total areal: 45 m²
+Antal etager: 1 etage
+Grundareal: 45 m²
+Bygningshøjde: 3,2 meter
+
+BRANDTEKNISKE DATA
+
+Brandbelastning: Lav - Under 400 MJ/m²
+Brandkonstruktion: Letbetonblokke med tegltag
+Maksimalt personantal: 2 personer (ejere)
+Personkendskab til flugtveje: Ja (privat brug)
+Anvendelseskategori: 1 (Enfamiliehus - tilhørende garage)
+Risikoklasse: 1 (Lav risiko - simpel bygning)
+
+BYGGESAG
+
+Der ønskes oprettelse af byggesag for ny fritliggende garage.
+Forventet brandklasse: BK1 (simpel bygning under 50 m²)
+
+KONTAKTINFORMATION
+
+Bygherre: Hans Hansen
+Kontaktperson: Hans Hansen
+Email: hans@hansen-mail.dk
+Telefon: +45 12 34 56 78
+
+Arkitekt: Ingen (standardprojekt)
+
+PROJEKTBESKRIVELSE
+
+Projektet omfatter opførelse af ny fritliggende garage på 45 m² til privat brug.
+Garagen opføres i letbetonblokke med tegltag.
+
+Simpel konstruktion uden el-installation ud over lys og stikkontakter.
+Ingen vandinstallationer.
+Ingen opvarmning.
+
+Da bygningen er under 50 m² og anvendes til privat garagering, forventes
+brandklasse BK1 med minimale dokumentationskrav.
+
+Forventet BR18 dokumentation:
+- Starterklæring (START)
+- Installationsteknisk tilsyn (ITT)
+
+Med venlig hilsen,
+Hans Hansen

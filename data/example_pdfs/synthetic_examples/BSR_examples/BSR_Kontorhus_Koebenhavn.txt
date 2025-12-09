@@ -1,0 +1,82 @@
+BRANDSIKRINGSREDEGØRELSE (BSR)
+Uddrag fra Godkendt Projekt
+
+Projekt: Renovering af Kontorhus, Nørrebrogade 45
+Kommune: København
+Dato: 15. marts 2024
+Status: GODKENDT af Københavns Kommune
+Brandklasse: BK2
+Anvendelseskategori: 3 (Kontor)
+
+═══════════════════════════════════════════════════════════════
+
+REDNINGSÅBNINGER - SÆRLIGE VILKÅR
+
+Vedrørende redningsåbninger i det indre gårdrum:
+
+Københavns Kommune har i forbindelse med byggesagsbehandlingen
+accepteret, at redningsåbninger mod gårdrum kan reduceres til
+0,8m i bredden grundet bygningens bevaringsværdige status (SAVE).
+
+BETINGELSER FOR DISPENSATION:
+- Fast stigrør skal etableres i trappeskakten
+- Redningsåbninger skal være direkte tilgængelige fra trapperum
+- Alternativ flugtvej via hovedfacade skal være sikret
+
+Dette afviger fra præ-accepterede løsninger i BR18 §508, men er
+godkendt specifikt for denne karré i henhold til BR18 §495 stk. 3.
+
+GENEREL ERFARING - KØBENHAVN:
+Bemærk at København generelt kræver fuld dokumentation for
+brandredningsarealer ved alle bygninger over 3 etager, uanset
+anvendelseskategori.
+
+Dette omfatter:
+- Opstillingsarealer for redningskøretøjer (mindst 15m x 5m)
+- Dokumentation for bæreevne af underlag (mindst 10 tons akseltryk)
+- Fri højde under eventuelle overdækninger (mindst 4,5 m)
+- Afstand til facade (maksimalt 8 meter)
+
+═══════════════════════════════════════════════════════════════
+
+BRANDVENTILATION
+
+For kontorlokalerne (Brandsektion 2) er der etableret:
+- Mekanisk røgventilation dimensioneret efter DS/EN 12101
+- Aktivering via branddetektorer (optiske røgdetektorer)
+- Kapacitet: 50.000 m³/h
+
+København Kommune har lagt vægt på, at røgventilationen skal være
+koblet til bygningens BMS (Building Management System) med mulighed
+for manuel override fra central kontrolenhed.
+
+═══════════════════════════════════════════════════════════════
+
+FLUGTVEJE
+
+Maksimal flugtafstand til nærmeste udgang: 25 meter (opfylder BR18 §508)
+
+Alle flugtveje føres direkte til terræn via brandsikret trapperum
+med klasse REI 60.
+
+SÆRLIG NOTE FOR KØBENHAVN:
+Ved renovering af ældre bygninger i indre by accepterer København
+ofte ikke "åben flugt" gennem kælder. Der skal etableres separat
+brandtrappe eller ekstern nødtrappe, medmindre bygningen er under
+3 etager.
+
+═══════════════════════════════════════════════════════════════
+
+GODKENDELSESNOTAT
+
+Projekt godkendt af Københavns Kommunes byggesagsbehandling
+d. 22. marts 2024 uden yderligere kommentarer.
+
+Godkendelsestid: 12 arbejdsdage (hurtig sagsbehandling pga.
+komplet dokumentation og forhåndsdialog).
+
+ERFARINGER FRA DETTE PROJEKT:
+- Forhåndsdialog med KK Byggesag anbefales ved SAVE-byggeri
+- Vær præcis med dimensioner på redningsåbninger (tegninger påkrævet)
+- Dokumentér bæreevne for redningsarealer med ingeniørberegning
+- Inkludér altid plantegninger med markering af opstillingsarealer
