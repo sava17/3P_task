@@ -428,12 +428,6 @@ DOCUMENT_REQUIREMENTS = {
 
 ---
 
-## 📝 License
-
-This project was created as part of an assignment for [Institution Name].
-
----
-
 ## 👤 Author
 
 **Samuel A.V. Andersen**
