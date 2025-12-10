@@ -80,11 +80,13 @@ class BR18PrototypeGUI(ctk.CTk):
         self.municipal_response_pdf = None  # For municipal response PDF (Del 2)
         self.current_project = None
         self.generated_documents = []
-        self.feedbacks_given = []
         self.auto_selected_doc_types = []  # Automatically determined required docs (Del 1)
 
         # Create tabbed interface
         self.setup_tabbed_interface()
+
+        # Check if BR18 is already loaded
+        self.check_br18_status()
 
         # Start queue checker
         self.check_queue()
@@ -105,14 +107,12 @@ class BR18PrototypeGUI(ctk.CTk):
         self.tab_parse = self.tabview.add("1️⃣ Parse Project (Del 1)")
         self.tab_knowledge_setup = self.tabview.add("2️⃣ Knowledge Base (Del 2)")
         self.tab_generate = self.tabview.add("3️⃣ Generate Documents")
-        self.tab_feedback = self.tabview.add("4️⃣ Review & Feedback")
-        self.tab_knowledge_view = self.tabview.add("5️⃣ View Knowledge")
+        self.tab_knowledge_view = self.tabview.add("4️⃣ View Knowledge")
 
         # Setup each tab
         self.setup_tab_parse_project()  # NEW: Del 1 - Parse project input
         self.setup_tab_knowledge_setup()  # MOVED: Del 2 - Build knowledge base
         self.setup_tab_generate()
-        self.setup_tab_feedback()
         self.setup_tab_knowledge_view()
 
     def setup_tab_parse_project(self):
@@ -299,9 +299,46 @@ class BR18PrototypeGUI(ctk.CTk):
         )
         self.process_btn.grid(row=3, column=0, columnspan=2, sticky="ew", padx=15, pady=(0, 15))
 
+        # BR18 Regulation Upload Section (NEW)
+        br18_frame = ctk.CTkFrame(tab)
+        br18_frame.grid(row=3, column=0, sticky="ew", padx=20, pady=(0, 20))
+        br18_frame.grid_columnconfigure(1, weight=1)
+
+        ctk.CTkLabel(
+            br18_frame,
+            text="📖 BR18 Regulation (Building Regulations 2018):",
+            font=ctk.CTkFont(size=14, weight="bold")
+        ).grid(row=0, column=0, sticky="w", padx=15, pady=(15, 10))
+
+        ctk.CTkLabel(
+            br18_frame,
+            text="Upload BR18.pdf to enable accurate paragraph citations (§508, etc.) in generated documents",
+            font=ctk.CTkFont(size=12),
+            text_color="gray"
+        ).grid(row=1, column=0, sticky="w", padx=15, pady=(0, 10))
+
+        # BR18 status
+        self.br18_status_label = ctk.CTkLabel(
+            br18_frame,
+            text="Status: Not uploaded",
+            font=ctk.CTkFont(size=12),
+            text_color="#dc2626"
+        )
+        self.br18_status_label.grid(row=2, column=0, sticky="w", padx=15, pady=(0, 10))
+
+        # BR18 upload button
+        ctk.CTkButton(
+            br18_frame,
+            text="📤 Upload BR18.pdf",
+            command=self.upload_br18_regulation,
+            width=200,
+            height=35,
+            font=ctk.CTkFont(size=13, weight="bold")
+        ).grid(row=3, column=0, sticky="w", padx=15, pady=(0, 15))
+
         # Municipal Response Upload Section
         municipal_frame = ctk.CTkFrame(tab)
-        municipal_frame.grid(row=3, column=0, sticky="ew", padx=20, pady=(0, 20))
+        municipal_frame.grid(row=4, column=0, sticky="ew", padx=20, pady=(0, 20))
         municipal_frame.grid_columnconfigure(1, weight=1)
 
         ctk.CTkLabel(
@@ -646,14 +683,14 @@ class BR18PrototypeGUI(ctk.CTk):
             )
             checkbox.pack(anchor="w")
 
-        # Demo mode checkbox
+        # Without knowledge mode checkbox
         demo_frame = ctk.CTkFrame(doc_frame, fg_color="transparent")
         demo_frame.pack(fill="x", padx=15, pady=(5, 5))
 
         self.demo_mode_var = ctk.BooleanVar(value=True)
         demo_checkbox = ctk.CTkCheckBox(
             demo_frame,
-            text="📚 Demo Mode: Generate basic documents first (without learned knowledge) to demonstrate learning",
+            text="📚 Generate WITHOUT knowledge (baseline documents for comparison)",
             variable=self.demo_mode_var,
             font=ctk.CTkFont(size=11)
         )
@@ -710,193 +747,6 @@ class BR18PrototypeGUI(ctk.CTk):
         )
         self.generate_output.grid(row=4, column=0, sticky="nsew", padx=20, pady=(0, 20))
         tab.grid_rowconfigure(4, weight=1)
-
-    def setup_tab_feedback(self):
-        """Review & Feedback: View documents and provide feedback"""
-        tab = self.tab_feedback
-        tab.grid_columnconfigure(0, weight=1)
-        tab.grid_rowconfigure(2, weight=1)
-
-        # Header
-        ctk.CTkLabel(
-            tab,
-            text="✅ Review Generated Documents",
-            font=ctk.CTkFont(size=24, weight="bold")
-        ).grid(row=0, column=0, sticky="w", padx=20, pady=(20, 10))
-
-        self.feedback_status_label = ctk.CTkLabel(
-            tab,
-            text="No documents generated yet. Generate documents first.",
-            font=ctk.CTkFont(size=13),
-            text_color="gray"
-        )
-        self.feedback_status_label.grid(row=1, column=0, sticky="w", padx=20, pady=(0, 20))
-
-        # Document viewer and feedback panel (side by side)
-        review_container = ctk.CTkFrame(tab)
-        review_container.grid(row=2, column=0, sticky="nsew", padx=20, pady=(0, 20))
-        review_container.grid_columnconfigure(0, weight=2)
-        review_container.grid_columnconfigure(1, weight=1)
-        review_container.grid_rowconfigure(0, weight=1)
-
-        # Left: Document viewer
-        viewer_frame = ctk.CTkFrame(review_container)
-        viewer_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 10))
-        viewer_frame.grid_rowconfigure(1, weight=1)
-        viewer_frame.grid_columnconfigure(0, weight=1)
-
-        ctk.CTkLabel(
-            viewer_frame,
-            text="Document Viewer:",
-            font=ctk.CTkFont(size=14, weight="bold")
-        ).grid(row=0, column=0, sticky="w", padx=15, pady=(15, 10))
-
-        self.doc_viewer = ctk.CTkTextbox(
-            viewer_frame,
-            font=ctk.CTkFont(family="Consolas", size=11),
-            wrap="word"
-        )
-        self.doc_viewer.grid(row=1, column=0, sticky="nsew", padx=15, pady=(0, 15))
-
-        # Right: Feedback panel
-        feedback_panel = ctk.CTkFrame(review_container)
-        feedback_panel.grid(row=0, column=1, sticky="nsew")
-        feedback_panel.grid_rowconfigure(4, weight=1)
-        feedback_panel.grid_columnconfigure(0, weight=1)
-
-        ctk.CTkLabel(
-            feedback_panel,
-            text="Provide Feedback:",
-            font=ctk.CTkFont(size=14, weight="bold")
-        ).grid(row=0, column=0, sticky="w", padx=15, pady=(15, 10))
-
-        # Document selector
-        ctk.CTkLabel(
-            feedback_panel,
-            text="Select Document:",
-            font=ctk.CTkFont(size=12)
-        ).grid(row=1, column=0, sticky="w", padx=15, pady=(5, 5))
-
-        self.doc_selector_var = ctk.StringVar(value="")
-        self.doc_selector = ctk.CTkOptionMenu(
-            feedback_panel,
-            variable=self.doc_selector_var,
-            values=["No documents"],
-            command=self.display_selected_document,
-            state="disabled"
-        )
-        self.doc_selector.grid(row=2, column=0, sticky="ew", padx=15, pady=(0, 15))
-
-        # Approval buttons
-        approval_frame = ctk.CTkFrame(feedback_panel, fg_color="transparent")
-        approval_frame.grid(row=3, column=0, sticky="ew", padx=15, pady=(0, 15))
-        approval_frame.grid_columnconfigure((0, 1), weight=1)
-
-        self.approve_btn = ctk.CTkButton(
-            approval_frame,
-            text="✅ Approve",
-            command=lambda: self.submit_feedback(True),
-            fg_color="#059669",
-            hover_color="#047857",
-            state="disabled"
-        )
-        self.approve_btn.grid(row=0, column=0, sticky="ew", padx=5)
-
-        self.reject_btn = ctk.CTkButton(
-            approval_frame,
-            text="❌ Reject",
-            command=lambda: self.submit_feedback(False),
-            fg_color="#dc2626",
-            hover_color="#b91c1c",
-            state="disabled"
-        )
-        self.reject_btn.grid(row=0, column=1, sticky="ew", padx=5)
-
-        # Demo mode helper (shows what's actually missing)
-        self.demo_helper_frame = ctk.CTkFrame(feedback_panel, fg_color="#1f2937")
-        self.demo_helper_frame.grid(row=4, column=0, sticky="ew", padx=15, pady=(0, 10))
-        self.demo_helper_frame.grid_remove()  # Hidden by default
-
-        ctk.CTkLabel(
-            self.demo_helper_frame,
-            text="📋 Demo Helper: What's Missing in This Document",
-            font=ctk.CTkFont(size=11, weight="bold"),
-            text_color="#fbbf24"
-        ).pack(anchor="w", padx=10, pady=(8, 5))
-
-        self.demo_helper_text = ctk.CTkLabel(
-            self.demo_helper_frame,
-            text="",
-            font=ctk.CTkFont(size=10),
-            text_color="#d1d5db",
-            justify="left"
-        )
-        self.demo_helper_text.pack(anchor="w", padx=10, pady=(0, 8))
-
-        # Rejection reasons (only shown when rejecting)
-        ctk.CTkLabel(
-            feedback_panel,
-            text="Rejection Reasons:",
-            font=ctk.CTkFont(size=12)
-        ).grid(row=5, column=0, sticky="nw", padx=15, pady=(0, 5))
-
-        # Template rejection reasons
-        template_reasons_frame = ctk.CTkFrame(feedback_panel, fg_color="transparent")
-        template_reasons_frame.grid(row=6, column=0, sticky="ew", padx=15, pady=(0, 5))
-
-        ctk.CTkLabel(
-            template_reasons_frame,
-            text="Quick Add:",
-            font=ctk.CTkFont(size=10)
-        ).pack(side="left", padx=5)
-
-        reason_buttons = [
-            ("Missing BR18 §", "Missing specific BR18 paragraph references (e.g., §508)"),
-            ("Unclear distances", "Evacuation distances not clearly specified"),
-            ("Fire resistance", "Incorrect or missing fire resistance class specifications"),
-            ("Material class", "Missing material classifications (e.g., K1 10/B-s1,d0)"),
-            ("Rescue access", "Incomplete rescue service access routes and conditions"),
-        ]
-
-        for btn_text, reason_text in reason_buttons:
-            ctk.CTkButton(
-                template_reasons_frame,
-                text=btn_text,
-                command=lambda r=reason_text: self.add_rejection_reason(r),
-                width=100,
-                height=22,
-                font=ctk.CTkFont(size=9)
-            ).pack(side="left", padx=2)
-
-        self.rejection_text = ctk.CTkTextbox(
-            feedback_panel,
-            height=120
-        )
-        self.rejection_text.grid(row=7, column=0, sticky="nsew", padx=15, pady=(5, 15))
-
-        # Learn from feedback button
-        self.learn_btn = ctk.CTkButton(
-            feedback_panel,
-            text="🧠 Learn from All Feedback",
-            command=self.learn_from_feedback,
-            height=40,
-            font=ctk.CTkFont(size=13, weight="bold"),
-            state="disabled"
-        )
-        self.learn_btn.grid(row=8, column=0, sticky="ew", padx=15, pady=(0, 10))
-
-        # Re-generate button (appears after learning)
-        self.regenerate_btn = ctk.CTkButton(
-            feedback_panel,
-            text="🔄 Re-Generate Documents (With Learning)",
-            command=self.regenerate_with_learning,
-            height=40,
-            font=ctk.CTkFont(size=13, weight="bold"),
-            fg_color="#059669",
-            hover_color="#047857",
-            state="disabled"
-        )
-        self.regenerate_btn.grid(row=9, column=0, sticky="ew", padx=15, pady=(0, 15))
 
     def setup_tab_knowledge_view(self):
         """Tab 5: Knowledge Base Viewer - Browse stored knowledge"""
@@ -1074,6 +924,9 @@ class BR18PrototypeGUI(ctk.CTk):
         )
         self.kb_viewer.grid(row=5, column=0, sticky="nsew", padx=20, pady=(0, 20))
         tab.grid_rowconfigure(5, weight=1)
+
+        # Load stats immediately when tab is set up
+        self.after(100, self.refresh_knowledge_stats)
 
     # ========== Event Handlers ==========
 
@@ -1328,6 +1181,151 @@ Required Document Types:
         thread = threading.Thread(target=process, daemon=True)
         thread.start()
 
+    def upload_br18_regulation(self):
+        """Upload and process BR18.pdf regulation document"""
+        # File dialog to select BR18.pdf
+        br18_path = filedialog.askopenfilename(
+            title="Select BR18.pdf",
+            filetypes=[("PDF files", "*.pdf"), ("All files", "*.*")]
+        )
+
+        if not br18_path:
+            return
+
+        # Verify it's a PDF
+        if not br18_path.lower().endswith('.pdf'):
+            messagebox.showerror("Invalid File", "Please select a PDF file")
+            return
+
+        def process_br18():
+            try:
+                self.is_processing = True
+                old_stdout = sys.stdout
+                sys.stdout = TextRedirector(self.output_queue)
+
+                print(f"\n{'='*80}")
+                print(f"📖 PROCESSING BR18 REGULATION")
+                print(f"{'='*80}\n")
+
+                print(f"Selected file: {Path(br18_path).name}")
+                print(f"File size: {Path(br18_path).stat().st_size / 1024:.1f} KB\n")
+
+                # Custom extraction prompt for regulation document
+                regulation_prompt = """Extract all text content from this BR18 (Building Regulations 2018) document.
+
+IMPORTANT - Preserve structure and paragraph references:
+- All paragraph numbers (§508, §509, §93, etc.)
+- Section headings and subsection numbers
+- Tables with requirements
+- Lists of requirements
+- Any cross-references between paragraphs
+
+Format the output as structured text with clear section breaks.
+Keep paragraph numbers (§) with their corresponding text."""
+
+                print("🔍 Extracting BR18 content with Gemini Vision...")
+                content = self.demo_system.pdf_extractor.extract_with_gemini(
+                    br18_path,
+                    extraction_prompt=regulation_prompt
+                )
+                print(f"✅ Extracted {len(content)} characters, {len(content.split())} words\n")
+
+                # Chunk with larger size to preserve § paragraph context
+                print("✂️  Creating regulation chunks (800 words/chunk)...")
+                chunks = self.demo_system.pdf_extractor.chunk_document(
+                    content,
+                    chunk_size=800,
+                    overlap=100
+                )
+                print(f"✅ Created {len(chunks)} regulation chunks\n")
+
+                # Create knowledge chunks
+                print("📊 Adding BR18 regulation to vector store...")
+                from src.models import KnowledgeChunk
+                import uuid
+                from datetime import datetime
+
+                knowledge_chunks = []
+                for i, chunk_text in enumerate(chunks):
+                    chunk = KnowledgeChunk(
+                        chunk_id=str(uuid.uuid4()),
+                        source_type="regulation",  # Mark as regulation
+                        source_reference="BR18.pdf",
+                        municipality=None,  # Applies to all municipalities
+                        document_type=None,  # Not a specific doc type
+                        content=chunk_text,
+                        metadata={
+                            "regulation_name": "BR18",
+                            "regulation_year": "2018",
+                            "section": "Fire Safety",
+                            "chunk_index": i,
+                            "total_chunks": len(chunks),
+                            "added_date": datetime.now().isoformat()
+                        }
+                    )
+                    knowledge_chunks.append(chunk)
+
+                # Check if BR18 already exists and delete old version
+                print("\n🔍 Checking for existing BR18 regulation...")
+                deleted_count = self.demo_system.vector_store.delete_by_source(
+                    source_reference="BR18.pdf",
+                    source_type="regulation"
+                )
+
+                if deleted_count > 0:
+                    print(f"🗑️  Removed {deleted_count} chunks from old BR18 version")
+                    print(f"📝 Replacing with new BR18 version...")
+
+                # Add new BR18 to vector store
+                self.demo_system.vector_store.add_chunks_batch(knowledge_chunks)
+
+                print(f"\n✅ BR18 regulation successfully {'updated' if deleted_count > 0 else 'added'}!")
+                stats = self.demo_system.vector_store.get_stats()
+                print(f"\n📈 Vector Store Statistics:")
+                print(f"   Total chunks: {stats['total_chunks']}")
+                print(f"   By source type: {stats['by_source_type']}")
+                print(f"\n🎯 Document generation will now include accurate BR18 § citations!")
+
+                # Update status label
+                self.br18_status_label.configure(
+                    text=f"Status: ✅ Loaded ({len(chunks)} chunks)",
+                    text_color="#10b981"
+                )
+
+            except Exception as e:
+                print(f"\n❌ Error: {str(e)}")
+                import traceback
+                traceback.print_exc()
+                self.br18_status_label.configure(
+                    text="Status: ❌ Error during upload",
+                    text_color="#dc2626"
+                )
+            finally:
+                sys.stdout = old_stdout
+                self.is_processing = False
+
+        thread = threading.Thread(target=process_br18, daemon=True)
+        thread.start()
+
+    def check_br18_status(self):
+        """Check if BR18 regulation is already loaded in vector store"""
+        try:
+            stats = self.demo_system.vector_store.get_stats()
+            regulation_count = stats['by_source_type'].get('regulation', 0)
+
+            if regulation_count > 0:
+                self.br18_status_label.configure(
+                    text=f"Status: ✅ Already loaded ({regulation_count} chunks)",
+                    text_color="#10b981"
+                )
+            else:
+                self.br18_status_label.configure(
+                    text="Status: Not uploaded",
+                    text_color="#dc2626"
+                )
+        except Exception as e:
+            print(f"Warning: Could not check BR18 status: {e}")
+
     def load_template_office_bk2(self):
         """Load office building BK2 template"""
         self.project_name_entry.delete(0, "end")
@@ -1438,18 +1436,6 @@ Required Document Types:
         self.client_name_entry.insert(0, "Jensen Familie")
 
         self.update_required_documents("BK1")
-
-    def add_rejection_reason(self, reason):
-        """Add a template rejection reason to the text box"""
-        current_text = self.rejection_text.get("1.0", "end").strip()
-
-        # If text box is empty or has placeholder, replace it
-        if not current_text or current_text == "Enter reasons for rejection (one per line)...":
-            self.rejection_text.delete("1.0", "end")
-            self.rejection_text.insert("1.0", reason)
-        else:
-            # Add to end with newline
-            self.rejection_text.insert("end", "\n" + reason)
 
     def update_required_documents(self, fire_class):
         """Update the required documents display based on fire classification"""
@@ -1589,22 +1575,7 @@ Required Document Types:
 
                 # Reset GUI state
                 self.generated_documents = []
-                self.feedbacks_given = []
                 self.current_project = None
-
-                # Reset feedback tab
-                self.feedback_status_label.configure(
-                    text="No documents generated yet. Generate documents first."
-                )
-                self.doc_selector.configure(values=["No documents"], state="disabled")
-                self.doc_viewer.configure(state="normal")
-                self.doc_viewer.delete("1.0", "end")
-                self.doc_viewer.configure(state="disabled")
-                self.approve_btn.configure(state="disabled")
-                self.reject_btn.configure(state="disabled")
-                self.learn_btn.configure(state="disabled")
-                self.regenerate_btn.configure(state="disabled")
-                self.demo_helper_frame.grid_remove()
 
                 # Reset project info
                 self.project_info_label.configure(
@@ -1652,24 +1623,30 @@ Required Document Types:
         except Exception as e:
             messagebox.showerror("Error", f"Could not open folder:\n{str(e)}\n\nPath: {abs_path}")
 
-    def save_document_to_file(self, doc, prefix=""):
+    def save_document_to_file(self, doc, prefix="", demo_mode=False):
         """Save a generated document to file"""
         import os
         from datetime import datetime
 
-        # Create output directory if it doesn't exist
-        output_dir = Path("data/generated_docs")
+        # Create output directory based on demo mode
+        if demo_mode:
+            output_dir = Path("data/generated_docs/without_knowledge")
+        else:
+            output_dir = Path("data/generated_docs/with_knowledge")
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        # Create filename: [PREFIX_]ProjectName_DocumentType_Timestamp.txt
+        # Create filename with knowledge indicator
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         safe_project_name = "".join(c for c in doc.project.project_name if c.isalnum() or c in (' ', '-', '_')).strip()
         safe_project_name = safe_project_name.replace(' ', '_')
 
+        # Add knowledge indicator to filename
+        knowledge_indicator = "without_knowledge" if demo_mode else "with_knowledge"
+
         if prefix:
-            filename = f"{prefix}_{safe_project_name}_{doc.document_type.value}_{timestamp}.txt"
+            filename = f"{safe_project_name}_{doc.document_type.value}_{knowledge_indicator}_{prefix}_{timestamp}.txt"
         else:
-            filename = f"{safe_project_name}_{doc.document_type.value}_{timestamp}.txt"
+            filename = f"{safe_project_name}_{doc.document_type.value}_{knowledge_indicator}_{timestamp}.txt"
 
         filepath = output_dir / filename
 
@@ -1723,23 +1700,23 @@ Required Document Types:
                 use_demo_mode = self.demo_mode_var.get()
 
                 if use_demo_mode:
-                    print(f"\n⚠️  DEMO MODE: Generating WITHOUT learned knowledge")
-                    print(f"   Documents will intentionally lack some BR18 requirements")
-                    print(f"   This demonstrates the 'before learning' state\n")
+                    print(f"\n⚠️  Generating WITHOUT learned knowledge")
+                    print(f"   Documents will not use RAG context from knowledge base")
+                    print(f"   This demonstrates the 'without knowledge' baseline\n")
 
                 for doc_type_str in selected:
                     doc_type = DocumentType(doc_type_str)
 
-                    # Get RAG context (skip in demo mode to show "before learning")
+                    # Get RAG context (skip in demo mode to show "without knowledge")
                     if use_demo_mode:
-                        rag_context = []  # No context = basic/incomplete documents
-                        print(f"  📝 Generating {doc_type_str} (basic version, no RAG context)...")
+                        rag_context = []  # No context = without knowledge baseline
+                        print(f"  📝 Generating {doc_type_str} (WITHOUT knowledge)...")
                     else:
                         rag_context = self.demo_system.vector_store.retrieve_context(
                             query=f"{doc_type_str} document for {self.current_project.municipality}",
                             top_k=5
                         )
-                        print(f"  📝 Generating {doc_type_str} (with {len(rag_context)} learned examples)...")
+                        print(f"  📝 Generating {doc_type_str} (WITH knowledge - {len(rag_context)} context chunks)...")
 
                     # Generate document
                     doc = self.demo_system.template_engine.generate_document(
@@ -1750,14 +1727,15 @@ Required Document Types:
                     self.generated_documents.append(doc)
                     print(f"     ✅ Generated ({len(doc.content)} chars)")
 
-                    # Save document to file
-                    self.save_document_to_file(doc)
+                    # Save document to file (pass demo_mode flag)
+                    self.save_document_to_file(doc, demo_mode=use_demo_mode)
 
                 print(f"\n✅ All {len(selected)} documents generated successfully!")
-                print(f"\n➡️  Go to 'Review & Feedback' tab to view and provide feedback.")
 
-                # Update feedback tab
-                self.update_feedback_tab()
+                if use_demo_mode:
+                    print(f"\n📁 Documents saved to: data/generated_docs/without_knowledge/")
+                else:
+                    print(f"\n📁 Documents saved to: data/generated_docs/with_knowledge/")
 
             except Exception as e:
                 print(f"\n❌ Error: {str(e)}")
@@ -1768,246 +1746,6 @@ Required Document Types:
                 self.is_processing = False
 
         thread = threading.Thread(target=generate, daemon=True)
-        thread.start()
-
-    def update_feedback_tab(self):
-        """Update the feedback tab with generated documents"""
-        if not self.generated_documents:
-            return
-
-        # Update status label
-        self.feedback_status_label.configure(
-            text=f"{len(self.generated_documents)} documents generated. Select a document to review."
-        )
-
-        # Update document selector
-        doc_options = [f"{doc.document_type.value} - {doc.project.project_name}" for doc in self.generated_documents]
-        self.doc_selector.configure(values=doc_options, state="normal")
-        self.doc_selector_var.set(doc_options[0])
-
-        # Display first document
-        self.display_selected_document(doc_options[0])
-
-        # Enable buttons
-        self.approve_btn.configure(state="normal")
-        self.reject_btn.configure(state="normal")
-
-    def display_selected_document(self, selection):
-        """Display the selected document in the viewer"""
-        if not self.generated_documents or not selection:
-            return
-
-        # Find the document
-        idx = self.doc_selector.cget("values").index(selection)
-        doc = self.generated_documents[idx]
-
-        # Display in viewer
-        self.doc_viewer.configure(state="normal")
-        self.doc_viewer.delete("1.0", "end")
-
-        header = f"""
-{'='*80}
-Document Type: {doc.document_type.value}
-Project: {doc.project.project_name}
-Municipality: {doc.project.municipality}
-Fire Classification: {doc.project.fire_classification.value}
-Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
-{'='*80}
-
-"""
-        self.doc_viewer.insert("end", header)
-        self.doc_viewer.insert("end", doc.content)
-        self.doc_viewer.configure(state="disabled")
-
-        # Check if this was generated in demo mode (no RAG context)
-        if not doc.rag_context_used or len(doc.rag_context_used) == 0:
-            # Show demo helper with what's actually missing
-            self.show_demo_helper(doc)
-        else:
-            # Hide demo helper for improved documents
-            self.demo_helper_frame.grid_remove()
-
-    def show_demo_helper(self, doc):
-        """Show what's missing in a demo mode document"""
-        content_lower = doc.content.lower()
-
-        missing_items = []
-
-        # Check for BR18 paragraph references
-        if "§508" not in doc.content and "§ 508" not in doc.content:
-            missing_items.append("✗ Missing BR18 §508 paragraph reference")
-
-        # Check for evacuation distances
-        if not any(word in content_lower for word in ["25 meter", "25m", "afstand til udgang"]):
-            missing_items.append("✗ Missing specific evacuation distances (e.g., 25 meter)")
-
-        # Check for fire resistance classes
-        if not any(word in doc.content for word in ["REI 60", "REI 90", "REI 120", "R60", "R90"]):
-            missing_items.append("✗ Missing fire resistance class (e.g., REI 60)")
-
-        # Check for material classifications
-        if not any(word in doc.content for word in ["K1 10", "B-s1,d0", "A2-s1,d0"]):
-            missing_items.append("✗ Missing material classification (e.g., K1 10/B-s1,d0)")
-
-        if missing_items:
-            helper_text = "\n".join(missing_items)
-            helper_text += "\n\n💡 Click the matching template buttons below to add these as rejection reasons!"
-            self.demo_helper_text.configure(text=helper_text)
-            self.demo_helper_frame.grid()  # Show the helper
-        else:
-            self.demo_helper_frame.grid_remove()  # Hide if nothing missing
-
-    def submit_feedback(self, approved):
-        """Submit feedback for the currently selected document"""
-        if not self.generated_documents:
-            return
-
-        # Get selected document
-        selection = self.doc_selector_var.get()
-        idx = self.doc_selector.cget("values").index(selection)
-        doc = self.generated_documents[idx]
-
-        # Get rejection reasons if applicable
-        rejection_reasons = []
-        if not approved:
-            reasons_text = self.rejection_text.get("1.0", "end").strip()
-            if not reasons_text:
-                messagebox.showwarning("Missing Reasons", "Please provide rejection reasons!")
-                return
-            rejection_reasons = [r.strip() for r in reasons_text.split('\n') if r.strip()]
-
-        # Create feedback
-        feedback = MunicipalityFeedback(
-            document_id=doc.document_id,
-            municipality=doc.project.municipality,
-            approved=approved,
-            rejection_reasons=rejection_reasons if not approved else []
-        )
-
-        self.feedbacks_given.append(feedback)
-
-        # Show confirmation
-        status = "✅ APPROVED" if approved else "❌ REJECTED"
-        messagebox.showinfo("Feedback Submitted", f"{status}\n\nFeedback recorded for {doc.document_type.value}")
-
-        # Clear rejection text
-        self.rejection_text.delete("1.0", "end")
-
-        # Enable learn button if we have feedback
-        if len(self.feedbacks_given) > 0:
-            self.learn_btn.configure(state="normal")
-
-    def learn_from_feedback(self):
-        """Learn from all provided feedback"""
-        if not self.feedbacks_given:
-            messagebox.showwarning("No Feedback", "Please provide feedback on documents first!")
-            return
-
-        def learn():
-            try:
-                self.is_processing = True
-                old_stdout = sys.stdout
-                sys.stdout = TextRedirector(self.output_queue)
-
-                print(f"\n🧠 Learning from {len(self.feedbacks_given)} feedback entries...\n")
-
-                insights = self.demo_system.step4_learn_from_feedback(self.feedbacks_given)
-
-                print(f"\n✅ Learning complete!")
-                print(f"   Extracted {len(insights)} insights")
-
-                stats = self.demo_system.vector_store.get_stats()
-                print(f"   Knowledge base now has {stats['total_chunks']} chunks")
-
-                print(f"\n➡️  You can now RE-GENERATE documents to see the improvement!")
-                print(f"   Click '🔄 Re-Generate Documents (With Learning)' below")
-
-                # Enable regenerate button
-                self.regenerate_btn.configure(state="normal")
-
-            except Exception as e:
-                print(f"\n❌ Error: {str(e)}")
-                import traceback
-                traceback.print_exc()
-            finally:
-                sys.stdout = old_stdout
-                self.is_processing = False
-
-        thread = threading.Thread(target=learn, daemon=True)
-        thread.start()
-
-    def regenerate_with_learning(self):
-        """Re-generate documents using learned knowledge"""
-        if not self.current_project:
-            messagebox.showwarning("No Project", "No project loaded!")
-            return
-
-        # Get the same document types that were generated before
-        doc_types_to_regenerate = [doc.document_type.value for doc in self.generated_documents]
-
-        if not doc_types_to_regenerate:
-            messagebox.showwarning("No Documents", "No documents to regenerate!")
-            return
-
-        def regenerate():
-            try:
-                self.is_processing = True
-                old_stdout = sys.stdout
-                sys.stdout = TextRedirector(self.output_queue)
-
-                print(f"\n🔄 RE-GENERATING {len(doc_types_to_regenerate)} documents WITH learned knowledge...\n")
-                print(f"   Project: {self.current_project.project_name}")
-                print(f"   This time using RAG context from feedback!\n")
-
-                # Clear old documents
-                old_docs = self.generated_documents.copy()
-                self.generated_documents = []
-
-                for doc_type_str in doc_types_to_regenerate:
-                    doc_type = DocumentType(doc_type_str)
-
-                    # Always use RAG context for regeneration (this is the "after learning" version)
-                    rag_context = self.demo_system.vector_store.retrieve_context(
-                        query=f"{doc_type_str} document for {self.current_project.municipality}",
-                        top_k=5
-                    )
-
-                    print(f"  📝 Generating {doc_type_str} (WITH {len(rag_context)} learned patterns)...")
-
-                    # Generate improved document
-                    doc = self.demo_system.template_engine.generate_document(
-                        self.current_project,
-                        doc_type,
-                        rag_context
-                    )
-                    self.generated_documents.append(doc)
-                    print(f"     ✅ Generated ({len(doc.content)} chars)")
-
-                    # Save document to file with "IMPROVED" prefix
-                    self.save_document_to_file(doc, prefix="IMPROVED")
-
-                print(f"\n✅ All {len(doc_types_to_regenerate)} documents RE-GENERATED with learning!")
-                print(f"\n📊 COMPARISON:")
-                print(f"   Before: Basic documents without RAG context")
-                print(f"   After:  Improved documents using {self.demo_system.vector_store.get_stats()['total_chunks']} knowledge chunks")
-                print(f"\n➡️  Review the new documents in the 'Review & Feedback' tab")
-                print(f"   Compare with the old versions to see the improvements!")
-
-                # Update feedback tab
-                self.update_feedback_tab()
-
-                # Disable demo mode checkbox (we've now seen the learning effect)
-                self.demo_mode_var.set(False)
-
-            except Exception as e:
-                print(f"\n❌ Error: {str(e)}")
-                import traceback
-                traceback.print_exc()
-            finally:
-                sys.stdout = old_stdout
-                self.is_processing = False
-
-        thread = threading.Thread(target=regenerate, daemon=True)
         thread.start()
 
     def select_municipal_response(self):
@@ -2059,7 +1797,9 @@ Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
                     print("\nExample negative constraints:")
                     for i, chunk in enumerate(neg_chunks[:3], 1):
                         print(f"\n{i}. {chunk.content[:120]}...")
-                        print(f"   Confidence: {chunk.metadata.get('confidence_score')}")
+                        conf = chunk.metadata.get('confidence_score')
+                        conf_str = f"{conf:.2f}" if isinstance(conf, (int, float)) else conf
+                        print(f"   Confidence: {conf_str}")
                         print(f"   Status: {chunk.metadata.get('approval_status')}")
 
                 elif "godkend" in filename or "approval" in filename:
@@ -2085,7 +1825,15 @@ Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
                     print("\nExample golden records:")
                     for i, chunk in enumerate(golden_chunks[:3], 1):
                         print(f"\n{i}. {chunk.content[:120]}...")
-                        print(f"   Confidence: {chunk.metadata.get('confidence_score')}")
+                        conf = chunk.metadata.get('confidence_score')
+                        conf_str = f"{conf:.2f}" if isinstance(conf, (int, float)) else conf
+                        print(f"   Confidence: {conf_str}")
+
+                        # Show calculation breakdown if available
+                        breakdown = chunk.metadata.get('confidence_breakdown')
+                        if breakdown:
+                            print(f"   Calculation: {breakdown.get('calculation', 'N/A')}")
+
                         print(f"   Status: {chunk.metadata.get('approval_status')}")
                 else:
                     print("⚠️  Could not auto-detect type. Please include 'Afslag' or 'Godkendelse' in filename.")
@@ -2126,11 +1874,13 @@ Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
             exclude_rejected = self.exclude_rejected_var.get()
             prioritize_approved = self.prioritize_approved_var.get()
 
-            # Search knowledge base
+            # Search knowledge base with configurable result limit
+            # User can adjust this - default 10 for GUI display
+            result_limit = 10  # TODO: Make this configurable via GUI slider
             chunks = self.demo_system.vector_store.search_with_confidence(
                 query=query,
                 municipality=municipality_filter,
-                top_k=10,
+                top_k=result_limit,
                 exclude_rejected=exclude_rejected,
                 prioritize_approved=prioritize_approved
             )
@@ -2154,7 +1904,19 @@ Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
                     self.kb_viewer.insert("end", f"Source Type: {chunk.source_type}\n")
                     if chunk.municipality:
                         self.kb_viewer.insert("end", f"Municipality: {chunk.municipality}\n")
-                    self.kb_viewer.insert("end", f"Confidence: {chunk.metadata.get('confidence_score', 'N/A')}\n")
+
+                    # Format confidence with 2 decimals
+                    conf = chunk.metadata.get('confidence_score', 'N/A')
+                    if isinstance(conf, (int, float)):
+                        self.kb_viewer.insert("end", f"Confidence: {conf:.2f}\n")
+                    else:
+                        self.kb_viewer.insert("end", f"Confidence: {conf}\n")
+
+                    # Show calculation breakdown if available
+                    breakdown = chunk.metadata.get('confidence_breakdown')
+                    if breakdown:
+                        self.kb_viewer.insert("end", f"  → Calculation: {breakdown.get('calculation', 'N/A')}\n")
+
                     approval_status = chunk.metadata.get('approval_status', 'unknown')
                     if approval_status == 'approved':
                         self.kb_viewer.insert("end", f"Status: ✅ APPROVED (Golden Record)\n")
@@ -2191,8 +1953,16 @@ Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
 
                 for i, chunk in enumerate(golden[:20], 1):  # Show first 20
                     self.kb_viewer.insert("end", f"{'─'*80}\n")
+                    conf = chunk.metadata.get('confidence_score')
+                    conf_str = f"{conf:.2f}" if isinstance(conf, (int, float)) else conf
                     self.kb_viewer.insert("end", f"{i}. [{chunk.municipality or 'General'}] ")
-                    self.kb_viewer.insert("end", f"(confidence: {chunk.metadata.get('confidence_score')})\n")
+                    self.kb_viewer.insert("end", f"(confidence: {conf_str})\n")
+
+                    # Show calculation breakdown if available
+                    breakdown = chunk.metadata.get('confidence_breakdown')
+                    if breakdown:
+                        self.kb_viewer.insert("end", f"   Calculation: {breakdown.get('calculation', 'N/A')}\n")
+
                     self.kb_viewer.insert("end", f"{'─'*80}\n")
                     self.kb_viewer.insert("end", f"{chunk.content}\n\n")
             else:
@@ -2220,8 +1990,16 @@ Generated: {doc.generated_at.strftime('%Y-%m-%d %H:%M:%S')}
 
                 for i, chunk in enumerate(negative[:20], 1):  # Show first 20
                     self.kb_viewer.insert("end", f"{'─'*80}\n")
+                    conf = chunk.metadata.get('confidence_score')
+                    conf_str = f"{conf:.2f}" if isinstance(conf, (int, float)) else conf
                     self.kb_viewer.insert("end", f"{i}. [{chunk.municipality or 'General'}] ")
-                    self.kb_viewer.insert("end", f"(confidence: {chunk.metadata.get('confidence_score')})\n")
+                    self.kb_viewer.insert("end", f"(confidence: {conf_str})\n")
+
+                    # Show calculation breakdown if available
+                    breakdown = chunk.metadata.get('confidence_breakdown')
+                    if breakdown:
+                        self.kb_viewer.insert("end", f"   Calculation: {breakdown.get('calculation', 'N/A')}\n")
+
                     self.kb_viewer.insert("end", f"{'─'*80}\n")
                     self.kb_viewer.insert("end", f"{chunk.content}\n\n")
             else:

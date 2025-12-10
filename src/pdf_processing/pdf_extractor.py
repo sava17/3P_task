@@ -46,9 +46,6 @@ class PDFExtractor:
         Returns:
             Extracted and structured content
         """
-        with open(pdf_path, 'rb') as f:
-            pdf_data = f.read()
-
         if extraction_prompt is None:
             extraction_prompt = """Extract all text content from this BR18 fire safety document.
 Preserve the structure including:
@@ -59,6 +56,9 @@ Preserve the structure including:
 - Any references to regulations or other documents
 
 Format the output as structured text."""
+
+        with open(pdf_path, 'rb') as f:
+            pdf_data = f.read()
 
         response = self.client.models.generate_content(
             model=GEMINI_MODEL,

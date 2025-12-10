@@ -1,8 +1,0 @@
-Adding 5 chunks to vector database...
-
-Built vector index with 5 chunks
-
-DEBUG: Attempting to save Annoy index to: D:\Jobsøgning\3P Opgave\br18_automation\data\knowledge_base\embeddings.ann
-
-
-❌ Error: Unable to open: No such file or directory (2)

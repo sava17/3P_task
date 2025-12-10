@@ -2,6 +2,7 @@ import chromadb
 from chromadb.config import Settings
 from typing import List, Dict, Optional
 from pathlib import Path
+import json
 from config.settings import (
     KNOWLEDGE_BASE_DIR,
     TOP_K_RETRIEVAL
@@ -72,6 +73,9 @@ class VectorStore:
         for key, value in chunk.metadata.items():
             if isinstance(value, (str, int, float, bool)):
                 metadata[f"meta_{key}"] = value
+            elif isinstance(value, dict):
+                # JSON-serialize dict values (e.g., confidence_breakdown)
+                metadata[f"meta_{key}"] = json.dumps(value)
 
         # Add to Chroma
         self.collection.add(
@@ -142,6 +146,9 @@ class VectorStore:
             for key, value in chunk.metadata.items():
                 if isinstance(value, (str, int, float, bool)):
                     metadata[f"meta_{key}"] = value
+                elif isinstance(value, dict):
+                    # JSON-serialize dict values (e.g., confidence_breakdown)
+                    metadata[f"meta_{key}"] = json.dumps(value)
 
             metadatas.append(metadata)
 
@@ -328,6 +335,44 @@ class VectorStore:
         chunks = self.search(query, top_k, municipality, document_type)
         return [chunk.content for chunk in chunks]
 
+    def delete_by_source(self, source_reference: str, source_type: Optional[str] = None):
+        """
+        Delete all chunks from a specific source (e.g., old BR18 regulation)
+
+        Args:
+            source_reference: Source file to delete (e.g., "BR18.pdf")
+            source_type: Optional source type filter (e.g., "regulation")
+        """
+        # Build where filter using ChromaDB's $and operator for multiple conditions
+        if source_type:
+            where_filter = {
+                "$and": [
+                    {"source_reference": source_reference},
+                    {"source_type": source_type}
+                ]
+            }
+        else:
+            where_filter = {"source_reference": source_reference}
+
+        # Get IDs of chunks to delete
+        try:
+            results = self.collection.get(
+                where=where_filter,
+                include=[]  # We only need IDs
+            )
+
+            if results['ids']:
+                # Delete the chunks
+                self.collection.delete(ids=results['ids'])
+                print(f"✅ Deleted {len(results['ids'])} chunks from {source_reference}")
+                return len(results['ids'])
+            else:
+                print(f"ℹ️  No chunks found for {source_reference}")
+                return 0
+        except Exception as e:
+            print(f"⚠️  Error deleting chunks: {e}")
+            return 0
+
     def clear(self):
         """Clear all data from the vector store (useful for clean runs)"""
         # Delete and recreate the collection
@@ -376,7 +421,15 @@ class VectorStore:
                 chunk_metadata = {}
                 for key, value in metadata.items():
                     if key.startswith('meta_'):
-                        chunk_metadata[key[5:]] = value
+                        actual_key = key[5:]
+                        # Try to JSON-deserialize if it looks like JSON
+                        if isinstance(value, str) and (value.startswith('{') or value.startswith('[')):
+                            try:
+                                chunk_metadata[actual_key] = json.loads(value)
+                            except json.JSONDecodeError:
+                                chunk_metadata[actual_key] = value
+                        else:
+                            chunk_metadata[actual_key] = value
 
                 chunk_metadata["confidence_score"] = metadata.get("confidence_score", 0.0)
                 chunk_metadata["approval_status"] = metadata.get("approval_status", "rejected")
@@ -430,7 +483,15 @@ class VectorStore:
                 chunk_metadata = {}
                 for key, value in metadata.items():
                     if key.startswith('meta_'):
-                        chunk_metadata[key[5:]] = value
+                        actual_key = key[5:]
+                        # Try to JSON-deserialize if it looks like JSON
+                        if isinstance(value, str) and (value.startswith('{') or value.startswith('[')):
+                            try:
+                                chunk_metadata[actual_key] = json.loads(value)
+                            except json.JSONDecodeError:
+                                chunk_metadata[actual_key] = value
+                        else:
+                            chunk_metadata[actual_key] = value
 
                 chunk_metadata["confidence_score"] = metadata.get("confidence_score", 1.0)
                 chunk_metadata["approval_status"] = metadata.get("approval_status", "approved")

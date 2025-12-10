@@ -1,341 +1,448 @@
-# BR18 Document Automation with Continuous Learning
+# BR18 Document Automation System
 
-**Task 2 Solution for Technical Specialist Position - 3P Råd**
+**Automated generation of fire safety documentation for building projects in Denmark**
 
-An intelligent system that automatically generates BR18 fire safety documents and continuously learns from municipality feedback to improve approval rates over time.
+## 📋 Overview
 
-## 🎯 Problem Statement
+This system automates the creation of BR18 (Danish Building Regulations 2018) fire safety documents using AI-powered document generation with RAG (Retrieval-Augmented Generation). The system learns from approved example documents and BR18 regulations to generate accurate, compliant documentation.
 
-Fire safety consultants must create multiple BR18 compliance documents (START, DBK, ITT, etc.) for every building project. Each municipality has specific requirements and approval patterns. The system must:
+### Key Features
 
-1. Generate compliant BR18 documents automatically
-2. Learn from municipality feedback (approved/rejected)
-3. Improve over time with measurable results
-4. Handle municipality-specific requirements
+✅ **Automatic Project Data Extraction** (Del 1)
+
+- Parse project specification PDFs
+- Extract building details, fire classification, and requirements
+- Automatically determine required document types
+
+✅ **Knowledge Base & RAG System** (Del 2)
+
+- Upload and process approved BR18 example documents
+- Embed BR18 regulations for accurate paragraph citations
+- Vector database (ChromaDB) for intelligent retrieval
+- Municipal response parsing (approvals/rejections)
+
+✅ **Intelligent Document Generation**
+
+- Generate START, ITT, DBK, and other BR18 documents
+- Context-aware generation using RAG
+- Accurate BR18 § paragraph references
+- Comparison mode (with/without knowledge)
+
+✅ **BR18 Regulation Integration**
+
+- Upload BR18.pdf for regulation embedding
+- Automatic paragraph citation (§508, §93, etc.)
+- Update handling when BR18 changes
+- Validation against current regulations
+
+---
+
+## 🎯 Assignment Requirements Coverage
+
+### Del 1: Automatic Project Input Processing
+
+- [x] Parse project specification PDFs
+- [x] Extract building parameters automatically
+- [x] Determine required document types based on fire classification
+- [x] Intelligent form filling with correct paragraph references
+
+### Del 2: Knowledge Base & Learning
+
+- [x] Process approved example documents
+- [x] RAG system with vector embeddings
+- [x] Municipal response parsing (Afslag/Godkendelse)
+- [x] BR18 regulation embedding and update handling
+- [x] Confidence scoring and golden record extraction
+
+### Del 3: Validation & Quality
+
+- [x] Check paragraph references against BR18
+- [x] Confidence-based knowledge ranking
+- [x] Comparison between documents with/without knowledge
+- [x] Knowledge base browser and statistics
+
+---
 
 ## 🏗️ Architecture
-
-### Core Components
-
-1. **PDF Processing** (`src/pdf_processing/`)
-   - Extract text and metadata from example BR18 documents using Gemini Vision
-   - Parse project details, fire classifications, BR18 references
-   - Chunk documents for RAG system
-
-2. **RAG System** (`src/rag_system/`)
-   - Vector database (Annoy) with Gemini embeddings
-   - Store knowledge from approved documents and learned insights
-   - Retrieve relevant context for document generation
-
-3. **Document Templates** (`src/document_templates/`)
-   - Generate BR18 documents (START, DBK, KPLA, etc.)
-   - Use Gemini 2.5 Flash with RAG context
-   - Support all fire classifications (BK1-BK4)
-
-4. **Learning Engine** (`src/learning_engine/`) ⭐ **KEY INNOVATION**
-   - Analyze municipality feedback using Gemini
-   - Extract patterns from approved/rejected documents
-   - Convert insights into knowledge chunks
-   - Continuous improvement loop
-
-### Learning Cycle
-
-```
-┌──────────────────────────────────────────────────────┐
-│  1. Extract Knowledge from Approved BR18 Examples    │
-│     (PDF → Text → Chunks → Embeddings)               │
-└─────────────────┬────────────────────────────────────┘
-                  ↓
-┌──────────────────────────────────────────────────────┐
-│  2. Generate Documents with RAG Context              │
-│     (Project Details + Retrieved Context → Gemini)   │
-└─────────────────┬────────────────────────────────────┘
-                  ↓
-┌──────────────────────────────────────────────────────┐
-│  3. Receive Municipality Feedback                    │
-│     (Approved ✅ / Rejected ❌ with reasons)         │
-└─────────────────┬────────────────────────────────────┘
-                  ↓
-┌──────────────────────────────────────────────────────┐
-│  4. Analyze Feedback with Gemini (LEARNING)          │
-│     Extract patterns, requirements, preferences       │
-└─────────────────┬────────────────────────────────────┘
-                  ↓
-┌──────────────────────────────────────────────────────┐
-│  5. Add Insights to Knowledge Base                   │
-│     (Insights → Chunks → Vector Store)               │
-└─────────────────┬────────────────────────────────────┘
-                  ↓
-┌──────────────────────────────────────────────────────┐
-│  6. Improved Generation (Higher Approval Rates) 📈   │
-│     RAG now includes learned municipality patterns   │
-└──────────────────────────────────────────────────────┘
-```
-
-## 🧠 Continuous Learning Implementation
-
-### How Learning Works
-
-The system uses **Gemini 2.5 Flash** to analyze municipality feedback batches:
-
-```python
-# Example: Analyzing rejection patterns
-feedback_batch = [
-    MunicipalityFeedback(
-        municipality="København",
-        approved=False,
-        rejection_reasons=["Missing BR18 §508 reference", "Unclear evacuation distances"],
-        suggestions=["Include specific paragraph references", "Specify distances in meters"]
-    ),
-    # ... more feedback
-]
-
-# Gemini analyzes and extracts patterns
-insights = feedback_analyzer.analyze_feedback_batch(feedback_batch, DocumentType.START)
-# Result: "København requires explicit BR18 §508 references in START documents" (confidence: 0.85)
-```
-
-### What Gets Learned
-
-1. **Municipality-Specific Requirements**
-   - København requires specific paragraph formatting
-   - Aarhus prefers detailed fire resistance specifications
-   - Specific terminology preferences
-
-2. **Technical Patterns**
-   - Common reasons for rejection
-   - Successful document structures
-   - Required BR18 paragraph references
-
-3. **Language and Formatting**
-   - Preferred Danish terminology
-   - Document structure preferences
-   - Level of technical detail required
-
-### Measurable Improvement
-
-**Before Learning:**
-- Approval Rate: 40%
-- Knowledge Base: 50 chunks (only from examples)
-- Municipality-specific knowledge: Limited
-
-**After Learning:**
-- Approval Rate: 75% (+35% improvement)
-- Knowledge Base: 125 chunks (examples + insights)
-- Municipality-specific knowledge: High confidence patterns
-
-## 📊 Key Features
-
-### 1. Intelligent Document Generation
-- Automatic document type selection based on fire classification
-- RAG-based context retrieval for relevant examples
-- Gemini 2.5 Flash generation with low temperature for consistency
-
-### 2. Continuous Learning
-- Batch feedback analysis using LLM
-- Pattern extraction with confidence scores
-- Automatic knowledge base updates
-- Municipality-specific learning paths
-
-### 3. Quality Assurance
-- Pre-submission document evaluation
-- Missing element detection
-- BR18 compliance checking
-- Rejection risk assessment
-
-### 4. Scalability
-- Vector database supports thousands of documents
-- Efficient similarity search with Annoy
-- Incremental learning without retraining
-- Municipality-specific filtering
-
-## 🚀 Setup and Usage
-
-### Installation
-
-```bash
-cd br18_automation
-pip install -r requirements.txt
-```
-
-### Configuration
-
-Create `.env` file:
-```bash
-GEMINI_API_KEY=your_gemini_api_key
-OPENAI_API_KEY=your_openai_api_key
-```
-
-### Running the Demo
-
-```bash
-python demo.py
-```
-
-The demo will:
-1. Extract knowledge from example BR18 PDFs
-2. Generate initial documents (40% approval rate)
-3. Simulate municipality feedback
-4. Learn patterns using Gemini analysis
-5. Generate improved documents (75% approval rate)
-6. Show metrics dashboard
-
-### Using the System Programmatically
-
-```python
-from src.models import BuildingProject, FireClassification, ApplicationCategory, RiskClass
-from src.document_templates import DocumentTemplateEngine
-from src.rag_system import VectorStore
-
-# Create project
-project = BuildingProject(
-    project_name="New Office Building",
-    municipality="København",
-    fire_classification=FireClassification.BK2,
-    # ... other details
-)
-
-# Generate documents
-vector_store = VectorStore()
-vector_store.load()  # Load learned knowledge
-
-template_engine = DocumentTemplateEngine()
-rag_context = vector_store.retrieve_context(
-    f"{project.municipality} START {project.fire_classification}",
-    municipality=project.municipality
-)
-
-document = template_engine.generate_start_document(project, rag_context)
-```
-
-## 📈 Evaluation Criteria Alignment
-
-### 1. Learning Mechanisms (35%)
-✅ **Continuous learning from municipality feedback**
-- Gemini-powered feedback analysis
-- Pattern extraction with confidence scores
-- Automatic knowledge base updates
-- Municipality-specific learning paths
-
-### 2. Technical Implementation (25%)
-✅ **Production-ready architecture**
-- RAG system with vector database (Annoy + Gemini embeddings)
-- Gemini 2.5 Flash for generation and analysis
-- Pydantic models for type safety
-- Modular, testable code structure
-
-### 3. Measurable Value (20%)
-✅ **Clear metrics showing improvement**
-- Approval rate: 40% → 75% (+35%)
-- Knowledge base growth tracking
-- Municipality-specific success rates
-- Learning confidence scores
-
-### 4. Scalability (10%)
-✅ **Designed for growth**
-- Vector database supports thousands of documents
-- Incremental learning (no retraining)
-- Municipality-specific filtering
-- Efficient batch processing
-
-### 5. Documentation (10%)
-✅ **Comprehensive documentation**
-- README with architecture overview
-- Code comments and docstrings
-- Demo script with explanations
-- Presentation materials
-
-## 🔑 Key Innovations
-
-### 1. LLM-Powered Learning Analysis
-Instead of manual rule extraction, uses Gemini to:
-- Analyze complex feedback patterns
-- Extract actionable insights
-- Generate confidence scores
-- Produce natural language recommendations
-
-### 2. RAG Knowledge Integration
-Seamlessly integrates learned insights:
-- Converts insights to knowledge chunks
-- Stores in vector database alongside examples
-- Retrieves both during generation
-- Municipality-specific filtering
-
-### 3. Municipality-Specific Learning
-Each municipality has unique patterns:
-- Separate learning paths per municipality
-- Filtered retrieval for relevant knowledge
-- Confidence tracking per municipality
-- Transferable general insights
-
-## 📁 Project Structure
 
 ```
 br18_automation/
 ├── src/
-│   ├── models.py                    # Pydantic data models
-│   ├── pdf_processing/              # PDF extraction with Gemini
+│   ├── pdf_processing/         # PDF extraction with Gemini Vision
 │   │   └── pdf_extractor.py
-│   ├── rag_system/                  # Vector database and embeddings
-│   │   ├── embeddings.py
+│   ├── rag_system/             # Vector database & retrieval
 │   │   └── vector_store.py
-│   ├── document_templates/          # Document generation
+│   ├── document_templates/      # Document generation
 │   │   └── template_engine.py
-│   └── learning_engine/             # ⭐ Feedback analysis and learning
-│       └── feedback_analyzer.py
+│   ├── learning_engine/         # Confidence scoring
+│   │   └── confidence_scorer.py
+│   ├── parsers/                # Municipal response & project parsing
+│   │   ├── municipal_response_parser.py
+│   │   └── project_input_parser.py
+│   └── models.py               # Data models
 ├── config/
-│   └── settings.py                  # Configuration
+│   └── settings.py             # Configuration
 ├── data/
-│   ├── example_pdfs/               # BR18 example documents
-│   ├── knowledge_base/             # Vector store and chunks
-│   ├── feedback/                   # Municipality feedback
-│   └── generated_docs/             # Generated documents
-├── demo.py                         # Interactive demonstration
-├── requirements.txt
+│   ├── BR18.pdf               # Building regulations
+│   ├── example_pdfs/          # Approved examples
+│   ├── knowledge_base/        # ChromaDB vector store
+│   └── generated_docs/        # Output documents
+│       ├── without_knowledge/  # Baseline documents
+│       └── with_knowledge/     # RAG-enhanced documents
+├── prototype_gui.py           # Main GUI application
+├── demo.py                    # CLI demo system
 └── README.md
 ```
 
-## 🎓 Technologies Used
+---
 
-- **Gemini 2.5 Flash**: Document generation and feedback analysis
-- **Gemini Embeddings**: Text vectorization (gemini-embedding-001, 768 dimensions)
-- **Annoy**: Approximate nearest neighbor search
-- **Pydantic**: Data validation and models
-- **PyPDF2**: PDF text extraction
-- **Python 3.8+**
+## 🚀 Installation & Setup
 
-## 🏆 Why This Solution Excels
+### Prerequisites
 
-### Strong Learning Mechanisms
-- Uses LLM (Gemini) to extract patterns from unstructured feedback
-- Confidence scoring for learned insights
-- Continuous improvement without manual intervention
-- Municipality-specific learning paths
+- **Python 3.10+**
+- **Anaconda** (recommended)
+- **Gemini API Key** (Google AI Studio)
 
-### Measurable Results
-- Clear metrics: approval rate improvement from 40% to 75%
-- Knowledge base growth tracking
-- Learning confidence scores
-- Municipality-specific success tracking
+### Step 1: Create Environment
 
-### Production-Ready
-- Modular architecture
-- Type-safe with Pydantic
-- Error handling
-- Scalable vector database
+```bash
+conda create -n 3P python=3.10
+conda activate 3P
+```
 
-### Real Business Value
-- Reduces consultant time on documentation
-- Increases first-submission approval rates
-- Captures municipality-specific knowledge
-- Improves with each project
+### Step 2: Install Dependencies
 
-## 📞 Contact
+```bash
+pip install customtkinter
+pip install google-generativeai
+pip install chromadb
+pip install pypdf
+pip install python-dotenv
+```
 
-Samuel A.V. Andersen
-Technical Specialist Candidate - 3P Råd
+### Step 3: Configure API Key
+
+Create `.env` file in project root:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+Get your API key from (the one in the project is my IP restricted one): [https://aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+
+### Step 4: Run the Application
+
+**Windows:**
+
+```bash
+run_prototype_gui.bat
+```
+
+**Manual:**
+
+```bash
+python prototype_gui.py
+```
 
 ---
 
-**Time Spent**: ~6-8 hours (as specified)
-**Presentation**: 30-minute demo ready
+## 📖 User Guide
+
+### Tab 1: Parse Project Input (Del 1)
+
+**Purpose:** Automatically extract building project data from PDFs
+
+**Steps:**
+
+1. Click "📁 Select Project PDF"
+2. Choose your project specification PDF
+3. Click "⚙️ Parse Project PDF"
+4. Review extracted data (name, address, fire classification, etc.)
+5. Optionally edit data before proceeding
+
+**Output:** Automatically populated project form with required document types
+
+---
+
+### Tab 2: Knowledge Base Setup (Del 2)
+
+**Purpose:** Build the RAG knowledge base from approved documents and BR18
+
+#### 2A: Upload Example Documents
+
+**Steps:**
+
+1. Click "📁 Add PDF Files"
+2. Select approved START/DBK example documents
+3. Click "⚙️ Extract & Build Knowledge Base"
+4. Wait for extraction and embedding (~1-2 min per document)
+
+**Output:** Vector database populated with example document chunks
+
+#### 2B: Upload BR18 Regulation
+
+**Steps:**
+
+1. Click "📤 Upload BR18.pdf"
+2. Select `data/BR18.pdf`
+3. Wait for regulation extraction (~1-2 minutes)
+4. Status shows: "✅ Loaded (X chunks)"
+
+**Output:** BR18 paragraphs embedded for citation in generated documents
+
+**Updating BR18 (when new regulation version is released):**
+
+1. Replace `data/BR18.pdf` with new version
+2. Click "📤 Upload BR18.pdf" again
+3. System automatically:
+   - ✅ Detects existing BR18 chunks
+   - 🗑️ Deletes old BR18 version
+   - 📝 Adds new BR18 version
+4. Future documents now use updated regulations
+
+#### 2C: Parse Municipal Response (Optional)
+
+**Steps:**
+
+1. Upload municipal Afslag (rejection) or Godkendelse (approval)
+2. Click "⚙️ Parse Municipal Response"
+3. System extracts patterns and adds to knowledge base
+
+**Output:**
+
+- Rejections → Negative constraints (patterns to avoid)
+- Approvals → Golden records (patterns to follow)
+
+---
+
+### Tab 3: Generate Documents
+
+**Purpose:** Generate BR18 fire safety documents
+
+**Steps:**
+
+1. Enter project details (or use parsed data from Tab 1)
+2. Click "💾 Save Project"
+3. Select document types to generate
+4. **Choose mode:**
+   - ✅ **WITHOUT knowledge** - Baseline documents for comparison
+   - ⬜ **WITH knowledge** - Enhanced documents using RAG
+5. Click "📝 Generate BR18 Documents"
+6. Documents saved to:
+   - `data/generated_docs/without_knowledge/` (baseline)
+   - `data/generated_docs/with_knowledge/` (enhanced)
+
+**Template Projects:**
+
+- Office Building BK2 (commercial)
+- Garage BK1 (simple)
+
+**Output:** Generated .txt files with full BR18 documentation
+
+---
+
+### Tab 4: View Knowledge Base
+
+**Purpose:** Browse and query the knowledge base
+
+**Features:**
+
+- **Statistics Dashboard:** Total chunks, golden records, negative constraints
+- **Search:** Query knowledge base with filters
+- **Quick Views:**
+  - 📊 View All Stats
+  - ✅ Golden Records (approved patterns)
+  - ⚠️ Negative Constraints (rejected patterns)
+
+---
+
+## 🧠 How RAG Works
+
+### Without Knowledge (Baseline)
+
+```
+User Input → Gemini 2.5 Flash → Basic Document
+```
+
+**Result:** Generic document without specific examples or BR18 citations
+
+### With Knowledge (RAG)
+
+```
+User Input → Query Vector DB → Retrieve:
+  • 3x Example Documents (structure/style)
+  • 3x BR18 Paragraphs (regulations)
+    ↓
+  Combined Context → Gemini 2.5 Flash → Enhanced Document
+```
+
+**Result:** Professional document with accurate BR18 § references
+
+---
+
+## 📊 Technologies Used
+
+| Component           | Technology           | Purpose                              |
+| ------------------- | -------------------- | ------------------------------------ |
+| **AI Model**        | Gemini 2.5 Flash     | PDF extraction & document generation |
+| **Vector Database** | ChromaDB             | Embedding storage & retrieval        |
+| **Embeddings**      | Gemini Embedding 001 | Text embeddings (768 dimensions)     |
+| **PDF Processing**  | Gemini Vision        | Extract text from PDFs               |
+| **GUI Framework**   | CustomTkinter        | Modern dark theme UI                 |
+| **Language**        | Python 3.10          | Core implementation                  |
+
+---
+
+## 🎓 Key Innovations
+
+### 1. Dual-Source RAG Retrieval
+
+- Retrieves **both** example documents (style) AND BR18 regulations (content)
+- Ensures accurate citations while maintaining professional structure
+
+### 2. Confidence-Based Learning
+
+- Scores knowledge chunks based on:
+  - Approval status (approved > neutral > rejected)
+  - Source quality (golden records > examples > synthetic)
+  - Pattern strength (explicit > implicit)
+- Prioritizes high-confidence patterns during retrieval
+
+### 3. Comparison Mode
+
+- Generate documents **without** knowledge (baseline)
+- Generate documents **with** knowledge (enhanced)
+- Side-by-side comparison demonstrates learning effectiveness
+
+### 4. Automatic BR18 Updates
+
+- Re-upload BR18.pdf when regulations change
+- System automatically uses updated paragraph references
+- No manual citation updating needed
+
+---
+
+## 📁 Output Example
+
+**Filename:** `Garage_ved_Villa_Hansen_START_with_knowledge_20251210_143025.txt`
+
+**Structure:**
+
+```
+================================================================================
+BR18 DOCUMENT - START
+================================================================================
+
+Project: Garage ved Villa Hansen
+Address: Møllevej 12, 8000 Aarhus C
+Municipality: Aarhus
+Fire Classification: BK1
+Building Type: Garage
+Total Area: 50 m²
+Floors: 1
+Max Occupancy: 2
+
+Consultant: Lars Nielsen
+Certificate: BRC-2341
+Client: Jensen Familie
+
+Generated: 2025-12-10 14:30:25
+Document ID: abc123...
+
+================================================================================
+DOCUMENT CONTENT
+================================================================================
+
+[Generated BR18 documentation with accurate § references]
+```
+
+---
+
+## 🔧 Configuration
+
+Edit `config/settings.py`:
+
+```python
+# RAG settings
+TOP_K_RETRIEVAL = 5  # Number of chunks retrieved
+
+# Model settings
+GEMINI_MODEL = "gemini-2.5-flash"
+TEMPERATURE = 0.3  # Lower = more consistent
+MAX_TOKENS = 8192
+
+# Document requirements by fire class
+DOCUMENT_REQUIREMENTS = {
+    "BK1": ["START", "ITT"],
+    "BK2": ["START", "ITT", "DBK", "BSR", "BPLAN", "PFP", "DIM", "FUNK"],
+    ...
+}
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### "Failed to extract PDF"
+
+- Ensure Gemini API key is valid in `.env`
+- Check PDF is not corrupted
+- Try smaller PDF (<5MB)
+
+### "No chunks retrieved from knowledge base"
+
+- Upload example documents first (Tab 2)
+- Upload BR18.pdf for regulations
+- Check vector database has data (Tab 4 → View All Stats)
+
+### "Generated document missing BR18 references"
+
+- Ensure BR18.pdf is uploaded (Tab 2)
+- Check status shows "✅ Loaded"
+- Regenerate with knowledge base populated
+
+---
+
+## 📈 Performance
+
+| Operation                             | Time    | Cost (approx)    |
+| ------------------------------------- | ------- | ---------------- |
+| Parse project PDF                     | 10-30s  | $0.02            |
+| Extract example document              | 30-60s  | $0.10            |
+| Upload BR18 regulation                | 1-2 min | $0.15 (one-time) |
+| Generate document (without knowledge) | 15-30s  | $0.03            |
+| Generate document (with knowledge)    | 20-40s  | $0.05            |
+
+**Total setup cost:** ~$0.50-1.00 (one-time)
+**Per document cost:** ~$0.03-0.05
+
+---
+
+## 🔐 Data Privacy
+
+- All processing done via Google Gemini API
+- No data stored on external servers beyond API calls
+- Vector database stored locally in `data/knowledge_base/`
+- Generated documents saved locally
+
+---
+
+## 📝 License
+
+This project was created as part of an assignment for [Institution Name].
+
+---
+
+## 👤 Author
+
+**Samuel A.V. Andersen**
+
+- Assignment: BR18 Document Automation
+- Date: December 2025
+
+---
+
+## 📺 Demo Video
+
+[![BR18 Document Automation Demo](https://img.youtube.com/vi/U5EagPz5Gyc/0.jpg)](https://youtu.be/U5EagPz5Gyc)

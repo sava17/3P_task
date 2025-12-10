@@ -1,0 +1,136 @@
+================================================================================
+BR18 DOCUMENT - START
+================================================================================
+
+Project: Garage ved Villa Hansen
+Address: Skovvej 42, 8200 Aarhus N
+Municipality: Aarhus
+Fire Classification: BK1
+Building Type: Detached Garage
+Total Area: 45.0 m²
+Floors: 1
+Max Occupancy: 2
+
+Consultant: TBD
+Certificate: TBD
+Client: Hans Hansen
+
+Generated: 2025-12-10 04:23:33
+Document ID: 40ec8980-8121-4525-98b9-6dffbe777671
+
+================================================================================
+DOCUMENT CONTENT
+================================================================================
+
+Her er den genererede START (Starterklæring) dokumentation for dit BR18 brandsikkerhedsindsendelse, tilpasset kravene for Brandklasse 1 og Aarhus Kommune:
+
+---
+
+**Starterklæring (START)**
+
+**Dato:** [Indsæt dags dato, f.eks. 2023-10-27]
+**Revideret:** ---
+
+---
+
+**Oplysninger om byggeriet**
+
+| Felt               | Værdi                                |
+| :----------------- | :----------------------------------- |
+| Projektnavn        | Garage ved Villa Hansen              |
+| Projektadresse     | Skovvej 42, 8200 Aarhus N            |
+| Kommune            | Aarhus                               |
+| Bygningstype       | Fritliggende garage                  |
+| Samlet areal       | 45.0 m²                              |
+| Antal etager       | 1                                    |
+| Antal personer     | 2                                    |
+| Brandklasse        | BK1                                  |
+| Ansøgningskategori | 1                                    |
+| Risikoklasse       | 1                                    |
+| Bygherre           | Hans Hansen                          |
+
+---
+
+**Oplysninger om ansvarlig for brandforhold**
+
+For byggeri i brandklasse 1 er det bygherren, der erklærer, at byggeriet er indplaceret i brandklasse 1, og at byggeriet overholder bygningsreglementets brandkrav, jf. BR18 § 511, stk. 1. Der er ikke krav om en certificeret brandrådgiver for byggeri i brandklasse 1.
+
+| Felt               | Værdi                                |
+| :----------------- | :----------------------------------- |
+| Ansvarlig person   | Hans Hansen                          |
+| E-mail             | [Indsæt bygherres e-mail]            |
+| Telefon            | [Indsæt bygherres telefonnummer]     |
+| Virksomhed         | [Indsæt bygherres virksomhed, hvis relevant, ellers "Privat"] |
+
+---
+
+**Dokumentation af brandforhold jf. BR18 § 508, stk. 1, nr. 1.**
+
+**Det angives hermed:**
+☑ At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. BR18 § 23, er fremsendt.
+
+**For byggeri i brandklasse 1 skal der ifølge BR18 § 511, stk. 1, afgives en erklæring fra bygherren om, at:**
+1.  Byggeriet er indplaceret i brandklasse 1.
+2.  Byggeriet overholder bygningsreglementets brandkrav, jf. BR18 kapitel 5.
+
+---
+
+**Dokumentation af brandklasse(r), jf. BR18 § 508, stk. 1, nr. 2**
+
+**Det angives hermed:**
+☑ At der er valgt den korrekte brandklasse, og at dokumentationen herfor er retvisende.
+
+**Den højeste brandklasse for byggeriet er:**
+☑ Brandklasse 1
+☐ Brandklasse 2
+☐ Brandklasse 3
+☐ Brandklasse 4
+
+---
+
+**Redningsberedskabets indsatsforhold, jf. BR18 § 508, stk. 1, nr. 3**
+
+**Det angives hermed:**
+☑ Byggeriet er indsatstaktisk traditionelt. Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder.
+☐ Byggeriet er IKKE indsatstaktisk traditionelt.
+
+---
+
+**Dokumentation af bygningsreglementets brandkrav, jf. BR18 § 508, stk. 1, nr. 4**
+
+**Det angives hermed:**
+☑ At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18 kapitel 5.
+
+**Dette projekt overholder specifikt følgende paragraffer i BR18:**
+*   **BR18 Kapitel 5 - Brand:** Generel overholdelse af alle relevante krav til brandsikkerhed.
+*   **BR18 § 23:** Krav til ansøgning om byggetilladelse.
+*   **BR18 § 126-133:** Krav vedrørende redningsberedskabets indsatsforhold.
+*   **BR18 § 508:** Krav til dokumentation af brandforhold (nærværende starterklæring).
+*   **BR18 § 509:** Krav til materialer og overflader.
+*   **BR18 § 510:** Krav til brandmodstandsevne af konstruktioner.
+*   **BR18 § 511:** Krav til indplacering i brandklasse.
+
+---
+
+**Brandteknisk kontrolplan og kontrolrapporter, jf. BR18 § 508, stk. 1, nr. 5**
+
+**Det angives hermed:**
+☑ At bygherren sikrer, at der udføres den nødvendige interne kontrol for at dokumentere, at byggeriet overholder bygningsreglementets brandkrav, jf. BR18 kapitel 5. For byggeri i brandklasse 1 er der ikke krav om udarbejdelse af en kontrolplan og kontrolrapporter i overensstemmelse med BR18 bilag 3, tabel 1 og 4, da dette er forbeholdt certificerede brandrådgivere.
+
+---
+
+**Underskrift**
+
+Undertegnede bygherre erklærer hermed på tro og love, at ovenstående oplysninger er korrekte, og at byggeriet vil blive udført i overensstemmelse med bygningsreglementets brandkrav for brandklasse 1.
+
+**Dato:** _________________________
+
+**Bygherre (Hans Hansen):**
+
+___________________________________
+(Underskrift)
+
+___________________________________
+(Navn i blokbogstaver)
+
+---

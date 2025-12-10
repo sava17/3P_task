@@ -1,0 +1,103 @@
+================================================================================
+BR18 DOCUMENT - ITT
+================================================================================
+
+Project: Garage ved Villa Hansen
+Address: Skovvej 42, 8200 Aarhus N
+Municipality: Aarhus
+Fire Classification: BK1
+Building Type: Garage
+Total Area: 45.0 m²
+Floors: 1
+Max Occupancy: 2
+
+Consultant: TBD
+Certificate: TBD
+Client: Hans Hansen
+
+Generated: 2025-12-10 00:49:30
+Document ID: 7d91cb47-c0ae-4fd9-aeb8-7cd4350625bd
+
+================================================================================
+DOCUMENT CONTENT
+================================================================================
+
+Her er et udkast til et ITT (Redningsberedskabets indsatsforhold) dokument for dit garageprojekt, udformet i overensstemmelse med BR18 og Aarhus Kommunes anbefalinger.
+
+---
+
+**ITT – Redningsberedskabets Indsatsforhold**
+
+**Projekt:** Garage ved Villa Hansen
+**Adresse:** Skovvej 42, 8200 Aarhus N
+**Kommune:** Aarhus
+**Bygningstype:** Garage
+**Samlet Areal:** 45.0 m²
+**Antal Etager:** 1
+**Brandklasse:** BK1
+
+**Dato:** 2023-10-27
+**Version:** 1.0
+**Udarbejdet af:** [Dit Navn/Virksomhed]
+
+---
+
+**1. Bygningens adgangsforhold for redningsberedskabet (BR18 §126)**
+
+*   **Adgangsvej:** Adgang til garagen sker via eksisterende privat indkørsel fra Skovvej. Indkørslen er belagt med [f.eks. fliser/asfalt/grus] og er dimensioneret til at bære personbiler. Den forventes at kunne bære redningsberedskabets køretøjer (standard lette køretøjer).
+*   **Frihøjde og bredde:** Indkørslen har en fri bredde på minimum 3,0 meter og en frihøjde på minimum 4,2 meter, hvilket sikrer uhindret passage for redningsberedskabets køretøjer.
+*   **Afstand til offentlig vej:** Garagen er placeret i umiddelbar nærhed af den offentlige vej (Skovvej), hvilket sikrer kort udrykningstid og nem adgang for redningsberedskabet.
+*   **Placering:** Garagen er fritliggende på grunden, hvilket giver adgang til alle fire sider af bygningen for redningsberedskabet. Der er ingen forhindringer (f.eks. hegn, tæt beplantning) der blokerer adgangen omkring bygningen.
+*   **Overholdelse:** Projektet overholder BR18 §126, stk. 1 og 2, idet der er sikret tilstrækkelige adgangsforhold for redningsberedskabet.
+
+**2. Vandforsyningens placering og kapacitet (BR18 §127)**
+
+*   **Vandforsyning:** Vandforsyningen til brandslukning baseres på den eksisterende kommunale vandforsyning i området.
+*   **Brandhaner:** Nærmeste brandhane er placeret [Angiv ca. afstand og retning, f.eks. "ca. 50 meter fra ejendommen ved krydset Skovvej/Bøgevej"] og er en del af Aarhus Kommunes offentlige brandhanenet.
+*   **Kapacitet:** Den eksisterende vandforsyning og brandhanekapacitet i området vurderes at være tilstrækkelig til indsats ved en bygning i brandklasse BK1 med et areal på 45 m². Der er ikke behov for etablering af yderligere vandforsyning eller forstærkning af eksisterende forsyning i henhold til BR18 for denne bygningstype og brandklasse.
+*   **Overholdelse:** Projektet overholder BR18 §127, stk. 1, idet der er sikret tilstrækkelig vandforsyning til redningsberedskabets indsats.
+
+**3. Indsatsområder og begrænsninger (BR18 §128)**
+
+*   **Indsatsmuligheder:** Bygningens beskedne størrelse (45 m², 1 etage) og fritliggende placering sikrer gode indsatsmuligheder for redningsberedskabet fra alle sider.
+*   **Adgang til bygningens indre:** Garagen er forsynet med en port og en dør, der giver direkte adgang til bygningens indre.
+*   **Redningsåbninger (BR18 §131):** Garagen er forsynet med [f.eks. en vinduesåbning/døråbning] der kan fungere som redningsåbning. Bygningens størrelse og anvendelse som garage medfører, at standardåbninger er tilstrækkelige.
+*   **Begrænsninger:** Der er ingen særlige bygningsmæssige begrænsninger for redningsberedskabets indsats. Bygningens konstruktion og materialer (BK1) er valgt med henblik på at minimere brandspredning og give redningsberedskabet tilstrækkelig tid til indsats.
+*   **Overholdelse:** Projektet overholder BR18 §128, stk. 1, idet der er sikret tilstrækkelige indsatsmuligheder for redningsberedskabet.
+
+**4. Særlige risici eller forhold (BR18 §129)**
+
+*   **Risikovurdering:** Garagen er tiltænkt almindelig anvendelse som privat garage til parkering af personbil og opbevaring af almindeligt husholdningsudstyr og værktøj.
+*   **Farlige stoffer:** Der forventes ikke opbevaring af farlige stoffer i mængder, der overstiger det, der er almindeligt i en privat garage (f.eks. brændstof i køretøjets tank, små mængder rengøringsmidler, maling eller lignende). Der er ingen særlige risici forbundet med opbevaring af brandfarlige væsker eller gasser i større mængder.
+*   **Tekniske installationer (BR18 §133):** De tekniske installationer (elinstallationer) udføres i henhold til gældende lovgivning og standarder for at minimere risikoen for brand. Der er ingen særlige brandtekniske installationer (f.eks. ABA, ABV) påkrævet i henhold til BR18 for en bygning i brandklasse BK1.
+*   **Overholdelse:** Projektet overholder BR18 §129, stk. 1, idet der er taget højde for eventuelle særlige risici, og disse vurderes at være minimale og håndterbare for redningsberedskabet.
+
+**5. Kontaktoplysninger i nødsituationer**
+
+*   **Alarmnummer:** 112
+*   **Ejers navn:** [Navn på ejer]
+*   **Ejers telefonnummer:** [Telefonnummer på ejer]
+
+**6. Overholdelse af BR18 §§126-133**
+
+Dette projekt for en garage ved Villa Hansen, Skovvej 42, 8200 Aarhus N, med et areal på 45.0 m² og i brandklasse BK1, overholder følgende bestemmelser i Bygningsreglement 2018 (BR18) vedrørende redningsberedskabets indsatsforhold:
+
+*   **BR18 §126:** Adgangsforhold for redningsberedskabet er sikret via eksisterende indkørsel og fritliggende placering.
+*   **BR18 §127:** Tilstrækkelig vandforsyning til brandslukning er sikret via den eksisterende kommunale vandforsyning og brandhanenet.
+*   **BR18 §128:** Indsatsmuligheder for redningsberedskabet er gode grundet bygningens størrelse, etageantal og fritliggende placering.
+*   **BR18 §129:** Særlige risici er vurderet til at være minimale og i overensstemmelse med normal anvendelse af en privat garage.
+*   **BR18 §130:** Ingen særlige brandtekniske installationer er påkrævet for en bygning i brandklasse BK1.
+*   **BR18 §131:** Redningsåbninger er tilstrækkelige via dør- og vinduesåbninger i henhold til bygningens anvendelse og brandklasse.
+*   **BR18 §132:** Brandmæssig adskillelse til andre bygninger overholdes via tilstrækkelig afstand til nabobygninger og hovedhus, da garagen er fritliggende.
+*   **BR18 §133:** Brandmæssig sikring af tekniske installationer udføres i henhold til gældende lovgivning og standarder.
+
+---
+
+**Underskrift:**
+
+____________________________________
+[Dit Navn/Virksomhed]
+[Titel]
+[Dato]
+
+---

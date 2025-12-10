@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python ingest_br18_regulation.py:*)",
+      "Bash(pdfinfo:*)",
+      "Bash(python:*)",
+      "WebSearch"
+    ]
+  }
+}

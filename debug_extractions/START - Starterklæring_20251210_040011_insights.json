@@ -1,0 +1,48 @@
+{
+  "document_type": "START",
+  "certification_patterns": [
+    "Consultant's full name, company, and contact details are provided.",
+    "A unique certificate number (RFC-2022-1100052418-A) and date of approval (15-10-2022) are listed.",
+    "The issuing authority (Rambøll) is clearly stated.",
+    "The specific fire class the consultant is certified for (Brandklasse 2) is checked.",
+    "A direct reference 'Se kopi af vedlagt certifikat' is made, and the certificate itself is appended.",
+    "The certificate explicitly states the consultant 'har dokumenteret at opfylde kvalifikations- og kompetencekrav til at virke som certificeret brandrådgiver i henhold til Bekendtgørelse om certificeringsordning for dokumentation af tekniske forhold i bygningsreglementet (1304 af 17/06/2021)'.",
+    "The certificate is issued by 'Certificering, Rambøll' and accredited by 'DANAK' (PERSON R3018), reinforcing its authority."
+  ],
+  "declaration_phrases": [
+    "Det angives hermed: ☑ At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. § 23, er fremsendt.",
+    "Det angives hermed: ☑ At der er valgt de korrekte brandklasser, og at dokumentationen herfor er retvisende.",
+    "Det angives hermed: ☑ Byggeriet er indsatstaktisk traditionelt. Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder.",
+    "Det angives hermed: ☑ At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5",
+    "☑ At der er udarbejdet en fyldestgørende kontrolplan og kontrolrapport i overensstemmelse med kontroltyper, jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4, for design, projektering og udførelse af den brandtekniske dokumentation svarende til projektets stadie.",
+    "Undertegnede, certificerede rådgiver erklærer hermed, at dokumentationen for brandforhold er i overensstemmelse med og overholder bygningsreglementet, at dokumentationen kan anvendes, som den foreligger, og at dokumentationen udgør et hele i forhold til projektets stadie."
+  ],
+  "project_description_format": [
+    "Project name: 'LR Erhverv'",
+    "Project address: 'Broenge 1, 2635 Ishøj'",
+    "Cadastral designation: 'Ishøj By, Ishøj 14aq'",
+    "Building type is implicitly described as 'Erhverv' (commercial/industrial) through the project name.",
+    "Fire classification is explicitly stated as 'Brandklasse 2' for the highest classification of the building."
+  ],
+  "br18_compliance_language": [
+    "Adherence to BR18 is expressed through direct citations of specific paragraphs and sections.",
+    "Examples include: 'jf. BR18, § 23 stk. 1', 'jf. BR18 §511', 'jf. BR18 §§ 126-133', 'jf. BR18 §510', 'jf. BR18 §508, stk. 1', 'jf. BR18, kapitel 5', 'jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4'.",
+    "Compliance is stated as 'dokumentationen for brandforhold er i overensstemmelse med og overholder bygningsreglementet'.",
+    "The project is declared to 'overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5'.",
+    "The phrase 'i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand' is used for redningsberedskabets indsatsforhold."
+  ],
+  "scope_definition": [
+    "The scope is defined as 'dokumentationen for brandforhold ved ansøgning om byggetilladelse'.",
+    "It covers 'byggearbejde (byggeri) i brandklasse 2-4'.",
+    "It includes 'design, projektering og udførelse af den brandtekniske dokumentation'.",
+    "The declaration confirms that 'dokumentationen udgør et hele i forhold til projektets stadie'."
+  ],
+  "key_insights": [
+    "The document is a highly structured and comprehensive declaration, utilizing checkboxes and explicit statements to cover all aspects required by BR18 §508.",
+    "It establishes strong credibility by including the certified consultant's details, certificate number, and the full certificate document, issued by an accredited body (Rambøll/DANAK).",
+    "Compliance is meticulously linked to specific BR18 paragraphs, sections, and annexes, providing a clear regulatory framework.",
+    "The declaration covers the entire lifecycle of fire safety documentation, from initial application to design, project execution, and control, ensuring a holistic approach.",
+    "The language is formal and authoritative, using phrases like 'Det angives hermed' and 'erklærer hermed' to convey the binding nature of the statements.",
+    "The explicit statement that the project is 'indsatstaktisk traditionelt' simplifies the fire safety strategy for emergency services."
+  ]
+}

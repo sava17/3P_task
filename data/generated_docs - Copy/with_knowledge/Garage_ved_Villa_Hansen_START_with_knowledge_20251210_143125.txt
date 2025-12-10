@@ -1,0 +1,151 @@
+================================================================================
+BR18 DOCUMENT - START
+================================================================================
+
+Project: Garage ved Villa Hansen
+Address: Skovvej 42, 8200 Aarhus N
+Municipality: Aarhus
+Fire Classification: BK1
+Building Type: Garage
+Total Area: 45.0 m²
+Floors: 1
+Max Occupancy: 2
+
+Consultant: TBD
+Certificate: TBD
+Client: Hans Hansen
+
+Generated: 2025-12-10 00:49:12
+Document ID: e4909bfc-cc83-4e18-9652-ffc024d77c07
+
+================================================================================
+DOCUMENT CONTENT
+================================================================================
+
+**Starterklæring (START)**
+(Garage ved Villa Hansen, Skovvej 42, 8200 Aarhus N)
+
+**Dato:** 23-05-2024
+**Revideret:** N/A
+
+---
+
+**Oplysninger om byggeriet**
+
+| Felt | Værdi |
+| :------------------------- | :---------------------------------- |
+| Projektnavn | Garage ved Villa Hansen |
+| Projektadresse | Skovvej 42, 8200 Aarhus N |
+| Kommune | Aarhus |
+| Bygningstype | Garage |
+| Samlet areal | 45.0 m² |
+| Antal etager | 1 |
+| Antal personer (anslået) | 2 |
+| Brandklasse (BR18 §511) | BK1 |
+| Ansøgningskategori | 1 |
+| Risikoklasse | 1 |
+| Bygherre | Hans Hansen |
+
+---
+
+**Oplysninger om brandrådgiver/ansvarlig for brandforhold**
+*(For Brandklasse 1 er en certificeret brandrådgiver ikke et krav, men bygherre er ansvarlig for at sikre overholdelse af BR18. Denne sektion udfyldes af den kvalificerede person, der bistår bygherre med brandforhold, eller af bygherre selv.)*
+
+| Felt | Værdi |
+| :---------------------------------- | :---------------------------------- |
+| Brandrådgiver/Ansvarlig for brandforhold | TBD |
+| E-mail | TBD |
+| Telefon | TBD |
+| Virksomhed | TBD |
+
+---
+
+**Erklæring om indplacering i brandklasse, jf. BR18 §511**
+Det erklæres hermed, at byggeriet er indplaceret i den korrekte brandklasse i henhold til BR18 §511.
+
+Den højeste brandklasse for byggeriet er:
+☑ Brandklasse 1
+☐ Brandklasse 2
+☐ Brandklasse 3
+☐ Brandklasse 4
+
+---
+
+**Dokumentation af brandforhold jf. BR18 §508, stk. 1, nr. 1**
+Det angives hermed:
+☑ At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. BR18 §23, er fremsendt.
+
+For byggeri i brandklasse 1 er bygherre ansvarlig for at sikre, at byggeriet overholder bygningsreglementets brandkrav. Den fremsendte dokumentation omfatter typisk:
+1.  Brandstrategi/Brandteknisk redegørelse, der beskriver, hvordan BR18's brandkrav opfyldes.
+2.  Tegningsmateriale, der illustrerer brandmæssige forhold (f.eks. flugtveje, brandsektionering).
+3.  Oplysninger om og dokumentation for indplacering i brandklasse, jf. BR18 §511.
+4.  Oplysninger om og dokumentation for, hvorledes byggeriet opfylder BR18 §§ 126-133 vedrørende redningsberedskabets indsatsforhold, herunder hvorvidt byggeriet er indsatstaktisk traditionelt, jf. BR18 §510.
+5.  Starterklæring, jf. BR18 §508, stk. 1 (nærværende dokument).
+
+---
+
+**Dokumentation af brandklasse(r), jf. BR18 §508, stk. 1, nr. 2**
+Det angives hermed:
+☑ At der er valgt den korrekte brandklasse (Brandklasse 1), og at dokumentationen herfor er retvisende.
+
+---
+
+**Redningsberedskabets indsatsforhold, jf. BR18 §508, stk. 1, nr. 3 og §510**
+Det angives hermed:
+☑ Byggeriet er indsatstaktisk traditionelt.
+Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder, jf. BR18 §510.
+☐ Byggeriet er IKKE indsatstaktisk traditionelt.
+
+---
+
+**Dokumentation af bygningsreglementets brandkrav, jf. BR18 §508 stk. 1, nr. 4**
+Det angives hermed:
+☑ At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5, herunder §§ 126-133 (redningsberedskabets indsatsforhold), §509 (materialer og overflader) og §510 (brandmodstandsevne af konstruktioner).
+
+---
+
+**Brandteknisk kontrolplan og kontrolrapporter, jf. BR18 §508, stk. 1, nr. 5**
+Det angives hermed:
+☑ At der er udarbejdet en fyldestgørende kontrolplan og kontrolrapport i overensstemmelse med kontroltyper, jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4, for design, projektering og udførelse af den brandtekniske dokumentation svarende til projektets stadie og brandklasse 1.
+
+---
+
+**Redegørelse for brandrådgivers/ansvarliges hidtidige og planlagte virke, jf. BR18 §508, stk. 1, nr. 6**
+*(For Brandklasse 1 er denne redegørelse typisk mindre omfattende end for højere brandklasser og fokuserer på bygherrens ansvar og eventuel bistand fra en kvalificeret rådgiver.)*
+
+| ID | Brandteknisk dokumentation | Udarbejdende | Kontrollerende | Ikke relevant |
+| :---- | :------------------------------------ | :----------- | :------------- | :------------ |
+| | | a1) | a2) | b1) | b2) | c) |
+| START | Starterklæring (nærværende) | ☑ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| ITT | Redningsberedskabets indsatsforhold | ☑ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| DBK | Indplacering i brandklasser | ☑ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| BS | Brandstrategi/Brandteknisk redegørelse | ☑ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| TP | Brandtekniske tegninger | ☑ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| KP | Brandteknisk kontrolplan | ☑ | ☐ | ☐ | ☐ | ☐ | ☐ |
+
+*a1) Udarbejdet af brandrådgiver/ansvarlig for brandforhold.*
+*a2) Udarbejdet af anden part.*
+*b1) Kontrolleret af brandrådgiver/ansvarlig for brandforhold.*
+*b2) Kontrolleret af anden part.*
+*c) Ikke relevant for projektet.*
+
+---
+
+**Generel erklæring om overholdelse af BR18**
+Dette projekt overholder bygningsreglement 2018 (BR18) §§ 126-133 (redningsberedskabets indsatsforhold), §508 (starterklæring, kontrolplan m.m.), §509 (materialer og overflader), §510 (brandmodstandsevne af konstruktioner og indsatstaktisk traditionelt byggeri), §511 (indplacering i brandklasse), samt øvrige relevante bestemmelser i BR18 kapitel 5 - Brand.
+
+---
+
+**Underskrift**
+
+**Brandrådgiver/Ansvarlig for brandforhold:**
+
+_______________________________________
+(Navn: TBD)
+(Dato: 23-05-2024)
+
+**Bygherre:**
+
+_______________________________________
+(Navn: Hans Hansen)
+(Dato: 23-05-2024)

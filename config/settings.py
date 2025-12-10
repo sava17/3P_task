@@ -29,7 +29,7 @@ TOP_K_RETRIEVAL = 5
 
 # Document generation settings
 TEMPERATURE = 0.3  # Lower for more consistent document generation
-MAX_TOKENS = 8192
+MAX_TOKENS = 65536 # can be increased to 65,536 to acoomodate larger documents, since that is flash 2.5 max output length
 
 # Fire classification document requirements (BR18)
 DOCUMENT_REQUIREMENTS = {

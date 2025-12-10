@@ -9,8 +9,62 @@ import uuid
 class DocumentTemplateEngine:
     """Generate BR18 documents using templates and RAG context"""
 
-    def __init__(self):
+    def __init__(self, vector_store=None):
         self.client = genai.Client(api_key=GEMINI_API_KEY)
+        self.vector_store = vector_store  # Optional vector store for enhanced retrieval
+
+    def _retrieve_enhanced_context(
+        self,
+        query: str,
+        municipality: Optional[str] = None,
+        document_type: Optional[str] = None,
+        include_br18: bool = True
+    ) -> List[str]:
+        """
+        Retrieve context from both example documents AND BR18 regulations
+
+        Args:
+            query: Search query
+            municipality: Filter by municipality for examples
+            document_type: Filter by document type for examples
+            include_br18: Whether to include BR18 regulation context
+
+        Returns:
+            List of context strings (examples + regulations)
+        """
+        if not self.vector_store:
+            return []
+
+        context_parts = []
+
+        # 1. Retrieve example documents (for structure/style)
+        example_chunks = self.vector_store.search(
+            query=query,
+            top_k=3,  # Get top 3 examples
+            municipality=municipality,
+            document_type=document_type
+        )
+        for chunk in example_chunks:
+            context_parts.append(f"[EXAMPLE from {chunk.source_reference}]\n{chunk.content}")
+
+        # 2. Retrieve BR18 regulations (for accurate § citations)
+        if include_br18:
+            # Search specifically for regulation chunks
+            from src.rag_system.vector_store import VectorStore
+            # Create a custom query for BR18 regulations
+            regulation_query = f"BR18 fire safety regulations {query}"
+
+            # Fetch regulation chunks - need to query directly with where filter
+            # Since we can't filter by source_type in search(), we'll use a workaround
+            all_results = self.vector_store.search(query=regulation_query, top_k=10)
+
+            # Filter to only regulation chunks
+            regulation_chunks = [chunk for chunk in all_results if chunk.source_type == "regulation"][:3]
+
+            for chunk in regulation_chunks:
+                context_parts.append(f"[BR18 REGULATION]\n{chunk.content}")
+
+        return context_parts
 
     def generate_start_document(
         self,
@@ -22,11 +76,20 @@ class DocumentTemplateEngine:
 
         Args:
             project: Building project details
-            rag_context: Retrieved knowledge from RAG system
+            rag_context: Retrieved knowledge from RAG system (optional, will use enhanced retrieval if available)
 
         Returns:
             Generated document
         """
+        # Use enhanced retrieval if vector_store is available and no context provided
+        if rag_context is None and self.vector_store:
+            query = f"START declaration {project.fire_classification.value} {project.municipality}"
+            rag_context = self._retrieve_enhanced_context(
+                query=query,
+                municipality=project.municipality,
+                document_type="START"
+            )
+
         context_str = "\n\n".join(rag_context) if rag_context else ""
 
         prompt = f"""Generate a START (Starterklæring - Declaration) document for a BR18 fire safety submission.
@@ -94,11 +157,20 @@ Output in Danish, following BR18 regulations."""
 
         Args:
             project: Building project details
-            rag_context: Retrieved knowledge from RAG system
+            rag_context: Retrieved knowledge from RAG system (optional, will use enhanced retrieval if available)
 
         Returns:
             Generated document
         """
+        # Use enhanced retrieval if vector_store is available and no context provided
+        if rag_context is None and self.vector_store:
+            query = f"DBK fire classification {project.fire_classification.value} evacuation fire strategy"
+            rag_context = self._retrieve_enhanced_context(
+                query=query,
+                municipality=project.municipality,
+                document_type="DBK"
+            )
+
         context_str = "\n\n".join(rag_context) if rag_context else ""
 
         prompt = f"""Generate a DBK (Dokumentation for Brandteknisk Klassificering) document for BR18 submission.

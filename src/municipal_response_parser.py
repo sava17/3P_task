@@ -20,6 +20,7 @@ from datetime import datetime
 
 from config.settings import GEMINI_API_KEY, GEMINI_MODEL
 from src.models import KnowledgeChunk
+from src.learning_engine.confidence_scorer import ConfidenceScorer
 
 
 class MunicipalResponseParser:
@@ -28,6 +29,7 @@ class MunicipalResponseParser:
     def __init__(self):
         """Initialize the parser with Gemini API"""
         self.client = genai.Client(api_key=GEMINI_API_KEY)
+        self.confidence_scorer = ConfidenceScorer()
         self.model = GEMINI_MODEL
 
     def parse_rejection(self, pdf_path: str) -> Dict:
@@ -178,7 +180,7 @@ Extract the following information in JSON format:
     "Design choices that this municipality appreciates"
   ],
 
-  "approval_speed": "fast/normal/slow (if any indication)",
+  "approval_speed": "fast/standard/slow/unknown (based on processing time mentioned in document - 'fast' if <2 weeks, 'standard' if 2-4 weeks, 'slow' if >4 weeks, 'unknown' if not mentioned)",
 
   "key_insights": [
     "What this approval teaches us about this municipality's preferences"
@@ -300,7 +302,7 @@ Return ONLY valid JSON. Focus on what made this submission successful."""
 
         Creates chunks with:
         - approval_status = "approved"
-        - confidence_score = 1.0 (golden records)
+        - confidence_score = DYNAMIC (0.75-0.93 based on context)
         - municipality-specific metadata
 
         Args:
@@ -315,6 +317,13 @@ Return ONLY valid JSON. Focus on what made this submission successful."""
 
         # Create chunks for each golden pattern
         for idx, pattern in enumerate(approval_data.get('golden_patterns', [])):
+            # Calculate dynamic confidence based on approval context
+            confidence, breakdown = self.confidence_scorer.calculate_approval_pattern_confidence(
+                approval_data=approval_data,
+                municipality=municipality,
+                pattern_type="recommended_pattern"
+            )
+
             chunk = KnowledgeChunk(
                 chunk_id=f"approval_{municipality}_{idx}_{datetime.now().strftime('%Y%m%d%H%M%S')}",
                 source_type="feedback",
@@ -324,7 +333,8 @@ Return ONLY valid JSON. Focus on what made this submission successful."""
                 content=f"✅ RECOMMENDED ({municipality}): {pattern}",
                 metadata={
                     "approval_status": "approved",
-                    "confidence_score": 1.0,  # Highest confidence - this works!
+                    "confidence_score": round(confidence, 2),  # Round to 2 decimals
+                    "confidence_breakdown": breakdown,  # Store calculation details
                     "response_type": "approval",
                     "project_name": project,
                     "approval_date": approval_data.get('approval_date'),
@@ -339,8 +349,21 @@ Return ONLY valid JSON. Focus on what made this submission successful."""
             if element.get('reason'):
                 content += f" | Why: {element.get('reason')}"
 
-            # Higher confidence for replicable patterns
-            confidence = 1.0 if element.get('replicable', True) else 0.8
+            # Calculate dynamic confidence for successful elements
+            base_confidence, breakdown = self.confidence_scorer.calculate_approval_pattern_confidence(
+                approval_data=approval_data,
+                municipality=municipality,
+                pattern_type="successful_element"
+            )
+
+            # Adjust for replicability
+            replicable = element.get('replicable', True)
+            confidence = base_confidence if replicable else base_confidence * 0.85
+
+            # Update breakdown if non-replicable
+            if not replicable:
+                breakdown["replicability_penalty"] = round(base_confidence * 0.15, 2)
+                breakdown["calculation"] = f"{breakdown['calculation'].split('=')[0]}× 0.85 (non-replicable) = {confidence:.2f}"
 
             chunk = KnowledgeChunk(
                 chunk_id=f"success_{municipality}_{idx}_{datetime.now().strftime('%Y%m%d%H%M%S')}",
@@ -351,9 +374,10 @@ Return ONLY valid JSON. Focus on what made this submission successful."""
                 content=content,
                 metadata={
                     "approval_status": "approved",
-                    "confidence_score": confidence,
+                    "confidence_score": round(confidence, 2),  # Round to 2 decimals
+                    "confidence_breakdown": breakdown,  # Store calculation details
                     "response_type": "approval",
-                    "replicable": element.get('replicable', True)
+                    "replicable": replicable
                 }
             )
             chunks.append(chunk)

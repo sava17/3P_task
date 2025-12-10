@@ -1,0 +1,153 @@
+================================================================================
+EXTRACTION DEBUG OUTPUT
+Source: C:/3P Opgave/br18_automation/data/example_pdfs/DBK.pdf
+Timestamp: 2025-12-10T03:59:16.791195
+================================================================================
+
+METADATA:
+--------------------------------------------------------------------------------
+{
+  "document_type": "DBK",
+  "project_name": "LR Erhverv",
+  "address": "Broenge 1, 2635 Ishøj",
+  "municipality": "Ishøj",
+  "building_type": "warehouse",
+  "total_area_m2": 1355,
+  "floors": 1,
+  "fire_classification": "BK2",
+  "application_category": "1",
+  "risk_class": "2",
+  "consultant_name": "Henrik Kirstein Brunsgaard",
+  "consultant_certificate": null,
+  "br18_references": null,
+  "key_requirements": [
+    "Building section divided into two fire sections.",
+    "Total evacuation to the open air.",
+    "Maximum distance to nearest exit 30 m.",
+    "Wall between existing and new building separated by heavy fire section separation EI 60-M / A2-s1, d0.",
+    "Load-bearing building components in ILK 4 must be constructed in building component class R 60 (BD-building component 60).",
+    "Exterior cladding as cladding class K1 10/B-s1, d0 (class 1 cladding) or with rain screen as material D-s2,d2 (class B material).",
+    "Roofing must be at least class BROOF (t2) (class T roofing).",
+    "Interior wall cladding must be at least cladding class K1 10 / B-s1,d0 (class 1 cladding) or with exterior walls consisting exclusively of material class B-s1,d0 (class 1 cladding).",
+    "Ceiling cladding must be at least cladding class K1 10 / B-s1,d0 (class 1 cladding)."
+  ]
+}
+
+FULL EXTRACTED CONTENT:
+--------------------------------------------------------------------------------
+Here is the structured text content from the BR18 fire safety document:
+
+---
+
+**Page 1**
+
+**Midtjysk Albyg A/S**
+**Dokumentation for indplacering i brandklasse (DBK)**
+**LR Erhverv, Ishøj**
+
+---
+
+**Page 2**
+
+**Dokumentation for indplacering i brandklasse**
+**(LR Erhvere - Broenge 1, 2635 Ishøj)**
+**Midtjysk Albyg A/S**
+Specialist i erhvervs- og industribyggeri
+
+Dato: 17-11-2022
+Revideret: 21-11-2022
+
+**1.1 Oplysninger om byggeriet**
+
+| Felt               | Værdi                   |
+| :----------------- | :---------------------- |
+| Projektnavn        | LR Erhverv              |
+| Projektadresse     | Broenge 1, 2635 Ishøj   |
+| Matrikelbetegnelse | Ishøj By, Ishøj 14aq    |
+
+**1.2 Underskrifter**
+
+| Felt            | Person/Firma                          | Dato       | Underskrift                 |
+| :-------------- | :------------------------------------ | :--------- | :-------------------------- |
+| Udfærdige       |                                       |            |                             |
+| Udarbejdet af:  | Henrik Kirstein Brunsgaard (HKB) Midtjysk Albyg A/S | 17-11-2022 | Henrik k Brunsgaard         |
+| Kontrolleret af:| Patrick Overgaard (PO) Midtjysk Albyg A/S         | 21-11-2022 | Patrick Overgaard           |
+| Godkendt af:    | Henrik Kirstein Brunsgaard (HKB) Midtjysk Albyg A/S |            | Henrik k Brunsgaard         |
+
+**1.3 Dokumentreferencer**
+For byggesagen indsendes hermed dokumentation for indplacering i brandklasse.
+Idet der henvises til nedenstående dokumenter
+
+| Dokument                      | Dokument ID            | Dato for godkendelse | Godkendt af | Udarbejdet af / dato | Kontrolleret af / dato |
+| :---------------------------- | :--------------------- | :------------------- | :---------- | :------------------- | :--------------------- |
+| Overordnet brandstrategirapport | BSR                    | 21-11-2022           | HKB         | HKB 17-11-2022       | PO 21-11-2022          |
+| Forløbig situationsplan for brandplan | 600 Brand - Situationsplan | 21-11-2022           | HKB         | HKB 17-11-2022       | PO 21-11-2022          |
+| Forløbig brandplan - Stueplan | 610 Brand - Grundplan  | 21-11-2022           | HKB         | HKB 17-11-2022       | PO 21-11-2022          |
+| Forløbig brandplan - Snit     | 620 Brand - Snit       | 21-11-2022           | HKB         | HKB 21-11-2022       | PO 21-11-2022          |
+
+---
+
+**Page 3**
+
+**Dokumentation for indplacering i brandklasse**
+**(LR Erhvere - Broenge 1, 2635 Ishøj)**
+**Midtjysk Albyg A/S**
+Specialist i erhvervs- og industribyggeri
+
+**2. Hovedprincipperne for brandstrategien er:**
+
+**2.1 Kort beskrivelse af byggeriet**
+Nybyggeri af tilbygning af lagerhal, med et bebygget areal på 1.355 m²
+
+**2.2 Bygningsafsnit, anvendelseskategori, risikoklasse og brandklasse**
+Bygningsafsnittet opføres i to brandsektioner.
+Bygningsafsnittet er indplaceret i anvendelseskategori 1, da byggeriet er indrettet uden sovepladser, personer har kendskab til flugtveje og har mulighed for at bringe sig selv i sikkerhed ved egen hjælp.
+Byggeriet er i risikoklasse da byggeriet opføres i én etage og brandbelastningen kan være højere end 1.600 MJ/m² gulvareal.
+Byggeriet placeres i Brandklasse 2.
+
+**2.3 Rammer for placering af byggeriet på grunden, afstand til andre bygninger og afstand til skel**
+Tilbygningen bygges sammen med eksisterende bygningsmasse. Tilbygningen placeres med 10 m til skel.
+
+**2.4 Hovedprincipper for evakuering af personer**
+Bygningsafsnittet disponeres for totalevakuering til det fri. I bygningen tillades en maksimal afstand til nærmeste udgang på 30 m.
+Væggen mellem eksisterende bygning og ny tilbygning adskilles med en Tung brandsektionsadskillelse El 60-M / A2-s1, d0 så eksisterende udgange til det fri, vil nu være til et sikkert sted.
+
+**2.5 Koncept for sikring af bærende konstruktioner**
+Bærende bygningsdele i ILK 4 skal opføres i bygningsdel klasse R 60 (BD-bygningsdel 60).
+
+**2.6 Koncept for sikring mod brand- og røgspredning**
+Bygningsmassen er på 1355 m² og opføres med en brandbelastning på mere end 1.600 MJ/m² Med over 5 m til skel udføres udvendige beklædning som beklædningsklasse K1 10/B-s1, d0 (klasse 1beklædning) eller med regnskærm som materiale D-s2,d2 (klasse B materiale).
+Tagdækningen skal være som min. klasse BROOF (t2) (klasse T tagdækning).
+Indvendig vægbeklædninger udføres som min beklædningsklasse K1 10 / B-s1,d0 (klasse 1beklædning) eller med ydervægge som udelukkende består af materiale klasse B-s1,d0 (klasse 1 beklædning).
+Loftbeklædninger udføres som min beklædnings klasse K1 10 / B-s1,d0 (klasse 1 beklædning).
+
+**2.7 Redningsberedskabets indsatsmuligheder**
+
+---
+
+**Page 4**
+
+**Dokumentation for indplacering i brandklasse**
+**(LR Erhvere - Broenge 1, 2635 Ishøj)**
+**Midtjysk Albyg A/S**
+Specialist i erhvervs- og industribyggeri
+
+Jf. ITT-erklæring.
+
+**2.8 Brandklasse**
+Byggeriet kan indplaceres i Brandklasse 2 og gennemføres med præ-accepterede løsninger.
+
+---
+
+CHUNKS (for embedding):
+================================================================================
+
+--- CHUNK 1/2 ---
+Words: 500 | Chars: 3386
+--------------------------------------------------------------------------------
+Here is the structured text content from the BR18 fire safety document: --- **Page 1** **Midtjysk Albyg A/S** **Dokumentation for indplacering i brandklasse (DBK)** **LR Erhverv, Ishøj** --- **Page 2** **Dokumentation for indplacering i brandklasse** **(LR Erhvere - Broenge 1, 2635 Ishøj)** **Midtjysk Albyg A/S** Specialist i erhvervs- og industribyggeri Dato: 17-11-2022 Revideret: 21-11-2022 **1.1 Oplysninger om byggeriet** | Felt | Værdi | | :----------------- | :---------------------- | | Projektnavn | LR Erhverv | | Projektadresse | Broenge 1, 2635 Ishøj | | Matrikelbetegnelse | Ishøj By, Ishøj 14aq | **1.2 Underskrifter** | Felt | Person/Firma | Dato | Underskrift | | :-------------- | :------------------------------------ | :--------- | :-------------------------- | | Udfærdige | | | | | Udarbejdet af: | Henrik Kirstein Brunsgaard (HKB) Midtjysk Albyg A/S | 17-11-2022 | Henrik k Brunsgaard | | Kontrolleret af:| Patrick Overgaard (PO) Midtjysk Albyg A/S | 21-11-2022 | Patrick Overgaard | | Godkendt af: | Henrik Kirstein Brunsgaard (HKB) Midtjysk Albyg A/S | | Henrik k Brunsgaard | **1.3 Dokumentreferencer** For byggesagen indsendes hermed dokumentation for indplacering i brandklasse. Idet der henvises til nedenstående dokumenter | Dokument | Dokument ID | Dato for godkendelse | Godkendt af | Udarbejdet af / dato | Kontrolleret af / dato | | :---------------------------- | :--------------------- | :------------------- | :---------- | :------------------- | :--------------------- | | Overordnet brandstrategirapport | BSR | 21-11-2022 | HKB | HKB 17-11-2022 | PO 21-11-2022 | | Forløbig situationsplan for brandplan | 600 Brand - Situationsplan | 21-11-2022 | HKB | HKB 17-11-2022 | PO 21-11-2022 | | Forløbig brandplan - Stueplan | 610 Brand - Grundplan | 21-11-2022 | HKB | HKB 17-11-2022 | PO 21-11-2022 | | Forløbig brandplan - Snit | 620 Brand - Snit | 21-11-2022 | HKB | HKB 21-11-2022 | PO 21-11-2022 | --- **Page 3** **Dokumentation for indplacering i brandklasse** **(LR Erhvere - Broenge 1, 2635 Ishøj)** **Midtjysk Albyg A/S** Specialist i erhvervs- og industribyggeri **2. Hovedprincipperne for brandstrategien er:** **2.1 Kort beskrivelse af byggeriet** Nybyggeri af tilbygning af lagerhal, med et bebygget areal på 1.355 m² **2.2 Bygningsafsnit, anvendelseskategori, risikoklasse og brandklasse** Bygningsafsnittet opføres i to brandsektioner. Bygningsafsnittet er indplaceret i anvendelseskategori 1, da byggeriet er indrettet uden sovepladser, personer har kendskab til flugtveje og har mulighed for at bringe sig selv i sikkerhed ved egen hjælp. Byggeriet er i risikoklasse da byggeriet opføres i én etage og brandbelastningen kan være højere end 1.600 MJ/m² gulvareal. Byggeriet placeres i Brandklasse 2. **2.3 Rammer for placering af byggeriet på grunden, afstand til andre bygninger og afstand til skel** Tilbygningen bygges sammen med eksisterende bygningsmasse. Tilbygningen placeres med 10 m til skel. **2.4 Hovedprincipper for evakuering af personer** Bygningsafsnittet disponeres for totalevakuering til det fri. I bygningen tillades en maksimal afstand til nærmeste udgang på 30 m. Væggen mellem eksisterende bygning og ny tilbygning adskilles med en Tung brandsektionsadskillelse El 60-M / A2-s1, d0 så eksisterende udgange til det fri, vil nu være til et sikkert sted. **2.5 Koncept for sikring af bærende konstruktioner** Bærende
+
+--- CHUNK 2/2 ---
+Words: 202 | Chars: 1419
+--------------------------------------------------------------------------------
+I bygningen tillades en maksimal afstand til nærmeste udgang på 30 m. Væggen mellem eksisterende bygning og ny tilbygning adskilles med en Tung brandsektionsadskillelse El 60-M / A2-s1, d0 så eksisterende udgange til det fri, vil nu være til et sikkert sted. **2.5 Koncept for sikring af bærende konstruktioner** Bærende bygningsdele i ILK 4 skal opføres i bygningsdel klasse R 60 (BD-bygningsdel 60). **2.6 Koncept for sikring mod brand- og røgspredning** Bygningsmassen er på 1355 m² og opføres med en brandbelastning på mere end 1.600 MJ/m² Med over 5 m til skel udføres udvendige beklædning som beklædningsklasse K1 10/B-s1, d0 (klasse 1beklædning) eller med regnskærm som materiale D-s2,d2 (klasse B materiale). Tagdækningen skal være som min. klasse BROOF (t2) (klasse T tagdækning). Indvendig vægbeklædninger udføres som min beklædningsklasse K1 10 / B-s1,d0 (klasse 1beklædning) eller med ydervægge som udelukkende består af materiale klasse B-s1,d0 (klasse 1 beklædning). Loftbeklædninger udføres som min beklædnings klasse K1 10 / B-s1,d0 (klasse 1 beklædning). **2.7 Redningsberedskabets indsatsmuligheder** --- **Page 4** **Dokumentation for indplacering i brandklasse** **(LR Erhvere - Broenge 1, 2635 Ishøj)** **Midtjysk Albyg A/S** Specialist i erhvervs- og industribyggeri Jf. ITT-erklæring. **2.8 Brandklasse** Byggeriet kan indplaceres i Brandklasse 2 og gennemføres med præ-accepterede løsninger. ---

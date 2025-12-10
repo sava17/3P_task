@@ -1,0 +1,55 @@
+{
+  "document_type": "DBK",
+  "approved_phrasing": [
+    "Bygningsafsnittet opføres i to brandsektioner.",
+    "Bygningsafsnittet er indplaceret i anvendelseskategori 1, da byggeriet er indrettet uden sovepladser, personer har kendskab til flugtveje og har mulighed for at bringe sig selv i sikkerhed ved egen hjælp",
+    "Byggeriet er i risikoklasse da byggeriet opføres i én etage og brandbelastningen kan være højere end 1.600 MJ/m² gulvareal",
+    "Byggeriet placeres i Brandklasse 2",
+    "Tilbygningen bygges sammen med eksisterende bygningsmasse.",
+    "Bygningsafsnittet disponeres for totalevakuering til det fri.",
+    "I bygningen tillades en maksimal afstand til nærmeste udgang på 30 m.",
+    "Væggen mellem eksisterende bygning og ny tilbygning adskilles med en Tung brandsektionsadskillelse EI 60-M / A2-s1, d0 så eksisterende udgange til det fri, vil nu være til et sikkert sted.",
+    "Bærende bygningsdele i ILK 4 skal opføres i bygningsdel klasse R 60 (BD-bygningsdel 60)",
+    "Bygningsmassen er på 1355 m² og opføres med en brandbelastning på mere end 1.600 MJ/m²",
+    "Med over 5 m til skel udføres udvendige beklædning som beklædningsklasse K1 10/B-s1, d0 (klasse 1beklædning) eller med regnskærm som materiale D-s2,d2 (klasse B materiale)",
+    "Tagdækningen skal være som min. klasse BROOF (t2) (klasse T tagdækning)",
+    "Indvendig vægbeklædninger udføres som min beklædningsklasse K1 10 / B-s1,d0 (klasse 1beklædning) eller med ydervægge som udelukkende består af materiale klasse B-s1,d0 (klasse 1 beklædning)",
+    "Loftbeklædninger udføres som min beklædnings klasse K1 10 / B-s1,d0 (klasse 1 beklædning)",
+    "Byggeriet kan indplaceres i Brandklasse 2 og gennemføres med præ-accepterede løsninger."
+  ],
+  "technical_specs": {
+    "fire_resistance_classes": [
+      "EI 60-M",
+      "R 60 (BD-bygningsdel 60)"
+    ],
+    "material_classes": [
+      "A2-s1, d0",
+      "K1 10/B-s1, d0 (klasse 1beklædning)",
+      "D-s2,d2 (klasse B materiale)",
+      "BROOF (t2) (klasse T tagdækning)",
+      "B-s1,d0 (klasse 1 beklædning)"
+    ],
+    "distances": [
+      "10 m til skel",
+      "maksimal afstand til nærmeste udgang på 30 m",
+      "over 5 m til skel"
+    ]
+  },
+  "br18_references": [],
+  "structural_patterns": [
+    "Clear and concise headings for each section (e.g., '1.1 Oplysninger om byggeriet', '2. Hovedprincipperne for brandstrategien er').",
+    "Logical progression from general project information and responsible parties to specific fire safety concepts.",
+    "Explicitly states the project's classification (anvendelseskategori, risikoklasse, brandklasse) with brief justifications.",
+    "Detailed technical specifications are provided for fire resistance, material classifications, and distance requirements.",
+    "Includes a section for signatures and dates, indicating a clear approval process.",
+    "References supporting documents (e.g., 'Overordnet brandstrategirapport', 'Forløbig brandplan - Stueplan') to provide a comprehensive overview.",
+    "Utilizes the concept of 'præ-accepterede løsninger' (pre-accepted solutions) as a basis for compliance, simplifying documentation."
+  ],
+  "key_insights": [
+    "The document effectively classifies the building according to Danish building regulations (BR18) by stating its Anvendelseskategori, Risikoklasse, and Brandklasse, along with clear justifications.",
+    "It provides specific and measurable technical requirements for all critical fire safety aspects, including structural fire resistance, material flammability, and evacuation distances.",
+    "The reliance on 'præ-accepterede løsninger' streamlines the approval process by indicating adherence to established standards without requiring extensive custom engineering documentation for every detail.",
+    "The document's structure is highly organized and easy to navigate, making it simple to understand the fire safety strategy and verify compliance.",
+    "The inclusion of a formal approval section with signatures and references to detailed brand plans enhances the document's credibility and completeness."
+  ]
+}

@@ -139,7 +139,7 @@ Return ONLY the JSON array, no other text."""
                 contents=[prompt],
                 config=types.GenerateContentConfig(
                     temperature=0.2,  # Low for factual analysis
-                    max_output_tokens=4096,
+                    max_output_tokens=65536,  # Max output - prevent cutoffs
                 )
             )
 
@@ -279,7 +279,7 @@ Return as JSON:
                 contents=[prompt],
                 config=types.GenerateContentConfig(
                     temperature=0.1,
-                    max_output_tokens=2048,
+                    max_output_tokens=65536,  # Max output - prevent cutoffs
                 )
             )
 

@@ -43,7 +43,7 @@ class BR18DemoSystem:
     def __init__(self):
         self.pdf_extractor = PDFExtractor()
         self.vector_store = VectorStore()
-        self.template_engine = DocumentTemplateEngine()
+        self.template_engine = DocumentTemplateEngine(vector_store=self.vector_store)  # Pass vector store for BR18 retrieval
         self.feedback_analyzer = FeedbackAnalyzer()
         self.learning_iterations = []
 
