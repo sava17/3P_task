@@ -1,0 +1,48 @@
+{
+  "document_type": "START",
+  "certification_patterns": [
+    "Consultant's full name, company, email, and phone number are provided under 'Oplysninger om certificeret brandrådgiver'.",
+    "A unique 'Certifikat nummer' (RFC-2022-1100052418-A) and 'Dato for godkendelse' (15-10-2022) are listed.",
+    "The issuing body, 'Rambøll', is specified.",
+    "The consultant's approval for a specific fire class ('Brandklasse 2') is indicated by a checked box.",
+    "A copy of the certification document is attached (pages 4-5), explicitly stating 'Certificeret Brandrådgiver til brandklasse 2' and its validity period (15-10-2022 to 14-10-2027).",
+    "The certificate details that the consultant 'har dokumenteret at opfylde kvalifikations- og kompetencekrav til at virke som certificeret brandrådgiver i henhold til Bekendtgørelse om certificeringsordning for dokumentation af tekniske forhold i bygningsreglementet (1304 af 17/06/2021)'.",
+    "The declaration is signed by the 'Undertegnede, certificerede rådgiver'."
+  ],
+  "declaration_phrases": [
+    "Det angives hermed:",
+    "At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. § 23, er fremsendt.",
+    "At der er valgt de korrekte brandklasser, og at dokumentationen herfor er retvisende.",
+    "Byggeriet er indsatstaktisk traditionelt.",
+    "Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder.",
+    "At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5",
+    "At der er udarbejdet en fyldestgørende kontrolplan og kontrolrapport i overensstemmelse med kontroltyper, jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4, for design, projektering og udførelse af den brandtekniske dokumentation svarende til projektets stadie.",
+    "Undertegnede, certificerede rådgiver erklærer hermed, at dokumentationen for brandforhold er i overensstemmelse med og overholder bygningsreglementet, at dokumentationen kan anvendes, som den foreligger, og at dokumentationen udgør et hele i forhold til projektets stadie."
+  ],
+  "project_description_format": [
+    "Project name: 'LR Erhverv'",
+    "Project address: 'Broenge 1, 2635 Ishøj'",
+    "Cadastral designation: 'Ishøj By, Ishøj 14aq'",
+    "Highest fire class for the building: 'Brandklasse 2' (indicated by a checked box).",
+    "The building type is not explicitly stated in a dedicated field, but the project name 'LR Erhverv' (LR Commercial/Business) and the consultant's company description 'Specialist i erhvervs- og industribyggeri' (Specialist in commercial and industrial construction) imply a commercial/industrial building."
+  ],
+  "br18_compliance_language": [
+    "Adherence is expressed through direct statements and checkboxes, affirming compliance.",
+    "Specific BR18 paragraphs and chapters are cited: 'jf. BR18, § 23', 'jf. BR18 §511', 'jf. BR18 §§ 126-133', 'jf. BR18 §510', 'jf. BR18 §508, stk. 1', 'jf. BR18, kapitel 5', 'jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4'.",
+    "Compliance with 'bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder' is stated for operational traditionality.",
+    "The declaration confirms that documentation 'godtgør, at byggeriet... vil overholde bygningsreglementets brandkrav'."
+  ],
+  "scope_definition": [
+    "The scope of work is defined by a table titled 'Redegørelse for den certificerede brandrådgivers hidtidige og planlagte virke', listing various 'Brandteknisk dokumentation' (Fire technical documentation) types (e.g., Starterklæring, Redningsberedskabets indsatsforhold, Indplacering i brandklasser, Brandstrategirapport, Brandplaner og situationsplan, Kontrolplan, Kontrolrapporter, etc.).",
+    "For each documentation type, it specifies whether the certified consultant is 'Udarbejdende' (preparing) or 'Kontrollerende' (controlling), and if assistance was used (a1, a2, b1, b2, c).",
+    "The final declaration states that the documentation 'udgør et hele i forhold til projektets stadie' (constitutes a whole in relation to the project's stage)."
+  ],
+  "key_insights": [
+    "This document is a formal 'Starterklæring' (Initial Declaration) for fire safety, mandatory under Danish building regulations (BR18).",
+    "It is issued by a certified fire consultant, whose credentials and certification scope (Brandklasse 2) are clearly stated and supported by an attached certificate.",
+    "The declaration systematically addresses all required aspects of initial fire documentation, referencing specific BR18 paragraphs and annexes.",
+    "It explicitly confirms the project's fire class and its 'indsatstaktisk traditionelt' (operationally traditional for rescue services) nature.",
+    "The document details the division of responsibility for preparing and controlling various fire safety documents, indicating a structured and auditable process.",
+    "The language used is formal and authoritative, emphasizing compliance with building regulations and the completeness of the documentation for the current project stage."
+  ]
+}

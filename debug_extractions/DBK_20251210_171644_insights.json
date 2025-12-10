@@ -1,0 +1,57 @@
+{
+  "document_type": "DBK",
+  "approved_phrasing": [
+    "Byggeriet kan indplaceres i Brandklasse 2 og gennemføres med præ-accepterede løsninger.",
+    "Bygningsafsnittet er indplaceret i anvendelseskategori 1, da byggeriet er indrettet uden sovepladser, personer har kendskab til flugtveje og har mulighed for at bringe sig selv i sikkerhed ved egen hjælp.",
+    "Byggeriet er i risikoklasse da byggeriet opføres i én etage og brandbelastningen kan være højere end 1.600 MJ/m² gulvareal.",
+    "Byggeriet placeres i Brandklasse 2.",
+    "Tilbygningen bygges sammen med eksisterende bygningsmasse. Tilbygningen placeres med 10 m til skel.",
+    "Bygningsafsnittet disponeres for totalevakuering til det fri.",
+    "I bygningen tillades en maksimal afstand til nærmeste udgang på 30 m.",
+    "Væggen mellem eksisterende bygning og ny tilbygning adskilles med en Tung brandsektionsadskillelse El 60-M / A2-s1, d0 så eksisterende udgange til det fri, vil nu være til et sikkert sted.",
+    "Bærende bygningsdele i ILK 4 skal opføres i bygningsdel klasse R 60 (BD-bygningsdel 60).",
+    "Bygningsmassen er på 1355 m² og opføres med en brandbelastning på mere end 1.600 MJ/m².",
+    "Med over 5 m til skel udføres udvendige beklædning som beklædningsklasse K1 10/B-s1, d0 (klasse 1beklædning) eller med regnskærm som materiale D-s2,d2 (klasse B materiale).",
+    "Tagdækningen skal være som min. klasse BROOF (t2) (klasse T tagdækning).",
+    "Indvendig vægbeklædninger udføres som min beklædningsklasse K1 10 / B-s1,d0 (klasse 1beklædning) eller med ydervægge som udelukkende består af materiale klasse B-s1,d0 (klasse 1 beklædning).",
+    "Loftbeklædninger udføres som min beklædnings klasse K1 10 / B-s1,d0 (klasse 1 beklædning)."
+  ],
+  "technical_specs": {
+    "fire_resistance_classes": [
+      "El 60-M",
+      "R 60",
+      "BD-bygningsdel 60"
+    ],
+    "material_classes": [
+      "A2-s1, d0",
+      "K1 10/B-s1, d0",
+      "D-s2, d2",
+      "B-s1, d0",
+      "BROOF (t2)",
+      "Klasse T tagdækning"
+    ],
+    "distances": [
+      "maksimal afstand til nærmeste udgang på 30 m",
+      "10 m til skel",
+      "over 5 m til skel"
+    ]
+  },
+  "br18_references": [],
+  "structural_patterns": [
+    "Clear hierarchical section numbering (e.g., 1.1, 1.2, 2., 2.1).",
+    "Dedicated section for project information (Projektnavn, Projektadresse, Matrikelbetegnelse).",
+    "Detailed signature section with roles (Udfærdige, Udarbejdet af, Kontrolleret af, Godkendt af), names, firms, dates, and handwritten signatures.",
+    "Comprehensive table of document references, including Document ID, approval dates, and responsible parties (Udarbejdet af / dato, Kontrolleret af / dato).",
+    "Main principles of the fire strategy are outlined in distinct subsections (e.g., 2.1 Kort beskrivelse af byggeriet, 2.2 Bygningsafsnit, anvendelseskategori, risikoklasse og brandklasse).",
+    "Specific concepts for securing different aspects of fire safety are detailed (e.g., 2.5 Koncept for sikring af bærende konstruktioner, 2.6 Koncept for sikring mod brand- og røgspredning).",
+    "Final classification of the building into a fire class is explicitly stated in a dedicated section (2.8 Brandklasse)."
+  ],
+  "key_insights": [
+    "The document is a 'Dokumentation for indplacering i brandklasse (DBK)', which is a specific type of fire safety documentation in Denmark.",
+    "It clearly classifies the building into Brandklasse 2, Anvendelseskategori 1, and describes its Risikoklasse based on building characteristics and fire load.",
+    "Compliance is primarily demonstrated through the application of 'præ-accepterede løsninger' (pre-accepted solutions), which is a common approach under BR18, simplifying the documentation by adhering to standard solutions.",
+    "There are no explicit BR18 paragraph references, indicating a focus on practical application of regulations rather than direct legal citations for each point, consistent with the use of pre-accepted solutions.",
+    "The document is well-structured, providing a clear and concise overview of the fire safety strategy and technical specifications.",
+    "The robust signature section involving multiple parties (preparer, controller, approver) ensures a thorough internal review and accountability for the documentation."
+  ]
+}

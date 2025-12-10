@@ -1146,6 +1146,11 @@ Required Document Types:
                         from src.models import KnowledgeChunk
                         import uuid
 
+                        # Merge insights into metadata
+                        chunk_metadata = result['metadata'].copy()
+                        if result.get('insights'):
+                            chunk_metadata['insights'] = result['insights']
+
                         chunk = KnowledgeChunk(
                             chunk_id=str(uuid.uuid4()),
                             source_type="approved_doc",
@@ -1153,7 +1158,7 @@ Required Document Types:
                             municipality=result['metadata'].get('municipality'),
                             document_type=result['metadata'].get('document_type'),
                             content=chunk_text,
-                            metadata=result['metadata']
+                            metadata=chunk_metadata
                         )
                         all_chunks.append(chunk)
 

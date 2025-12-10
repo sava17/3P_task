@@ -1,0 +1,116 @@
+================================================================================
+BR18 DOCUMENT - START
+================================================================================
+
+Project: Garage ved Villa Hansen
+Address: Skovvej 42, 8200 Aarhus N
+Municipality: Aarhus
+Fire Classification: BK1
+Building Type: Fritliggende Garage
+Total Area: 45.0 m²
+Floors: 1
+Max Occupancy: 2
+
+Consultant: TBD
+Certificate: TBD
+Client: Hans Hansen
+
+Generated: 2025-12-10 17:28:29
+Document ID: 2e452a59-1757-4bb2-afba-86981acae39f
+
+================================================================================
+DOCUMENT CONTENT
+================================================================================
+
+Her er den genererede START (Starterklæring) dokumentation for BR18 brandsikkerhedsindsendelsen:
+
+---
+
+**START (Starterklæring)**
+**vedrørende brandforhold i henhold til Bygningsreglementet 2018 (BR18)**
+
+**1. Projektinformation:**
+
+*   **Projektnavn:** Garage ved Villa Hansen
+*   **Adresse:** Skovvej 42, 8200 Aarhus N
+*   **Kommune:** Aarhus
+*   **Bygningstype:** Fritliggende Garage
+*   **Samlet etageareal:** 45.0 m²
+*   **Antal etager:** 1
+*   **Personbelægning:** 2
+*   **Brandklasse:** BK1
+*   **Anvendelseskategori:** 1
+*   **Risikoklasse:** 1
+*   **Bygherre:** Hans Hansen
+*   **Certificeret brandrådgiver:** TBD
+*   **Certifikatnummer:** TBD
+
+---
+
+**2. Erklæring fra certificeret brandrådgiver:**
+
+Undertegnede certificerede brandrådgiver erklærer hermed, at brandforholdene for ovenstående byggeri er projekteret i overensstemmelse med Bygningsreglementet 2018 (BR18), herunder bestemmelserne i BR18, kapitel 5, Brand.
+
+Byggeriet er klassificeret som:
+*   **Brandklasse 1 (BK1)**
+*   **Risikoklasse 1**
+*   **Anvendelseskategori 1**
+
+Denne erklæring er udarbejdet i henhold til BR18 § 508, stk. 1, nr. 1, og bekræfter, at de brandtekniske løsninger er projekteret til at opfylde de funktionsbaserede krav i BR18.
+
+---
+
+**3. Brandklasse for byggeriet:**
+
+Byggeriet er klassificeret i følgende brandklasse (sæt kryds):
+
+[X] Brandklasse 1 (BK1)
+[ ] Brandklasse 2 (BK2)
+[ ] Brandklasse 3 (BK3)
+[ ] Brandklasse 4 (BK4)
+
+---
+
+**4. Dokumentation for brandforhold:**
+
+Følgende dokumentation er udarbejdet og indsendes sammen med ansøgningen for at dokumentere, at byggeriet opfylder brandkravene i BR18 for Brandklasse 1 (BK1):
+
+[X] Situationsplan med angivelse af afstand til skel og andre bygninger.
+[X] Plantegninger med angivelse af anvendelse, flugtveje, redningsåbninger og eventuelle brandtekniske installationer.
+[X] Snit og facader.
+[X] Brandstrategi / Brandteknisk redegørelse, der beskriver bygningens brandforhold, herunder brandklasser for bygningsdele, flugtveje og redningsåbninger.
+[X] Kontrolplan for brandforhold.
+[X] Drifts-, kontrol- og vedligeholdelsesplan for brandforhold (hvis relevant, ofte simplificeret for BK1).
+[X] Denne Starterklæring.
+[ ] Sluterklæring (forventes indsendt ved byggeriets afslutning).
+
+---
+
+**5. Forhold for redningsberedskabets indsatsmuligheder:**
+
+Det erklæres, at byggeriet er projekteret under hensyntagen til redningsberedskabets indsatsmuligheder i overensstemmelse med BR18 § 508, stk. 1, nr. 4.
+
+For den fritliggende garage er der sikret:
+*   Adgangsveje for redningsberedskabets køretøjer.
+*   Tilstrækkelig afstand til andre bygninger og skel, der muliggør en sikker indsats.
+*   Eventuelle redningsåbninger er placeret og dimensioneret i henhold til BR18. (For en garage af denne størrelse er dette typisk vinduer eller døre, der kan åbnes/knuses).
+
+---
+
+**6. Kontrolplan for brandforhold:**
+
+Der er udarbejdet en kontrolplan for brandforholdene i byggeriet i henhold til BR18 § 508, stk. 1, nr. 5. Kontrolplanen beskriver omfanget og hyppigheden af den kontrol, der skal udføres under projektering og udførelse, for at sikre, at brandforholdene udføres i overensstemmelse med bygningsreglementet.
+
+Bygherre er ansvarlig for, at den udarbejdede kontrolplan følges, og at dokumentation for udført kontrol opbevares og kan fremlægges for kommunalbestyrelsen.
+
+---
+
+**7. Underskrift:**
+
+Dato:
+Sted:
+Underskrift:
+________________________________________
+Navn (certificeret brandrådgiver): [TBD]
+Virksomhed: [TBD]
+Certifikatnummer: [TBD]

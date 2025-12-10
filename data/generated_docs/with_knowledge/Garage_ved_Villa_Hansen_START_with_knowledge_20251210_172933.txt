@@ -1,0 +1,130 @@
+================================================================================
+BR18 DOCUMENT - START
+================================================================================
+
+Project: Garage ved Villa Hansen
+Address: Skovvej 42, 8200 Aarhus N
+Municipality: Aarhus
+Fire Classification: BK1
+Building Type: Fritliggende Garage
+Total Area: 45.0 m²
+Floors: 1
+Max Occupancy: 2
+
+Consultant: TBD
+Certificate: TBD
+Client: Hans Hansen
+
+Generated: 2025-12-10 17:29:33
+Document ID: 4a1ce3d2-4337-4b63-a52b-3027785b75d3
+
+================================================================================
+DOCUMENT CONTENT
+================================================================================
+
+Her er den genererede START (Starterklæring) dokumentation for BR18 brandsikkerhedsindsendelsen, tilpasset dine projektdetaljer og Aarhus Kommunes krav:
+
+---
+
+**Starterklæring (START)**
+**BR18 Brandsikkerhedsdokumentation**
+
+---
+
+**Starterklæring (START)**
+**Garage ved Villa Hansen**
+
+**Dato:** [Dags dato]
+**Revideret:**
+
+**Oplysninger om byggeriet**
+| Felt               | Værdi                       |
+| :----------------- | :-------------------------- |
+| Projektnavn        | Garage ved Villa Hansen     |
+| Projektadresse     | Skovvej 42, 8200 Aarhus N   |
+| Kommune            | Aarhus                      |
+| Bygningstype       | Fritliggende Garage         |
+| Total Areal        | 45.0 m²                     |
+| Antal Etager       | 1                           |
+| Personbelastning   | 2                           |
+| Brandklasse        | BK1                         |
+| Risikoklasse       | 1                           |
+| Ansøgningskategori | 1                           |
+| Bygherre           | Hans Hansen                 |
+
+**Oplysninger om certificeret brandrådgiver**
+| Felt                      | Værdi                               |
+| :------------------------ | :---------------------------------- |
+| Certificeret brandrådgiver| [Navn på certificeret brandrådgiver]|
+| E-mail                    | [E-mail]                            |
+| Telefon                   | [Telefonnummer]                     |
+| Virksomhed                | [Virksomhedsnavn]                   |
+| Certifikat nummer         | [Certifikatnummer]                  |
+| Dato for godkendelse      | [Dato for godkendelse]              |
+| Udstedt af                | [Udstedende instans]                |
+| Godkendt til brandklasse  | ☐ Brandklasse 2 ☐ Brandklasse 3/4 ☐ Tredjepartskontrollant |
+(Se kopi af vedlagt certifikat, hvis relevant)
+
+**Dokumentation af brandforhold jf. BR18 §508, stk. 1, nr. 1.**
+Det angives hermed:
+☑ At dokumentationen for brandforhold ved ansøgning om byggetilladelse, jf. BR18 § 23, er fremsendt.
+
+Ved ansøgning om byggetilladelse til byggearbejde (byggeri) i brandklasse 2-4 skal der ifølge BR18, § 23 stk. 1, udfærdiges følgende dokumentation af den certificerede brandrådgiver:
+1. Oplysninger om og dokumentation for indplacering i brandklasse, jf. BR18 §511.
+2. Oplysninger om og dokumentation for, hvorledes byggeriet opfylder BR18 §§ 126-133 vedrørende redningsberedskabets indsatsforhold, herunder hvorvidt byggeriet er indsatstaktisk traditionelt, jf. BR18 §510.
+3. Starterklæring, jf. BR18 §508, stk. 1 (nærværende dokument).
+
+**Dokumentation af brandklasse(r), jf. BR18 §508, stk. 1, nr. 2**
+Det angives hermed:
+☑ At der er valgt den korrekte brandklasse, og at dokumentationen herfor er retvisende.
+
+Den højeste brandklasse for byggeriet er:
+☑ Brandklasse 1
+☐ Brandklasse 2
+☐ Brandklasse 3
+☐ Brandklasse 4
+
+**Redningsberedskabets indsatsforhold, jf. BR18 §508, stk. 1, nr. 3**
+Det angives hermed:
+☑ Byggeriet er indsatstaktisk traditionelt.
+Idet byggeriet udføres i overensstemmelse med bygningsreglementets vejledning til kapitel 5 - Brand, vedrørende redningsberedskabets indsatsmuligheder.
+☐ Byggeriet er IKKE indsatstaktisk traditionelt.
+
+---
+
+**Starterklæring (START)**
+**Garage ved Villa Hansen**
+
+**Dokumentation af bygningsreglementets brandkrav, jf. BR18 §508 stk. 1, nr. 4**
+Det angives hermed:
+☑ At dokumentationen godtgør, at byggeriet svarende til det foreliggende detaljeringsniveau vil overholde bygningsreglementets brandkrav, jf. BR18, kapitel 5.
+
+Dette projekt overholder specifikt følgende paragraffer i BR18:
+*   BR18 §126-133 (Redningsberedskabets indsatsforhold)
+*   BR18 §508 (Starterklæring)
+*   BR18 §509 (Dokumentation for brandforhold)
+*   BR18 §510 (Indsatstaktisk traditionelt byggeri)
+*   BR18 §511 (Indplacering i brandklasse)
+*   BR18 Kapitel 5 (Generelle brandkrav)
+*   BR18 Bilag 3 (Kontrolplan og kontrolrapporter)
+
+**Brandteknisk kontrolplan og kontrolrapporter, jf. BR18 § 508, stk. 1, nr. 5**
+☑ At der er udarbejdet en fyldestgørende kontrolplan og kontrolrapport i overensstemmelse med kontroltyper, jf. BR18, bilag 3, tabel 1, og kontrolniveauer, jf. BR18, bilag 3, tabel 4, for design, projektering og udførelse af den brandtekniske dokumentation svarende til projektets stadie.
+
+**Redegørelse for den certificerede brandrådgivers hidtidige og planlagte virke, jf. BR18 § 508, stk. 1, nr. 6**
+| ID    | Brandteknisk dokumentation | Udarbejdende | Kontrollerende | Ikke relevant |
+| :---- | :------------------------- | :---------- | :------------ | :------------ |
+|       |                            | a1)         | a2)           | b1) | b2) | c) |
+| START | Starterklæring             | ☑           | ☐             | ☐ | ☐ | ☐ |
+
+**Underskrift**
+
+Hermed bekræftes ovenstående erklæring.
+
+_______________________________________
+[Navn på certificeret brandrådgiver]
+[Titel]
+[Virksomhed]
+[Dato]
+
+---
