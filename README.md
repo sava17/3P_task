@@ -590,4 +590,4 @@ With real operational data across 100+ projects, the system can be extended with
 
 ## 📺 Demo Video
 
-[![BR18 Document Automation Demo](https://img.youtube.com/vi/U5EagPz5Gyc/0.jpg)]([P3 Document Automation - YouTube](https://youtu.be/HF4tQCY9zZY))
+[Watch Demo Video](./Final_demo.mp4)
