@@ -590,4 +590,4 @@ With real operational data across 100+ projects, the system can be extended with
 
 ## 📺 Demo Video
 
-[Watch Demo Video](./Final_demo.mp4)
+https://github.com/user-attachments/assets/YOUR_VIDEO_HERE.mp4
