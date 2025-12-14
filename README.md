@@ -590,4 +590,4 @@ With real operational data across 100+ projects, the system can be extended with
 
 ## 📺 Demo Video
 
-https://github.com/user-attachments/assets/YOUR_VIDEO_HERE.mp4
+[![BR18 Document Automation Demo](https://vumbnail.com/1146306878.jpg)](https://vimeo.com/1146306878)
